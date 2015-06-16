@@ -1,3 +1,2 @@
 # Personal-Bot by wiiam
-=========================
-## A personal helper bot
+A personal helper bot
