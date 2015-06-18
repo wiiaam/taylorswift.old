@@ -38,6 +38,7 @@ public class Server {
 	
 	public void send(String s){
 		out.println(s + "\r\n");
+		out.flush();
 	}
 	
 	public void pm(String target, String message){
