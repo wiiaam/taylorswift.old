@@ -41,14 +41,17 @@ public class IrcBot {
 	public void loadModules(){
 		modules = new HashSet<Module>();
 		
+		modules.add(new Admin());
+		modules.add(new Autojoin());
+		modules.add(new Fortune());
+		modules.add(new Help());
 		modules.add(new IBIP());
 		modules.add(new Ping());
-		modules.add(new Admin());
-		modules.add(new Fortune());
-		modules.add(new Voting());
 		modules.add(new KiwiIRC());
-		modules.add(new Version());
+		modules.add(new Random());
 		modules.add(new SongLyrics());
+		modules.add(new Version());
+		modules.add(new Voting());
 		
 	}
 	
