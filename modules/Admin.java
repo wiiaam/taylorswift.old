@@ -1,16 +1,11 @@
 package modules;
 
+import extras.Links;
 import bot.Message;
 
 public class Admin implements Module{
 	
-	private String[] noodz = {"https://1.bp.blogspot.com/-j258ZUkGFCc/VLH8X8AZV1I/AAAAAAAACu0/5J1H8xiFcoo/s1600/f-120.jpg",
-			"https://1.bp.blogspot.com/-XZAJd8UzaP4/UT1Olee423I/AAAAAAAABhM/qYcso1ypL4A/s1600/TaylorSwift-CelebrityFakesHQ-023.JPG",
-			"http://porn-sex-pussy.com/celebs/taylor-swift/album/taylor_swift17.jpg",
-			"http://www.celebjihad.com/celeb-jihad/images/taylor_swift_nude.jpg",
-			"http://www.celebjihad.com/celeb-jihad/images/taylor_swift_naked_chair.jpg",
-			"https://3.bp.blogspot.com/-Srfio3TXf8I/VTzmMA7s7pI/AAAAAAAAEYw/bVePxgtJ9xQ/s1600/taylor%2Bswift%2Bhjb43b5j463h634jh.jpeg"
-	};
+	
 	@Override
 	public void parse(Message m) {
 		String target = m.param();
@@ -27,9 +22,9 @@ public class Admin implements Module{
 				m.say(target, "changed char to " + commandChar);
 				m.configure("commandchar", commandChar);
 			}
-			if(m.botCommand().equals("take")){
-				if(m.botParams().startsWith("a leaf from bruce jenner and change your nickname to")){
-					String newNick = m.botParamsArray()[10];
+			if(m.botCommand().equals("nick")){
+				if(m.hasBotParams()){
+					String newNick = m.botParamsArray()[0];
 					m.say(target, "ok");
 					if(m.getConfig().getProperty("commandchar").startsWith(m.getConfig().getProperty("nickname"))){
 						m.configure("commandchar", newNick + ": " );
@@ -37,12 +32,12 @@ public class Admin implements Module{
 					m.configure("nickname", newNick);
 					m.send("NICK " + newNick);
 				}
-					
 			}
 			if(m.botCommand().equals("join")){
 				if(m.hasBotParams()){
 					for(int i = 0; i < m.botParamsArray().length; i++){
 						m.send("JOIN " + m.botParamsArray()[i]);
+						m.pm(target, "kk");
 					}
 				}
 			}
@@ -73,16 +68,6 @@ public class Admin implements Module{
 				m.say(target, m.botParams());
 			}
 		}
-		if(m.botCommand().equals("post")){
-			if(m.hasBotParams()){
-				if(m.botParamsArray()[0].equals("n00dz")){
-					m.say(target, "ook here you go ;)");
-					String nood = noodz[(int)Math.floor(Math.random() * noodz.length)];
-					m.say(target, nood);
-				}
-			}
-		}
-		
 	}
 
 }
