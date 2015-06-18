@@ -17,7 +17,7 @@ public class Version implements Module {
 		String target = m.param();
 		if(!m.param().startsWith("#")) target = m.sender();
 		if(m.trailing().equals("VERSION")){
-			m.notice(target,"VERSION taylorswift 4.20 by Java™ Enterprises");
+			m.notice(m.sender(),"VERSION taylorswift 4.20 by Java™ Enterprises");
 		}
 		if(m.command().equals("PRIVMSG")){
 				if(m.botCommand().equals("version") || m.botCommand().equals("ver")){
