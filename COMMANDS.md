@@ -1,9 +1,9 @@
-## Commands for Personal-Bot
+# Commands for Personal-Bot
 
 **Note:** All commands listed start with the bot's command char, unless one is specifed. 
 The current command char can be found with .help
 
-### Public Commands
+## Public Commands
 
 `.help`, `help` - Displays help.
 
@@ -33,7 +33,7 @@ The current command char can be found with .help
 
 `Pr0Wolf29` - Displays a link to the paste of the conversation between Uncled1023 and Pr0Wolf29.
 
-### Admin commands
+## Admin commands
 
 `char <command char>` - Changes the command char to the one specified. If `self` is specified, the char will be `<nickname>:
 
@@ -54,3 +54,7 @@ The current command char can be found with .help
 `lyricson` - Turns on random Taylor Swift lyric posting.
 
 `lyricsoff` - Turns off random Taylor Swift lyric posting.
+
+`kickkiwiirc` - Kicks any KiwiIRC users that join.
+
+`allowkiwiirc` - Allows KiwiIRC users to enter the channel.
