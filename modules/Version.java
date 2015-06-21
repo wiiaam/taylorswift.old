@@ -36,6 +36,7 @@ public class Version implements Module {
 					version = version.replace("WeeChat", "WeebChat");
 					version = version.replace("weechat", "weebchat");
 					version = version.replace("Weechat", "Weebchat");
+					version = version.replace("","");
 					m.say(requests.get(m.sender()),"[" + m.sender() + "] Version: " + version);
 					requests.remove(m.sender());
 				}
