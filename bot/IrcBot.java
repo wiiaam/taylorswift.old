@@ -50,6 +50,7 @@ public class IrcBot {
 		modules.add(new KiwiIRC());
 		modules.add(new Random());
 		modules.add(new SongLyrics());
+		modules.add(new Time());
 		modules.add(new Version());
 		modules.add(new Voting());
 		
