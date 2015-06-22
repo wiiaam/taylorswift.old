@@ -23,9 +23,11 @@ public class Message {
 	private String commandChar;
 	private boolean hasBotParams = false;
 	public HashSet<String> admins;
+	public HashSet<String> ignores;
 	
-	public Message(String message, Properties properties, Server server, HashSet<String> admins){
+	public Message(String message, Properties properties, Server server, HashSet<String> admins, HashSet<String> ignores){
 		this.admins = admins;
+		this.ignores = ignores;
 		this.message = message;
 		config = properties;
 		this.server = server;
@@ -61,7 +63,7 @@ public class Message {
 			}
 			boolean cmd = trailing.startsWith(commandChar);
 			if(commandChar.equals(config.getProperty("nickname") + ": ")){
-				if(trailing.startsWith(properties.getProperty("nickname"))) cmd = true;
+				if(trailing.startsWith(properties.getProperty("nickname") + ", ")) cmd = true;
 				else cmd = false;
 				
 			}
