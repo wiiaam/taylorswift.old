@@ -18,6 +18,7 @@ public class IrcBot {
 	private Server server;
 	private Properties config;
 	private HashSet<String> admins = new HashSet<String>();
+	private HashSet<String> ignores = new HashSet<String>();
 	private PrintStream out = System.out;
 	
 	
@@ -41,16 +42,20 @@ public class IrcBot {
 	public void loadModules(){
 		modules = new HashSet<Module>();
 		
+		modules.add(new IBIP());
+		
 		modules.add(new Admin());
 		modules.add(new Autojoin());
 		modules.add(new Fortune());
 		modules.add(new Help());
-		modules.add(new IBIP());
+		modules.add(new Ignores());
 		modules.add(new Ping());
 		modules.add(new KiwiIRC());
+		modules.add(new Rainbow());
 		modules.add(new Random());
 		modules.add(new SongLyrics());
 		modules.add(new Time());
+		modules.add(new Triggers());
 		modules.add(new Version());
 		modules.add(new Voting());
 		
@@ -85,6 +90,14 @@ public class IrcBot {
 				else admins.add(next);
 			}
 			scan.close();
+			
+			scan = new Scanner(new File(this.getClass().getResource("ignores.txt").toURI()));
+			while(scan.hasNextLine()){
+				String next = scan.nextLine();
+				if(next.startsWith("#")) continue;
+				else ignores.add(next);
+			}
+			scan.close();
 			return true;
 		}
 		catch(Exception e){
@@ -101,7 +114,7 @@ public class IrcBot {
 		server.send(String.format("USER %s %s %s :%s", config.getProperty("username"), config.getProperty("username"), config.getProperty("server"), config.getProperty("realname")));
 		while(true){
 			if(server.in.hasNextLine()){
-				Message m = new Message(server.in.nextLine(), config, server, admins);
+				Message m = new Message(server.in.nextLine(), config, server, admins, ignores);
 				if(m.command().equals("002")) out.println("Connected");
 				if(m.command().equals("433")) out.println("Nick in use");
 				if(m.command().equals("451")) out.println("Register first");
@@ -117,7 +130,8 @@ public class IrcBot {
 			public void run() {
 				while(true){
 				if(server.in.hasNextLine()){
-					final Message m = new Message(server.in.nextLine(), config, server, admins);
+					final Message m = new Message(server.in.nextLine(), config, server, admins, ignores);
+					if(!admins.contains(m.sender()) && ignores.contains(m.sender())) continue;
 					out.println(m.message());
 					for(Module module : modules){
 						new Thread(new Runnable(){
