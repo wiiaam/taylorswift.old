@@ -81,7 +81,7 @@ public class Triggers implements Module {
 		if(!on)return;
 		
 		for(Entry<Object, Object> e : triggers.entrySet()){
-			if(m.trailing().contains((e.getKey().toString()))){
+			if(m.trailing().toLowerCase().contains((e.getKey().toString().toLowerCase()))){
 				String trigger = e.getValue().toString();
 				trigger = trigger.replace("%s", m.sender());
 				if(trigger.contains("%rb")){
