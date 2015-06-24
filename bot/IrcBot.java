@@ -51,6 +51,7 @@ public class IrcBot {
 		modules.add(new Ignores());
 		modules.add(new Ping());
 		modules.add(new KiwiIRC());
+		modules.add(new London());
 		modules.add(new Rainbow());
 		modules.add(new Random());
 		modules.add(new SongLyrics());
