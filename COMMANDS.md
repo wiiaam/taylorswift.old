@@ -21,7 +21,9 @@ The current command char can be found with .help
 
 `vote <topic>` - Starts a vote. Votes can be placed with `voteyes` and `voteno`.
 
-`ver <user>`, `version <user>` - Sends a CTCP version to the user and displays the result if a response is received 
+`ver <user>`, `version <user>` - Sends a ctcp VERSION to the user and displays the result if a response is received 
+
+`time <user>` - Sends a ctcp TIME to the user and displays the result if a response is received.
 
 `post n00dz` - Posts n00dz. **NSFW**.
 
@@ -32,6 +34,10 @@ The current command char can be found with .help
 `gen2` - Displays a quote of installgen2.
 
 `Pr0Wolf29` - Displays a link to the paste of the conversation between Uncled1023 and Pr0Wolf29.
+
+`listtriggers` - Lists all the triggers.
+
+`london <message>` - :^) limit 10 chars.
 
 ## Admin commands
 
@@ -58,3 +64,17 @@ The current command char can be found with .help
 `kickkiwiirc` - Kicks any KiwiIRC users that join.
 
 `allowkiwiirc` - Allows KiwiIRC users to enter the channel.
+
+`trigger <trigger> : <message>` - Adds the trigger.
+
+`untrigger <trigger>` - Removes the trigger.
+
+`triggers <on/off>` - Turns triggers on/off.
+
+`londonon` - Turns london on.
+
+`londonoff` - Turns london off.
+
+`ignore <user>` - Ignores the user.
+
+`unignore <user>` - Unignores the user.
