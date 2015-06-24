@@ -25,6 +25,8 @@ The current command char can be found with .help
 
 `time <user>` - Sends a ctcp TIME to the user and displays the result if a response is received.
 
+`ping <user>` - Sends a ctcp PING to the user and displays the result if a response is received.
+
 `post n00dz` - Posts n00dz. **NSFW**.
 
 `gt <message>` - Displays a >greentext of the message.
