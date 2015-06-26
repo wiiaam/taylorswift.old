@@ -63,9 +63,9 @@ The current command char can be found with .help
 
 `lyricsoff` - Turns off random Taylor Swift lyric posting.
 
-`kickkiwiirc` - Kicks any KiwiIRC users that join.
+`kiwion` - Messages any KiwiIRC users that join.
 
-`allowkiwiirc` - Allows KiwiIRC users to enter the channel.
+`kiwioff` - Turns off messages.
 
 `trigger <trigger> : <message>` - Adds the trigger.
 
