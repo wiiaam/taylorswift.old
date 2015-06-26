@@ -1,11 +1,13 @@
 package modules;
 
+import java.util.HashSet;
+
 import extras.Lyrics;
 import bot.Message;
 
 public class SongLyrics implements Module {
 
-	private boolean lyricson = false;
+	private HashSet<String> rooms = new HashSet<String>();
 	
 	@Override
 	public void parse(Message m) {
@@ -14,15 +16,21 @@ public class SongLyrics implements Module {
 		if(m.botCommand().equals("lyrics") || m.botCommand().equals("lyric")){
 			m.say(target,Lyrics.getRandomLyric());
 		}
-		if(m.botCommand().equals("lyricson")){
-			m.say(target, "Lyrics are now on");
-			lyricson = true;
+		if(m.botCommand().equals("lyricson") && m.admins.contains(m.sender())){
+			if(m.hasBotParams()){
+				for(String s : m.botParamsArray()){
+					rooms.add(s);
+				}
+			}
 		}
-		if(m.botCommand().equals("lyricsoff")){
-			m.pm(target, "Lyrics are now off");
-			lyricson = false;
+		if(m.botCommand().equals("lyricsoff") && m.admins.contains(m.sender())){
+			if(m.hasBotParams()){
+				for(String s : m.botParamsArray()){
+					rooms.remove(s);
+				}
+			}
 		}
-		if(m.param().startsWith("#") && lyricson){
+		if(m.param().startsWith("#") && rooms.contains(m.param())){
 			if(Math.random() < 0.03){
 				sendLyric(m.param(), m);
 			}

@@ -1,6 +1,5 @@
 package modules;
 
-import extras.Links;
 import bot.Message;
 
 public class Admin implements Module{
@@ -37,7 +36,7 @@ public class Admin implements Module{
 				if(m.hasBotParams()){
 					for(int i = 0; i < m.botParamsArray().length; i++){
 						m.send("JOIN " + m.botParamsArray()[i]);
-						m.pm(target, "kk");
+						m.say(target, "kk");
 					}
 				}
 			}

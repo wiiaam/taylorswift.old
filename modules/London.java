@@ -1,6 +1,5 @@
 package modules;
 
-import java.lang.annotation.Target;
 
 import bot.Message;
 
@@ -15,7 +14,7 @@ public class London implements Module {
 			if(m.botCommand().equals("londonon")) on = true;
 			if(m.botCommand().equals("londonoff")) on = false;
 		}
-		if(m.botCommand().equals("london")){
+		if(m.botCommand().equals("london") && on){
 			if(m.botParams().length() > 10){
 				m.say(target, "dats 2 long man");
 				return;
