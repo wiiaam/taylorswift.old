@@ -7,6 +7,7 @@ import java.util.HashSet;
 import java.util.Properties;
 import java.util.Scanner;
 
+import extras.URLTitles;
 import modules.*;
 
 public class IrcBot {
@@ -57,6 +58,7 @@ public class IrcBot {
 		modules.add(new SongLyrics());
 		modules.add(new Time());
 		modules.add(new Triggers());
+		modules.add(new TitleReporting());
 		modules.add(new Version());
 		modules.add(new Voting());
 		

@@ -41,6 +41,15 @@ public class Message {
 			for(int i = 2; i < messageSplit.length; i++){
 				trailing += " " + messageSplit[i];
 			}
+			String[] sendersplit = senderWhole.split("!");
+			if(sendersplit.length > 1){
+				sender = sendersplit[0];
+				senderAddress = sendersplit[1].split("@")[0].substring(1);
+				senderAddress = sendersplit[1].split("@")[1];
+			}
+			else{
+				senderAddress = sender;
+			}
 		}
 		else if(messageSplit.length == 3){
 			senderWhole = messageSplit[0].substring(1);
@@ -50,6 +59,15 @@ public class Message {
 			else trailing = messageSplit[2];
 			for(int i = 3; i < messageSplit.length; i++){
 				trailing += " " + messageSplit[i];
+			}
+			String[] sendersplit = senderWhole.split("!");
+			if(sendersplit.length > 1){
+				sender = sendersplit[0];
+				senderAddress = sendersplit[1].split("@")[0].substring(1);
+				senderAddress = sendersplit[1].split("@")[1];
+			}
+			else{
+				senderAddress = sender;
 			}
 		}
 		else{
@@ -61,9 +79,20 @@ public class Message {
 			for(int i = 4; i < messageSplit.length; i++){
 				trailing += " " + messageSplit[i];
 			}
+			String[] sendersplit = senderWhole.split("!");
+			if(sendersplit.length > 1){
+				sender = sendersplit[0];
+				senderAddress = sendersplit[1].split("@")[0].substring(1);
+				senderAddress = sendersplit[1].split("@")[1];
+			}
+			else{
+				senderAddress = sender;
+			}
 			boolean cmd = trailing.startsWith(commandChar);
 			if(commandChar.equals(config.getProperty("nickname") + ": ")){
 				if(trailing.startsWith(properties.getProperty("nickname") + ", ")) cmd = true;
+				if(trailing.startsWith(properties.getProperty("nickname") + ": ")) cmd = true;
+				if(trailing.startsWith(properties.getProperty("nickname"))) cmd = true;
 				else cmd = false;
 				
 			}
@@ -73,6 +102,10 @@ public class Message {
 				int i;
 				int diff;
 				if(commandChar.equals(config.getProperty("nickname") + ": ")){
+					if(trailingSplit.length == 1){
+						cmd = false;
+						return;
+					}
 					botCommand = trailingSplit[1];
 					i = 2;
 					diff = 2;
@@ -93,15 +126,6 @@ public class Message {
 				}
 				botParams = botParams.trim();
 			}
-		}
-		String[] sendersplit = senderWhole.split("!");
-		if(sendersplit.length > 1){
-			sender = sendersplit[0];
-			senderAddress = sendersplit[1].split("@")[0].substring(1);
-			senderAddress = sendersplit[1].split("@")[1];
-		}
-		else{
-			senderAddress = sender;
 		}
 		
 	}
