@@ -48,6 +48,7 @@ public class IrcBot {
 		modules.add(new Admin());
 		modules.add(new Autojoin());
 		modules.add(new Fortune());
+		modules.add(new Google());
 		modules.add(new Help());
 		modules.add(new Ignores());
 		modules.add(new Ping());
@@ -61,6 +62,7 @@ public class IrcBot {
 		modules.add(new TitleReporting());
 		modules.add(new Version());
 		modules.add(new Voting());
+		modules.add(new Youtube());
 		
 	}
 	
