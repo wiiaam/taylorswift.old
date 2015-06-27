@@ -1,5 +1,6 @@
 package extras;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -31,7 +32,6 @@ public class URLTitles {
 			int i = 0;
 			while(scan.hasNextLine()){
 				String next = scan.nextLine().trim();
-				System.out.println(next);
 				if(!title.equals("")){
 					title += next;
 					if(title.contains("</title")){
@@ -40,7 +40,6 @@ public class URLTitles {
 					}
 				}
 				if(next.contains("<title")){
-					System.out.println("found title");
 					title = next.split("<title")[1].split(">")[1].trim();
 					if(title.contains("</title")){
 						title = title.split("</title")[0].trim();
@@ -59,7 +58,7 @@ public class URLTitles {
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
-			
+			title = "Title not found";
 			e.printStackTrace();
 		}
 		title = String.format("[URL] %s (%s)",title, host);
