@@ -1,6 +1,12 @@
 package modules;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.net.URISyntaxException;
 import java.util.HashSet;
+import java.util.Scanner;
 
 import extras.URLTitles;
 import bot.Message;
@@ -8,7 +14,20 @@ import bot.Message;
 public class TitleReporting implements Module {
 
 	private HashSet<String> rooms = new HashSet<String>();
+	File file;
 	
+	public TitleReporting() {
+		try {
+			file = new File(this.getClass().getResource("files/titlereporting.txt").toURI());
+			Scanner scan = new Scanner(file);
+			while(scan.hasNextLine()){
+				rooms.add(scan.nextLine());
+			}
+			scan.close();
+		} catch (URISyntaxException | FileNotFoundException e) {
+			e.printStackTrace();
+		}
+	}
 	@Override
 	public void parse(Message m) {
 		String target = m.param();
@@ -19,6 +38,7 @@ public class TitleReporting implements Module {
 				for(String s : m.botParamsArray()){
 					rooms.add(s);
 				}
+				write();
 			}
 		}
 		if(m.botCommand().equals("titlesoff") && m.admins.contains(m.sender())){
@@ -26,6 +46,7 @@ public class TitleReporting implements Module {
 				for(String s : m.botParamsArray()){
 					rooms.remove(s);
 				}
+				write();
 			}
 		}
 		
@@ -40,6 +61,18 @@ public class TitleReporting implements Module {
 				}
 			}
 		}
+	}
+	
+	public void write(){
+		try {
+			PrintWriter writer = new PrintWriter(file);
+			for(String s : rooms){
+				writer.println(s);
+			}
+			writer.close();
+		} 
+		catch (IOException e) {}
+		
 	}
 
 }
