@@ -11,3 +11,4 @@ Commands can be found at [COMMANDS.md](COMMANDS.md)
 - Voting
 - Taylor Swift song lyrics
 - Random commands
+- Title reporting
