@@ -77,10 +77,10 @@ public class Voting implements Module {
 				try {
 					Thread.sleep(1000*30);
 					if(!isvoting)return;
-					m.say(voteroom, "The vote will end in 30 seconds\r\n");
+					m.say(voteroom, "The vote will end in 30 seconds\r\n");
 					Thread.sleep(1000*20);
 					if(!isvoting)return;
-					m.say(voteroom, "The vote will end in 10 seconds\r\n");
+					m.say(voteroom, "The vote will end in 10 seconds\r\n");
 					Thread.sleep(1000*10);
 					if(!isvoting)return;
 				} 
