@@ -12,6 +12,7 @@ Commands can be found at [COMMANDS.md](COMMANDS.md)
 - Taylor Swift song lyrics
 - Random commands
 - Title reporting
+- Web searches
 
 ### Requirements
 
