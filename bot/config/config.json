@@ -8,4 +8,5 @@
 	"port":6667,
 	"commandchar":".",
 	"admins":["your nickname"],
-	"ignores":["that guy that harasses you"]}
+	"ignores":["that guy that harasses you"]
+}
