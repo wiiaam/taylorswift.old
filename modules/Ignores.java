@@ -4,22 +4,20 @@ import bot.Message;
 import bot.config.Config;
 
 public class Ignores implements Module {
-	private Message m;
 
-	public void parse(Message msg) {
-		this.m = msg;
+	public void parse(Message m) {
+		String target = m.param();
+		if(!m.param().startsWith("#")) target = m.sender();
 		if(Config.getAdmins().contains(m.sender())){
-			if(m.botCommand().equals("ignore")){
-				if(m.hasBotParams()){
-					for(String s : m.botParamsArray()){
-						Config.addIgnore(s);;
+			if(m.botCommand().equals("ignores")){
+				if(m.botParamsArray().length > 1){
+					if(m.botParamsArray()[0].equals("add")){
+						Config.addIgnore(m.botParamsArray()[1]);
+						m.say(target, m.botParamsArray()[1] + " is now being ignored.");
 					}
-				}
-			}
-			if(m.botCommand().equals("unignore")){
-				if(m.hasBotParams()){
-					for(String s : m.botParamsArray()){
-						Config.removeIgnore(s);;
+					if(m.botParamsArray()[0].equals("del")){
+						if(Config.removeIgnore(m.botParamsArray()[1])) m.say(target, m.botParamsArray()[1] + " is no longer being ignored");
+						else m.say(target, m.botParamsArray()[1] + " was never being ignored");
 					}
 				}
 			}
