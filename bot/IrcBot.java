@@ -79,7 +79,7 @@ public class IrcBot {
 			e.printStackTrace();
 		}
 		for(String s : Config.getRooms()){
-			server.send("JOIN " + s);
+			server.send("JOIN #" + s);
 		}
 	}
 	
