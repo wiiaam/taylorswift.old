@@ -5,6 +5,7 @@ import java.io.FileNotFoundException;
 import java.io.PrintStream;
 import java.net.URISyntaxException;
 import java.util.HashSet;
+
 import bot.config.Config;
 import modules.*;
 
@@ -71,6 +72,12 @@ public class IrcBot {
 	
 	public void sendOnLogin(){
 		server.send(Config.getIdentification());
+		try {
+			Thread.sleep(500);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		for(String s : Config.getRooms()){
 			server.send("JOIN " + s);
 		}
