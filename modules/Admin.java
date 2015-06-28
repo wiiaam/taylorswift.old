@@ -49,8 +49,10 @@ public class Admin implements Module{
 			if(m.botCommand().equals("join")){
 				if(m.hasBotParams()){
 					for(int i = 0; i < m.botParamsArray().length; i++){
-						m.send("JOIN " + m.botParamsArray()[i]);
-						Config.addRoom(m.botParamsArray()[i]);
+						String roomtojoin = m.botParamsArray()[i];
+						System.out.println(roomtojoin);
+						m.send("JOIN " + roomtojoin);
+						Config.addRoom(roomtojoin);
 					}
 					m.say(target, "Now joining " + m.botParams());
 				}

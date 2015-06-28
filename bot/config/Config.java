@@ -69,8 +69,9 @@ public class Config {
 	}
 	
 	public static void addRoom(String s){
+		s = s.replace("#", "");
 		Gson gson = new GsonBuilder().create();
-		JsonArray jsonarray = json.get("admins").getAsJsonArray();
+		JsonArray jsonarray = json.get("rooms").getAsJsonArray();
 		for(JsonElement je : jsonarray){
 			if(je.getAsString().equals(s)) return;
 		}
@@ -79,7 +80,7 @@ public class Config {
 	}
 	
 	public static boolean removeRoom(String s){
-		JsonArray jsonarray = json.get("admins").getAsJsonArray();
+		JsonArray jsonarray = json.get("rooms").getAsJsonArray();
 		boolean found = true;
 		for(int i = 0; i < jsonarray.size(); i++){
 			if(jsonarray.get(i).getAsString().equals(s)){
