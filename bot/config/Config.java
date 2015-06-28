@@ -68,6 +68,29 @@ public class Config {
 		return set;
 	}
 	
+	public static void addRoom(String s){
+		Gson gson = new GsonBuilder().create();
+		JsonArray jsonarray = json.get("admins").getAsJsonArray();
+		for(JsonElement je : jsonarray){
+			if(je.getAsString().equals(s)) return;
+		}
+		jsonarray.add(gson.fromJson(s, JsonElement.class));
+		save();
+	}
+	
+	public static boolean removeRoom(String s){
+		JsonArray jsonarray = json.get("admins").getAsJsonArray();
+		boolean found = true;
+		for(int i = 0; i < jsonarray.size(); i++){
+			if(jsonarray.get(i).getAsString().equals(s)){
+				jsonarray.remove(i);
+				found = true;
+			}
+		}
+		save();
+		return found;
+	}
+	
 	public static HashSet<String> getAdmins(){
 		JsonArray jsonarray = json.get("admins").getAsJsonArray();
 		HashSet<String> set = new HashSet<String>();
@@ -79,20 +102,25 @@ public class Config {
 	
 	public static void addAdmin(String s){
 		Gson gson = new GsonBuilder().create();
-		JsonArray admins = json.get("admins").getAsJsonArray();
-		for(JsonElement je : admins){
+		JsonArray jsonarray = json.get("admins").getAsJsonArray();
+		for(JsonElement je : jsonarray){
 			if(je.getAsString().equals(s)) return;
 		}
-		admins.add(gson.fromJson(s, JsonElement.class));
+		jsonarray.add(gson.fromJson(s, JsonElement.class));
 		save();
 	}
 	
-	public static void removeAdmin(String s){
-		JsonArray admins = json.get("admins").getAsJsonArray();
-		for(int i = 0; i < admins.size(); i++){
-			if(admins.get(i).getAsString().equals(s)) admins.remove(i);
+	public static boolean removeAdmin(String s){
+		JsonArray jsonarray = json.get("admins").getAsJsonArray();
+		boolean found = true;
+		for(int i = 0; i < jsonarray.size(); i++){
+			if(jsonarray.get(i).getAsString().equals(s)){
+				jsonarray.remove(i);
+				found = true;
+			}
 		}
 		save();
+		return found;
 	}
 	
 	public static HashSet<String> getIgnores(){
@@ -114,12 +142,17 @@ public class Config {
 		save();
 	}
 	
-	public static void removeIgnore(String s){
+	public static boolean removeIgnore(String s){
 		JsonArray jsonarray = json.get("ignores").getAsJsonArray();
+		boolean found = false;
 		for(int i = 0; i < jsonarray.size(); i++){
-			if(jsonarray.get(i).getAsString().equals(s)) jsonarray.remove(i);
+			if(jsonarray.get(i).getAsString().equals(s)){
+				jsonarray.remove(i);
+				found = true;
+			}
 		}
 		save();
+		return found;
 	}
 	
 	public static String getChar(){

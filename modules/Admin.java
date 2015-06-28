@@ -16,11 +16,17 @@ public class Admin implements Module{
 				if(m.botParamsArray().length > 1){
 					if(m.botParamsArray()[0].equals("add")){
 						Config.addAdmin(m.botParamsArray()[1]);
+						m.say(target, m.botParamsArray()[1] + " is now an admin.");
+					}
+					if(m.botParamsArray()[0].equals("del")){
+						if(Config.removeAdmin(m.botParamsArray()[1])) m.say(target, m.botParamsArray()[1] + " is no longer an admin");
+						else m.say(target, m.botParamsArray()[1] + " is not an admin");
 					}
 				}
 			}
 			if(m.botCommand().equals("leave")){
 				m.send("PART " + m.param());
+				Config.removeRoom(m.param());
 			}
 			if(m.botCommand().equals("char")){
 				String commandChar = m.botParamsArray()[0];
@@ -33,7 +39,6 @@ public class Admin implements Module{
 			if(m.botCommand().equals("nick")){
 				if(m.hasBotParams()){
 					String newNick = m.botParamsArray()[0];
-					m.say(target, "ok");
 					if(Config.getChar().startsWith(Config.getNick())){
 						Config.setChar(newNick + ": " );
 					}
@@ -45,8 +50,9 @@ public class Admin implements Module{
 				if(m.hasBotParams()){
 					for(int i = 0; i < m.botParamsArray().length; i++){
 						m.send("JOIN " + m.botParamsArray()[i]);
-						m.say(target, "kk");
+						Config.addRoom(m.botParamsArray()[i]);
 					}
+					m.say(target, "Now joining " + m.botParams());
 				}
 			}
 			if(m.botCommand().equals("raw")){
