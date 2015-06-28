@@ -8,6 +8,7 @@ import java.net.URLConnection;
 import java.util.Scanner;
 
 import extras.urlparsers.FileParser;
+import extras.urlparsers.FourChanParser;
 import extras.urlparsers.YoutubeParser;
 
 public class URLTitles {
@@ -15,8 +16,9 @@ public class URLTitles {
 	
 	public static String find(String s){
 		if(s.contains("youtube.com/watch?") || s.contains("youtu.be/")) return YoutubeParser.find(s);
+		if(s.contains("boards.4chan.org/") && s.contains("/thread/")) return FourChanParser.find(s);
 		URL url;
-		String title = "";
+		String title = "Title not found";
 		String host = "";
 		try {
 			
@@ -32,7 +34,7 @@ public class URLTitles {
 			int i = 0;
 			while(scan.hasNextLine()){
 				String next = scan.nextLine().trim();
-				if(!title.equals("")){
+				if(!title.equals("Title not found")){
 					title += next;
 					if(title.contains("</title")){
 						title = title.split("</title")[0].trim();
@@ -40,7 +42,9 @@ public class URLTitles {
 					}
 				}
 				if(next.contains("<title")){
-					title = next.split("<title")[1].split(">")[1].trim();
+					String[] aftertitle = next.split("<title")[1].split(">");
+					if(aftertitle.length == 0) title = "";
+					else title = aftertitle[1];
 					if(title.contains("</title")){
 						title = title.split("</title")[0].trim();
 						break;
