@@ -13,6 +13,12 @@ The current command char can be found with .help
 
 `.bots` - Responds to [IBIP](https://github.com/Teknikode/IBIP).
 
+`g <search>`, `google <search>` - Searches google for the search term and returns the first result.
+
+`yt <search>`, `youtube <search>` - Searches YouTube for the search term and returns the first video found. 
+
+`ud <search>` - Searches urbandictionary for a term and returns the result.
+
 `8ball` - Ask the magic 8ball a question.
 
 `fortune` - Displays your fortune.
@@ -33,13 +39,11 @@ The current command char can be found with .help
 
 `>` - Displays >implying message
 
-`gen2` - Displays a quote of installgen2.
-
-`Pr0Wolf29` - Displays a link to the paste of the conversation between Uncled1023 and Pr0Wolf29.
+`kek <kek>` - Displays the kek associated to the param.
 
 `listtriggers` - Lists all the triggers.
 
-`london <message>` - :^) limit 10 chars.
+`london <message>` - :^) limit 10 chars. Usually kept turned off to stop channel spamming.
 
 ## Admin commands
 
