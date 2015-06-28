@@ -11,7 +11,6 @@ public class Admin implements Module{
 		String target = m.param();
 		if(!m.param().startsWith("#")) target = m.sender();
 		if(Config.getAdmins().contains(m.sender())){
-			System.out.println("sender is admin");
 			if(m.botCommand().equals("admin")){
 				if(m.botParamsArray().length > 1){
 					if(m.botParamsArray()[0].equals("add")){
@@ -50,7 +49,6 @@ public class Admin implements Module{
 				if(m.hasBotParams()){
 					for(int i = 0; i < m.botParamsArray().length; i++){
 						String roomtojoin = m.botParamsArray()[i];
-						System.out.println(roomtojoin);
 						m.send("JOIN " + roomtojoin);
 						Config.addRoom(roomtojoin);
 					}
