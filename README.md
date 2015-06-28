@@ -12,3 +12,8 @@ Commands can be found at [COMMANDS.md](COMMANDS.md)
 - Taylor Swift song lyrics
 - Random commands
 - Title reporting
+
+### Requirements
+
+This bot uses gson for Json configuration files.
+This can be downloaded at https://code.google.com/p/google-gson/
