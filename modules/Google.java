@@ -7,7 +7,6 @@ import java.util.Scanner;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
@@ -36,7 +35,7 @@ public class Google implements Module {
 				JsonObject json = gson.fromJson(jsonstring, JsonElement.class).getAsJsonObject();
 				JsonObject responseData = json.get("responseData").getAsJsonObject();
 				JsonObject results = responseData.get("results").getAsJsonArray().get(0).getAsJsonObject();
-				String title = String.format("Results for %s: %s (%s)", m.botParams(), results.get("titleNoFormatting").getAsString(), results.get("visibleUrl").getAsString());
+				String title = String.format("Results for %s: (%s) %s", m.botParams(),  results.get("visibleUrl").getAsString(), results.get("titleNoFormatting").getAsString());
 				m.say(target, title);
 			} catch (IOException e) {
 				e.printStackTrace();

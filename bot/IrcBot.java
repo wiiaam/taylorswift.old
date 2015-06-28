@@ -1,13 +1,11 @@
 package bot;
 
 import java.io.File;
-import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.PrintStream;
+import java.net.URISyntaxException;
 import java.util.HashSet;
-import java.util.Properties;
-import java.util.Scanner;
-
-import extras.URLTitles;
+import bot.config.Config;
 import modules.*;
 
 public class IrcBot {
@@ -17,20 +15,23 @@ public class IrcBot {
 	// Fields
 	private HashSet<Module> modules;
 	private Server server;
-	private Properties config;
-	private HashSet<String> admins = new HashSet<String>();
-	private HashSet<String> ignores = new HashSet<String>();
 	private PrintStream out = System.out;
 	
 	
 	public IrcBot(){
 		out.println("Reading config");
-		readConfig();
+			try {
+				readConfig();
+			} catch (FileNotFoundException | URISyntaxException e) {
+				e.printStackTrace();
+				return;
+			}
+			
 		out.println("Loading modules");
 		loadModules();
 		out.println("Connecting to server");
 		server = new Server();
-		server.connectTo(config.getProperty("server"), Integer.parseInt(config.getProperty("port")));
+		server.connectTo(Config.getServer(), Config.getPort());
 		
 		out.println("Logging in");
 		if(attemptLogin()){
@@ -61,6 +62,7 @@ public class IrcBot {
 		modules.add(new Time());
 		modules.add(new Triggers());
 		modules.add(new TitleReporting());
+		modules.add(new UrbanDictionary());
 		modules.add(new Version());
 		modules.add(new Voting());
 		modules.add(new Youtube());
@@ -68,59 +70,26 @@ public class IrcBot {
 	}
 	
 	public void sendOnLogin(){
-		try {
-			Scanner scan = new Scanner(new File(this.getClass().getResource("onlogin.txt").toURI()));
-			while(scan.hasNextLine()){
-				String next = scan.nextLine();
-				if(next.startsWith("#"))continue;
-				else server.send(next);
-			}
-			scan.close();
-		} 
-		catch (Exception e) {
-			e.printStackTrace();
+		server.send(Config.getIdentification());
+		for(String s : Config.getRooms()){
+			server.send("JOIN " + s);
 		}
 	}
 	
-	public boolean readConfig(){
-		try{
-			config = new Properties();
-			config.load(new FileInputStream(new File(this.getClass().getResource("config.properties").toURI())));
-			
-			admins.add(config.getProperty("superadmin"));
-			
-			Scanner scan = new Scanner(new File(this.getClass().getResource("admins.txt").toURI()));
-			while(scan.hasNextLine()){
-				String next = scan.nextLine();
-				if(next.startsWith("#")) continue;
-				else admins.add(next);
-			}
-			scan.close();
-			
-			scan = new Scanner(new File(this.getClass().getResource("ignores.txt").toURI()));
-			while(scan.hasNextLine()){
-				String next = scan.nextLine();
-				if(next.startsWith("#")) continue;
-				else ignores.add(next);
-			}
-			scan.close();
-			return true;
-		}
-		catch(Exception e){
-			e.printStackTrace();
-			return false;
-		}
+	public boolean readConfig() throws FileNotFoundException, URISyntaxException{
+		Config.load(new File(this.getClass().getResource("config/config.json").toURI()));
+		return true;
 	}
 	
 	/**
 	 * Attempts to login to the server
 	 */
 	public boolean attemptLogin(){
-		server.send("NICK " + config.getProperty("nickname"));
-		server.send(String.format("USER %s %s %s :%s", config.getProperty("username"), config.getProperty("username"), config.getProperty("server"), config.getProperty("realname")));
+		server.send("NICK " + Config.getNick());
+		server.send(String.format("USER %s %s %s :%s", Config.getUsername(), Config.getUsername(), Config.getServer(), Config.getRealname()));
 		while(true){
 			if(server.in.hasNextLine()){
-				Message m = new Message(server.in.nextLine(), config, server, admins, ignores);
+				Message m = new Message(server.in.nextLine(), server);
 				if(m.command().equals("002")) out.println("Connected");
 				if(m.command().equals("433")) out.println("Nick in use");
 				if(m.command().equals("451")) out.println("Register first");
@@ -136,8 +105,8 @@ public class IrcBot {
 			public void run() {
 				while(true){
 				if(server.in.hasNextLine()){
-					final Message m = new Message(server.in.nextLine(), config, server, admins, ignores);
-					if(!admins.contains(m.sender()) && ignores.contains(m.sender())) continue;
+					final Message m = new Message(server.in.nextLine(), server);
+					if(!Config.getAdmins().contains(m.sender()) && Config.getIgnores().contains(m.sender())) continue;
 					out.println(m.message());
 					for(Module module : modules){
 						new Thread(new Runnable(){

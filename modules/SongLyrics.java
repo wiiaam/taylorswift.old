@@ -4,6 +4,7 @@ import java.util.HashSet;
 
 import extras.Lyrics;
 import bot.Message;
+import bot.config.Config;
 
 public class SongLyrics implements Module {
 
@@ -16,14 +17,14 @@ public class SongLyrics implements Module {
 		if(m.botCommand().equals("lyrics") || m.botCommand().equals("lyric")){
 			m.say(target,Lyrics.getRandomLyric());
 		}
-		if(m.botCommand().equals("lyricson") && m.admins.contains(m.sender())){
+		if(m.botCommand().equals("lyricson") && Config.getAdmins().contains(m.sender())){
 			if(m.hasBotParams()){
 				for(String s : m.botParamsArray()){
 					rooms.add(s);
 				}
 			}
 		}
-		if(m.botCommand().equals("lyricsoff") && m.admins.contains(m.sender())){
+		if(m.botCommand().equals("lyricsoff") && Config.getAdmins().contains(m.sender())){
 			if(m.hasBotParams()){
 				for(String s : m.botParamsArray()){
 					rooms.remove(s);

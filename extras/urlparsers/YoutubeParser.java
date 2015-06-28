@@ -45,7 +45,7 @@ public class YoutubeParser {
 			String views = NumberFormat.getNumberInstance(Locale.US).format(statistics.get("viewCount").getAsInt());
 			String likes = NumberFormat.getNumberInstance(Locale.US).format(statistics.get("likeCount").getAsInt());
 			String dislikes = NumberFormat.getNumberInstance(Locale.US).format(statistics.get("dislikeCount").getAsInt());
-			String comments = NumberFormat.getNumberInstance(Locale.US).format(statistics.get("commentCount").getAsInt());
+			//String comments = NumberFormat.getNumberInstance(Locale.US).format(statistics.get("commentCount").getAsInt());
 			String duration = contentDetails.get("duration").getAsString();
 			
 			
@@ -144,7 +144,7 @@ public class YoutubeParser {
 			String views = NumberFormat.getNumberInstance(Locale.US).format(statistics.get("viewCount").getAsInt());
 			String likes = NumberFormat.getNumberInstance(Locale.US).format(statistics.get("likeCount").getAsInt());
 			String dislikes = NumberFormat.getNumberInstance(Locale.US).format(statistics.get("dislikeCount").getAsInt());
-			String comments = NumberFormat.getNumberInstance(Locale.US).format(statistics.get("commentCount").getAsInt());
+			//String comments = NumberFormat.getNumberInstance(Locale.US).format(statistics.get("commentCount").getAsInt());
 			String duration = contentDetails.get("duration").getAsString();
 			
 			

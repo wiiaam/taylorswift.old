@@ -2,6 +2,7 @@ package modules;
 
 
 import bot.Message;
+import bot.config.Config;
 
 public class London implements Module {
 	
@@ -10,11 +11,11 @@ public class London implements Module {
 	public void parse(Message m) {
 		String target = m.param();
 		if(!m.param().startsWith("#")) target = m.sender();
-		if(m.admins.contains(m.sender())){
+		if(Config.getAdmins().contains(m.sender())){
 			if(m.botCommand().equals("londonon")) on = true;
 			if(m.botCommand().equals("londonoff")) on = false;
 		}
-		if(m.botCommand().equals("london") && on){
+		if(m.botCommand().equals("london") && (on || Config.getAdmins().contains(m.sender()))){
 			if(m.botParams().length() > 10){
 				m.say(target, "dats 2 long man");
 				return;

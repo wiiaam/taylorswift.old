@@ -1,6 +1,7 @@
 package modules;
 
 import bot.Message;
+import bot.config.Config;
 
 public class KiwiIRC implements Module {
 	
@@ -8,10 +9,10 @@ public class KiwiIRC implements Module {
 	
 	@Override
 	public void parse(Message m) {
-		if(m.botCommand().equalsIgnoreCase("kiwion") && m.admins.contains(m.sender())){
+		if(m.botCommand().equalsIgnoreCase("kiwion") && Config.getAdmins().contains(m.sender())){
 			on = true;
 		}
-		if(m.botCommand().equalsIgnoreCase("kiwioff") && m.admins.contains(m.sender())){
+		if(m.botCommand().equalsIgnoreCase("kiwioff") && Config.getAdmins().contains(m.sender())){
 			on = false;
 		}
 		if(!on) return;

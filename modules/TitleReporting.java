@@ -10,6 +10,7 @@ import java.util.Scanner;
 
 import extras.URLTitles;
 import bot.Message;
+import bot.config.Config;
 
 public class TitleReporting implements Module {
 
@@ -33,7 +34,7 @@ public class TitleReporting implements Module {
 		String target = m.param();
 		if(!m.param().startsWith("#")) target = m.sender();
 		
-		if(m.botCommand().equals("titleson") && m.admins.contains(m.sender())){
+		if(m.botCommand().equals("titleson") && Config.getAdmins().contains(m.sender())){
 			if(m.hasBotParams()){
 				for(String s : m.botParamsArray()){
 					rooms.add(s);
@@ -41,7 +42,7 @@ public class TitleReporting implements Module {
 				write();
 			}
 		}
-		if(m.botCommand().equals("titlesoff") && m.admins.contains(m.sender())){
+		if(m.botCommand().equals("titlesoff") && Config.getAdmins().contains(m.sender())){
 			if(m.hasBotParams()){
 				for(String s : m.botParamsArray()){
 					rooms.remove(s);

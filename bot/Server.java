@@ -12,9 +12,6 @@ public class Server {
 	public PrintStream out;
 	private Socket socket;
 	
-	public Server(){
-		
-	}
 	
 	public void connectTo(String address, int port){
 		if(socket != null){

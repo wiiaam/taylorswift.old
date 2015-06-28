@@ -3,8 +3,6 @@ package modules;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
-import java.text.NumberFormat;
-import java.util.Locale;
 import java.util.Scanner;
 
 import com.google.gson.Gson;

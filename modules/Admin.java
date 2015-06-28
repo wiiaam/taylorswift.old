@@ -1,6 +1,7 @@
 package modules;
 
 import bot.Message;
+import bot.config.Config;
 
 public class Admin implements Module{
 	
@@ -9,26 +10,34 @@ public class Admin implements Module{
 	public void parse(Message m) {
 		String target = m.param();
 		if(!m.param().startsWith("#")) target = m.sender();
-		if(m.admins.contains(m.sender())){
+		if(Config.getAdmins().contains(m.sender())){
+			System.out.println("sender is admin");
+			if(m.botCommand().equals("admin")){
+				if(m.botParamsArray().length > 1){
+					if(m.botParamsArray()[0].equals("add")){
+						Config.addAdmin(m.botParamsArray()[1]);
+					}
+				}
+			}
 			if(m.botCommand().equals("leave")){
 				m.send("PART " + m.param());
 			}
 			if(m.botCommand().equals("char")){
 				String commandChar = m.botParamsArray()[0];
 				if(commandChar.equals("self")) {
-					commandChar = m.getConfig().getProperty("nickname") + ": ";
+					commandChar = Config.getNick() + ": ";
 				}
 				m.say(target, "changed char to " + commandChar);
-				m.configure("commandchar", commandChar);
+				Config.setChar(commandChar);
 			}
 			if(m.botCommand().equals("nick")){
 				if(m.hasBotParams()){
 					String newNick = m.botParamsArray()[0];
 					m.say(target, "ok");
-					if(m.getConfig().getProperty("commandchar").startsWith(m.getConfig().getProperty("nickname"))){
-						m.configure("commandchar", newNick + ": " );
+					if(Config.getChar().startsWith(Config.getNick())){
+						Config.setChar(newNick + ": " );
 					}
-					m.configure("nickname", newNick);
+					Config.setNick(newNick);
 					m.send("NICK " + newNick);
 				}
 			}

@@ -1,9 +1,6 @@
 package bot;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.util.HashSet;
-import java.util.Properties;
+import bot.config.Config;
 
 public class Message {
 	
@@ -19,19 +16,13 @@ public class Message {
 	private String[] botParamsArray;
 	private String botParams = "";
 	public Server server;
-	private Properties config;
 	private String commandChar;
 	private boolean hasBotParams = false;
-	public HashSet<String> admins;
-	public HashSet<String> ignores;
 	
-	public Message(String message, Properties properties, Server server, HashSet<String> admins, HashSet<String> ignores){
-		this.admins = admins;
-		this.ignores = ignores;
+	public Message(String message, Server server){
 		this.message = message;
-		config = properties;
 		this.server = server;
-		commandChar = config.getProperty("commandchar");
+		commandChar = Config.getChar();
 		String[] messageSplit = message.split("\\s+");
 		if(messageSplit.length == 2){
 			command = messageSplit[0];
@@ -89,10 +80,10 @@ public class Message {
 				senderAddress = sender;
 			}
 			boolean cmd = trailing.startsWith(commandChar);
-			if(commandChar.equals(config.getProperty("nickname") + ": ")){
-				if(trailing.startsWith(properties.getProperty("nickname") + ", ")) cmd = true;
-				if(trailing.startsWith(properties.getProperty("nickname") + ": ")) cmd = true;
-				if(trailing.startsWith(properties.getProperty("nickname"))) cmd = true;
+			if(commandChar.equals(Config.getNick() + ": ")){
+				if(trailing.startsWith(Config.getNick() + ", ")) cmd = true;
+				if(trailing.startsWith(Config.getNick() + ": ")) cmd = true;
+				if(trailing.startsWith(Config.getNick())) cmd = true;
 				else cmd = false;
 				
 			}
@@ -101,7 +92,7 @@ public class Message {
 				String[] trailingSplit = trailing.split("\\s+");
 				int i;
 				int diff;
-				if(commandChar.equals(config.getProperty("nickname") + ": ")){
+				if(commandChar.equals(Config.getNick() + ": ")){
 					if(trailingSplit.length == 1){
 						cmd = false;
 						return;
@@ -120,7 +111,6 @@ public class Message {
 				
 				hasBotParams = true;
 				for(;  i < trailingSplit.length; i++){
-					System.out.println(i + " " + diff);
 					botParamsArray[i-diff] = trailingSplit[i];
 					botParams += trailingSplit[i] + " ";
 				}
@@ -189,10 +179,6 @@ public class Message {
 		return hasBotParams;
 	}
 	
-	public Properties getConfig(){
-		return config;
-	}
-	
 	/**
 	 * PRIVMSG for room
 	 * NOTICE for user
@@ -202,13 +188,4 @@ public class Message {
 		else server.notice(target, message);
 	}
 	
-	public void configure(String key, String value){
-		try{
-			config.setProperty(key, value);
-			config.store(new FileOutputStream(new File(this.getClass().getResource("config.properties").toURI())), null);
-		}
-		catch(Exception e){
-			e.printStackTrace();
-		}
-	}
 }

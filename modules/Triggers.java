@@ -10,6 +10,7 @@ import java.util.Properties;
 
 import extras.Rainbowfy;
 import bot.Message;
+import bot.config.Config;
 
 public class Triggers implements Module {
 
@@ -31,7 +32,7 @@ public class Triggers implements Module {
 		String target = m.param();
 		if(!m.param().startsWith("#")) target = m.sender();
 		
-		if(m.admins.contains(m.sender()) && m.hasBotParams()){
+		if(Config.getAdmins().contains(m.sender()) && m.hasBotParams()){
 			if(m.botCommand().equals("trigger")){
 				String[] trigs = m.botParams().split(" : ");
 				if(trigs.length == 2){

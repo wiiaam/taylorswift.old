@@ -1,2 +1,0 @@
-# onlogin messages
-# This includes joining channels and logging in
