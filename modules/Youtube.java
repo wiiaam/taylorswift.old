@@ -38,7 +38,7 @@ public class Youtube implements Module {
 				JsonObject items = json.get("items").getAsJsonArray().get(0).getAsJsonObject();
 				JsonObject id = items.get("id").getAsJsonObject();
 				String videoId = id.get("videoId").getAsString();
-				String title = "(youtu.be/" + videoId + ") | " + YoutubeParser.findById(videoId);
+				String title = "https://youtu.be/" + videoId + " | " + YoutubeParser.findById(videoId);
 				m.say(target, title);
 			} catch (IOException e) {
 				e.printStackTrace();
