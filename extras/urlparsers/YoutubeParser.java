@@ -8,6 +8,8 @@ import java.util.Locale;
 import java.util.Scanner;
 import java.util.regex.Pattern;
 
+import bot.config.Config;
+
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonElement;
@@ -25,7 +27,7 @@ public class YoutubeParser {
 		}
 		
 		try {
-			URL url = new URL("https://www.googleapis.com/youtube/v3/videos?key=AIzaSyBOQ5YDzptRXB62jznfQavqTkHh-CEu__I&part=snippet,statistics,contentDetails&id=" + videoid);
+			URL url = new URL("https://www.googleapis.com/youtube/v3/videos?key=" + Config.getGoogleApiKey() + "&part=snippet,statistics,contentDetails&id=" + videoid);
 			InputStream in = url.openStream();
 			Scanner scan = new Scanner(in);
 			String jsonstring = "";
@@ -124,7 +126,7 @@ public class YoutubeParser {
 		String videoid = s;
 		
 		try {
-			URL url = new URL("https://www.googleapis.com/youtube/v3/videos?key=AIzaSyBOQ5YDzptRXB62jznfQavqTkHh-CEu__I&part=snippet,statistics,contentDetails&id=" + videoid);
+			URL url = new URL("https://www.googleapis.com/youtube/v3/videos?key=" + Config.getGoogleApiKey() + "&part=snippet,statistics,contentDetails&id=" + videoid);
 			InputStream in = url.openStream();
 			Scanner scan = new Scanner(in);
 			String jsonstring = "";
