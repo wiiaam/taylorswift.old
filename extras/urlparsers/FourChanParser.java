@@ -36,21 +36,27 @@ public class FourChanParser {
 			int replies = op.get("replies").getAsInt();
 			int files = op.get("images").getAsInt();
 			int ips = op.get("unique_ips").getAsInt();
+			
 			String autosage = "";
 			String bumplimit = "";
 			String imagelimit = "";
-			if(op.get("bumplimit").getAsInt() == 1){
-				autosage = "20AUTOSAGE INCOMING";
-				bumplimit = "20";
+			if(!op.has("sticky")){
+				if(op.get("bumplimit").getAsInt() == 1){
+					autosage = "4AUTOSAGE INCOMING";
+					bumplimit = "4";
+				}
+				if(op.get("imagelimit").getAsInt() == 1){
+					autosage = "4AUTOSAGE INCOMING";
+					imagelimit = "4";
+				}
 			}
-			if(op.get("imagelimit").getAsInt() == 1){
-				autosage = "20AUTOSAGE INCOMING";
-				imagelimit = "20";
+			else{
+				autosage = "12Stickied Thread";
 			}
 			if(op.get("sub") != null){
-				subject = "12" + makeClean(op.get("sub").getAsString()) + "";
+				subject = "12" + makeClean(op.get("sub").getAsString()) + "";
 				if(subject.length() > 30){
-					subject = subject.substring(0, 50) + "...";
+					subject = subject.substring(0, 50) + "...";
 				}
 			}
 			if(subject.length() > 50){
@@ -58,7 +64,7 @@ public class FourChanParser {
 			}
 			String created = op.get("now").getAsString();
 			
-			title = String.format("/%s/ | Thread no %d | %s | %s | %s%d / %s%d / %d %s", board, no, subject, created, bumplimit, replies, imagelimit, files, ips, autosage);
+			title = String.format("/%s/ - %s | Thread no %d | %s |%s %d /%s %d / %d %s", board, subject, no, created, bumplimit, replies, imagelimit, files, ips, autosage);
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
 		} catch (IOException e) {

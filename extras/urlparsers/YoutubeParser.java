@@ -99,18 +99,18 @@ public class YoutubeParser {
             
             int likeQuartile = (int)Math.ceil(percentlike*10);
             
-            String likebar = "25";
+            String likebar = "3";
             String ratingchar = "↑";
             for(int i = 0; i < 10; i++){
             	if(i == likeQuartile){
-            		likebar+= "20";
+            		likebar+= "4";
             		ratingchar = "↓";
             	}
             	likebar+=ratingchar;
             }
             likebar += "";
             
-            String videoinfo = String.format("%s | Uploader: %s | Duration: %s | Views: %s | 25%s %s 20%s ", title, uploader, duration, views, likes, likebar, dislikes);
+            String videoinfo = String.format("%s | Uploader: %s | Duration: %s | Views: %s |3 %s %s4 %s ", title, uploader, duration, views, likes, likebar, dislikes);
 			return videoinfo;
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -198,18 +198,18 @@ public class YoutubeParser {
             
             int likeQuartile = (int)Math.ceil(percentlike*10);
             
-            String likebar = "25";
+            String likebar = "3";
             String ratingchar = "↑";
             for(int i = 0; i < 10; i++){
             	if(i == likeQuartile){
-            		likebar+= "20";
+            		likebar+= "4";
             		ratingchar = "↓";
             	}
             	likebar+=ratingchar;
             }
             likebar += "";
             
-            String videoinfo = String.format("%s | Uploader: %s | Duration: %s | Views: %s | 25%s %s 20%s ", title, uploader, duration, views, likes, likebar, dislikes);
+            String videoinfo = String.format("%s | Uploader: %s | Duration: %s | Views: %s |3 %s %s4 %s ", title, uploader, duration, views, likes, likebar, dislikes);
 			return videoinfo;
 		} catch (IOException e) {
 			e.printStackTrace();
