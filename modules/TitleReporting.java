@@ -51,6 +51,7 @@ public class TitleReporting implements Module {
 			}
 		}
 		
+		if(!m.botCommand().equals(""))return;
 		if(rooms.contains(m.param())){
 			if(m.trailing().contains("http://") || m.trailing().contains("https://")){
 				String[] messageSplit = m.trailing().split("\\s+");
