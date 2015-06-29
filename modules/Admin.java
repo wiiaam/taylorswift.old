@@ -50,7 +50,7 @@ public class Admin implements Module{
 				if(m.hasBotParams()){
 					for(int i = 0; i < m.botParamsArray().length; i++){
 						String roomtojoin = m.botParamsArray()[i];
-						if(roomtojoin.equals("#0,0")){
+						if(roomtojoin.contains(",")){
 							m.say(target, "nice try");
 							continue;
 						}
