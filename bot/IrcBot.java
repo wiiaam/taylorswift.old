@@ -60,6 +60,7 @@ public class IrcBot {
 		modules.add(new Rainbow());
 		modules.add(new Random());
 		modules.add(new SongLyrics());
+		modules.add(new Steam());
 		modules.add(new Time());
 		modules.add(new Triggers());
 		modules.add(new TitleReporting());

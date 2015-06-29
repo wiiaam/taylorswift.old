@@ -19,6 +19,8 @@ The current command char can be found with .help
 
 `ud <search>` - Searches urbandictionary for a term and returns the result.
 
+`steaminfo <user>` - Displays steam information on the specified user.
+
 `8ball` - Ask the magic 8ball a question.
 
 `fortune` - Displays your fortune.
