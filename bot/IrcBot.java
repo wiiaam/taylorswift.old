@@ -65,6 +65,7 @@ public class IrcBot {
 		modules.add(new Triggers());
 		modules.add(new TitleReporting());
 		modules.add(new UrbanDictionary());
+		modules.add(new modules.UserInfo());
 		modules.add(new Version());
 		modules.add(new Voting());
 		modules.add(new Youtube());
@@ -81,6 +82,7 @@ public class IrcBot {
 		}
 		for(String s : Config.getRooms()){
 			server.send("JOIN #" + s);
+			server.send("WHO #" + s);
 		}
 	}
 	
