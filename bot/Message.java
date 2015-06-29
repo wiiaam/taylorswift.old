@@ -1,5 +1,6 @@
 package bot;
 
+
 import bot.config.Config;
 
 public class Message {
@@ -18,6 +19,7 @@ public class Message {
 	public Server server;
 	private String commandChar;
 	private boolean hasBotParams = false;
+
 	
 	public Message(String message, Server server){
 		this.message = message;
