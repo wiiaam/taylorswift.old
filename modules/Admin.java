@@ -1,6 +1,7 @@
 package modules;
 
 import bot.Message;
+import bot.UserInfo;
 import bot.config.Config;
 
 public class Admin implements Module{
@@ -10,7 +11,7 @@ public class Admin implements Module{
 	public void parse(Message m) {
 		String target = m.param();
 		if(!m.param().startsWith("#")) target = m.sender();
-		if(Config.getAdmins().contains(m.sender())){
+		if(Config.getAdmins().contains(m.sender()) && UserInfo.isRegistered(m.sender())){
 			if(m.botCommand().equals("admin")){
 				if(m.botParamsArray().length > 1){
 					if(m.botParamsArray()[0].equals("add")){
@@ -49,6 +50,10 @@ public class Admin implements Module{
 				if(m.hasBotParams()){
 					for(int i = 0; i < m.botParamsArray().length; i++){
 						String roomtojoin = m.botParamsArray()[i];
+						if(roomtojoin.equals("#0,0")){
+							m.say(target, "nice try");
+							continue;
+						}
 						m.send("JOIN " + roomtojoin);
 						Config.addRoom(roomtojoin);
 					}
