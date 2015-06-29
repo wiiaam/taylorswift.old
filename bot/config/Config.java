@@ -168,6 +168,14 @@ public class Config {
 		save();
 	}
 	
+	public static String getGoogleApiKey(){
+		return json.get("googleapikey").getAsString();
+	}
+	
+	public static String getSteamApiKey(){
+		return json.get("steamapikey").getAsString();
+	}
+	
 	private static void save(){
 		Gson gson = new GsonBuilder().create();
 		try {

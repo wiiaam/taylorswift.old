@@ -9,5 +9,6 @@
 	"commandchar":".",
 	"admins":["your nickname"],
 	"ignores":["that guy that harasses you"],
-	"googleapikey":"yourkey"
+	"googleapikey":"yourkey",
+	"steamapikey":"yourkey"
 }
