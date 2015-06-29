@@ -8,6 +8,7 @@ import java.util.Scanner;
 
 import extras.urlparsers.FileParser;
 import extras.urlparsers.FourChanParser;
+import extras.urlparsers.SteamParser;
 import extras.urlparsers.YoutubeParser;
 
 public class URLTitles {
@@ -16,6 +17,7 @@ public class URLTitles {
 	public static String find(String s){
 		if(s.contains("youtube.com/watch?") || s.contains("youtu.be/")) return YoutubeParser.find(s);
 		if(s.contains("boards.4chan.org/") && s.contains("/thread/")) return FourChanParser.find(s);
+		if(s.contains("steamcommunity.com") && (s.contains("/id/") || s.contains("/profiles/"))) return SteamParser.find(s);
 		URL url;
 		String title = "Title not found";
 		String host = "";
