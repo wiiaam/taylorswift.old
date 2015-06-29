@@ -49,7 +49,8 @@ The current command char can be found with .help
 
 ## Admin commands
 
-`char <command char>` - Changes the command char to the one specified. If `self` is specified, the char will be `<nickname>:
+`char <command char>` - Changes the command char to the one specified. If `self` is specified, the char will be 
+`<nickname>:`
 
 `nick <nick>` - Changes the bots nickname.
 
