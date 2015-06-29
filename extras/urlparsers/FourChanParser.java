@@ -16,7 +16,7 @@ public class FourChanParser {
 	public static String find(String s){
 		String title = "none";
 		try{
-			String thread = s.split(".*.org/")[1];
+			String thread = s.split(".*.org/")[1].split("#")[0];
 			URL url = new URL("https://a.4cdn.org/" + thread + ".json");
 			InputStream in = url.openStream();
 			Scanner scan = new Scanner(in);
@@ -76,6 +76,8 @@ public class FourChanParser {
 	
 	private static String makeClean(String s){
 		s = s.replace("</span>", "");
+		s = s.replace("<wbr>", "");
+		s = s.replace("</wbr>", "");
 		s = s.replace("<br>", " ");
 		s = s.replace("&#039;", "'");
 		s = s.replace("<span class=\"quote\">", "");
