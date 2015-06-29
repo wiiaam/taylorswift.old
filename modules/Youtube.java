@@ -12,6 +12,7 @@ import com.google.gson.JsonObject;
 
 import extras.urlparsers.YoutubeParser;
 import bot.Message;
+import bot.config.Config;
 
 public class Youtube implements Module {
 
@@ -24,7 +25,7 @@ public class Youtube implements Module {
 			if(m.botParamsArray().length == 0)return;
 			String query = m.botParams().replace(" ", "_");
 			try {
-				URL url = new URL("https://www.googleapis.com/youtube/v3/search?part=snippet&key=AIzaSyBOQ5YDzptRXB62jznfQavqTkHh-CEu__I&q=" + query);
+				URL url = new URL("https://www.googleapis.com/youtube/v3/search?part=snippet&key=" + Config.getGoogleApiKey() + "&q=" + query);
 				InputStream in = url.openStream();
 				Scanner scan = new Scanner(in);
 				String jsonstring = "";
