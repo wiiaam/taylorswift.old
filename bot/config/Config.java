@@ -70,12 +70,13 @@ public class Config {
 	
 	public static void addRoom(String s){
 		s = s.replace("#", "");
+		String toadd = "\"" + s + "\"";
 		Gson gson = new GsonBuilder().create();
 		JsonArray jsonarray = json.get("rooms").getAsJsonArray();
 		for(JsonElement je : jsonarray){
 			if(je.getAsString().equals(s)) return;
 		}
-		jsonarray.add(gson.fromJson(s, JsonElement.class));
+		jsonarray.add(gson.fromJson(toadd, JsonElement.class));
 		save();
 	}
 	
@@ -102,12 +103,13 @@ public class Config {
 	}
 	
 	public static void addAdmin(String s){
+		String toadd = "\"" + s + "\"";
 		Gson gson = new GsonBuilder().create();
 		JsonArray jsonarray = json.get("admins").getAsJsonArray();
 		for(JsonElement je : jsonarray){
 			if(je.getAsString().equals(s)) return;
 		}
-		jsonarray.add(gson.fromJson(s, JsonElement.class));
+		jsonarray.add(gson.fromJson(toadd, JsonElement.class));
 		save();
 	}
 	
@@ -134,6 +136,7 @@ public class Config {
 	}
 	
 	public static void addIgnore(String s){
+		String toadd = "\"" + s + "\"";
 		Gson gson = new GsonBuilder().create();
 		JsonArray jsonarray = json.get("ignores").getAsJsonArray();
 		for(JsonElement je : jsonarray){
