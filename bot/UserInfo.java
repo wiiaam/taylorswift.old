@@ -30,6 +30,7 @@ public class UserInfo {
 	public static boolean remove(String nick){
 		if(!userinfo.containsKey(nick))return false;
 		userinfo.remove(nick);
+		userchans.remove(nick);
 		return true;
 	}
 	

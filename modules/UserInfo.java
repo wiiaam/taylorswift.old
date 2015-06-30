@@ -12,9 +12,10 @@ public class UserInfo implements Module {
 		if(m.command().equals("352")){
 			bot.UserInfo.parse(m.trailing());
 		}
+		/*
 		if(m.command().equals("JOIN")){
 			m.send("WHO " + m.trailing());
-		}
+		}*/
 		if(m.command().equals("PART")){
 			bot.UserInfo.removeChan(m.sender(), m.param());
 		}
@@ -43,7 +44,7 @@ public class UserInfo implements Module {
 				}
 				
 			}
-		}).start();;
+		}).start();
 	}
 
 }
