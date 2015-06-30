@@ -190,4 +190,7 @@ public class Message {
 		else server.notice(target, message);
 	}
 	
+	public boolean senderIsAdmin(){
+		return(Config.getAdmins().contains(sender) && UserInfo.isRegistered(sender));
+	}
 }
