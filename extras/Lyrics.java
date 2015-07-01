@@ -7,12 +7,12 @@ public class Lyrics {
 			"I'm only me when i'm with you", "I had the best day with you today", "I've got a blank space baby",
 			"We never go out of style", "It's a love story baby just say yes", "You should've said no",
 			"I go back to december all the time", "These things will change", 
-			"You are the best thing, that's ever been mine", "You, with your words like knives","Absent mindedly makin’ me want you"
+			"You are the best thing, that's ever been mine", "You, with your words like knives","Absent mindedly makin' me want you"
 	};
 	
 	private static String[] lyrics = {"I said leave, but all i really want is you", 
 			"Wish you could go back and tell yourself what you know now",
-			"I’m no one special, just another wide eyed girl who’s desperately in love with you",
+			"I'm no one special, just another wide eyed girl who's desperately in love with you",
 			"I realize you love yourself more than you could ever love me","And when you take, you take the very best of me",
 			"You could write a book on how to ruin someone's perfect day","My thoughts will echo your name until I see you again",
 			"If we loved again, I swear I'd love you right","He's the song in the car I keep singing. Don't know why I do",
