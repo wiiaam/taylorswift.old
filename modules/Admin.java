@@ -11,7 +11,7 @@ public class Admin implements Module{
 	public void parse(Message m) {
 		String target = m.param();
 		if(!m.param().startsWith("#")) target = m.sender();
-		if(Config.getAdmins().contains(m.sender()) && UserInfo.isRegistered(m.sender())){
+		if(m.senderIsAdmin()){
 			if(m.botCommand().equals("admin")){
 				if(m.botParamsArray().length > 1){
 					if(m.botParamsArray()[0].equals("add")){

@@ -53,4 +53,13 @@ public class UserInfo {
 		chans.remove(chan);
 		userchans.put(nick, chans);
 	}
+	
+	public static void changeNick(String oldnick, String newnick){
+		HashSet<String> chans = userchans.get(oldnick);
+		HashMap<String, String> info = userinfo.get(oldnick);
+		userchans.put(newnick, chans);
+		userinfo.put(newnick, info);
+		userchans.remove(oldnick);
+		userinfo.remove(oldnick);
+	}
 }
