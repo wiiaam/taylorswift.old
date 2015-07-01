@@ -11,6 +11,17 @@ public class Admin implements Module{
 	public void parse(Message m) {
 		String target = m.param();
 		if(!m.param().startsWith("#")) target = m.sender();
+		
+		if(m.command().equals("NICK")){
+			System.out.println(m.trailing());
+			if(m.sender().equals(Config.getNick())){
+				if(Config.getChar().startsWith(Config.getNick())){
+					Config.setChar(m.trailing() + ": " );
+				}
+				Config.setNick(m.trailing());
+			}
+		}
+		
 		if(m.senderIsAdmin()){
 			if(m.botCommand().equals("admin")){
 				if(m.botParamsArray().length > 1){
@@ -39,10 +50,7 @@ public class Admin implements Module{
 			if(m.botCommand().equals("nick")){
 				if(m.hasBotParams()){
 					String newNick = m.botParamsArray()[0];
-					if(Config.getChar().startsWith(Config.getNick())){
-						Config.setChar(newNick + ": " );
-					}
-					Config.setNick(newNick);
+					
 					m.send("NICK " + newNick);
 				}
 			}
