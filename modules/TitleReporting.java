@@ -59,6 +59,7 @@ public class TitleReporting implements Module {
 					if(messageSplit[i].startsWith("http://") || messageSplit[i].startsWith("https://")){
 						String title = URLTitles.find(messageSplit[i]);
 						if(title != null) m.say(target, title);
+						break;
 					}
 				}
 			}
