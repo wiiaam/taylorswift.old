@@ -36,7 +36,7 @@ public class Google implements Module {
 				JsonObject responseData = json.get("responseData").getAsJsonObject();
 				JsonObject results = responseData.get("results").getAsJsonArray().get(0).getAsJsonObject();
 				String urltitle = results.get("titleNoFormatting").getAsString();
-				if(urltitle.length() > 30) urltitle = urltitle.substring(0, 29).trim() + "...";
+				if(urltitle.length() > 100) urltitle = urltitle.substring(0, 99).trim() + "...";
 				String description = "";
 				String title = String.format("Results for %s: (%s) %s", m.botParams(),  results.get("unescapedUrl").getAsString(), urltitle);
 				m.say(target, title);
