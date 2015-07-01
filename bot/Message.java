@@ -191,6 +191,7 @@ public class Message {
 	}
 	
 	public boolean senderIsAdmin(){
-		return(Config.getAdmins().contains(sender) && UserInfo.isRegistered(sender));
+		if (UserInfo.isRegistered(sender)) return Config.getAdmins().contains(sender);
+		else return false;
 	}
 }
