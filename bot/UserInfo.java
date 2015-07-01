@@ -57,6 +57,7 @@ public class UserInfo {
 	public static void changeNick(String oldnick, String newnick){
 		HashSet<String> chans = userchans.get(oldnick);
 		HashMap<String, String> info = userinfo.get(oldnick);
+		info.put("modes", "");
 		userchans.put(newnick, chans);
 		userinfo.put(newnick, info);
 		userchans.remove(oldnick);
