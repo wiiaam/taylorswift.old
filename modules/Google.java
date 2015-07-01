@@ -35,7 +35,10 @@ public class Google implements Module {
 				JsonObject json = gson.fromJson(jsonstring, JsonElement.class).getAsJsonObject();
 				JsonObject responseData = json.get("responseData").getAsJsonObject();
 				JsonObject results = responseData.get("results").getAsJsonArray().get(0).getAsJsonObject();
-				String title = String.format("Results for %s: (%s) %s", m.botParams(),  results.get("visibleUrl").getAsString(), results.get("titleNoFormatting").getAsString());
+				String urltitle = results.get("titleNoFormatting").getAsString();
+				if(urltitle.length() > 30) urltitle = urltitle.substring(0, 29).trim() + "...";
+				String description = "";
+				String title = String.format("Results for %s: (%s) %s", m.botParams(),  results.get("unescapedUrl").getAsString(), urltitle);
 				m.say(target, title);
 			} catch (IOException e) {
 				e.printStackTrace();
