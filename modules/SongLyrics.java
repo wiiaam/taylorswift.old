@@ -32,7 +32,7 @@ public class SongLyrics implements Module {
 			}
 		}
 		if(m.param().startsWith("#") && rooms.contains(m.param())){
-			if(Math.random() < 0.03){
+			if(Math.random() < 0.05){
 				sendLyric(m.param(), m);
 			}
 		}
