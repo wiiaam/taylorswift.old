@@ -46,14 +46,17 @@ public class Quotes implements Module{
 		String target = m.param();
 		if(!m.param().startsWith("#")) target = m.sender();
 		if(m.command().equals("PRIVMSG")){
+			if(m.sender().equals("py-ctcp"))return;
 			if(quotes.has(m.sender())){
+				String quote = makeJsonString(m.trailing());
 				JsonArray quotearray = quotes.get(m.sender()).getAsJsonArray();
-				quotearray.add(gson.fromJson("\"" + m.trailing() + "\"", JsonElement.class));;
+				quotearray.add(gson.fromJson("\"" + quote + "\"", JsonElement.class));;
 				save();
 			}
 			else{
+				String quote = makeJsonString(m.trailing());
 				JsonArray quotearray = new JsonArray();
-				quotearray.add(gson.fromJson("\"" + m.trailing() + "\"", JsonElement.class));
+				quotearray.add(gson.fromJson("\"" + quote + "\"", JsonElement.class));
 				quotes.add(m.sender(), quotearray);
 				save();
 			}
@@ -82,5 +85,11 @@ public class Quotes implements Module{
 			e.printStackTrace();
 		}
 		
+	}
+	
+	private String makeJsonString(String s){
+		s = s.replace("\"", "\\\"");
+		
+		return s;
 	}
 }
