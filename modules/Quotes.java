@@ -61,8 +61,9 @@ public class Quotes implements Module{
 		if(m.botCommand().equals("quote")){
 			if(m.hasBotParams()){
 				if(quotes.has(m.botParamsArray()[0])){
+					String user = m.botParamsArray()[0];
 					int random = (int)Math.floor(Math.random()*quotes.get(m.botParamsArray()[0]).getAsJsonArray().size());
-					m.say(target, quotes.get(m.botParamsArray()[0]).getAsJsonArray().get(random).getAsString());
+					m.say(target,"<" + user + "> " + quotes.get(user).getAsJsonArray().get(random).getAsString());
 				}
 				else{
 					m.say(target, "I don't know who that person is");
