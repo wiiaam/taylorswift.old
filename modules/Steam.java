@@ -2,12 +2,8 @@ package modules;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Scanner;
-
-import org.omg.CORBA.FREE_MEM;
-
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonArray;
@@ -63,7 +59,7 @@ public class Steam implements Module {
 				}
 				String title = "";
 				String friends = "";
-				String games = "";
+				//String games = "";
 				String onlinestatus = "";
 				try {
 					

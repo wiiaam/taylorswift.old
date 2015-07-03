@@ -48,7 +48,7 @@ public class SteamParser {
 		}
 		String title = "";
 		String friends = "";
-		String games = "";
+		//String games = "";
 		String onlinestatus = "";
 		try {
 			
@@ -81,7 +81,7 @@ public class SteamParser {
 			}
 			else{
 				String personaname = player.get("personaname").getAsString();
-				String profileurl = player.get("profileurl").getAsString();
+				//String profileurl = player.get("profileurl").getAsString();
 				String info = "";
 				if(player.has("realname")) info += player.get("realname").getAsString() + " ";
 				if(player.has("loccountrycode")) info += "| Location: " + player.get("loccountrycode").getAsString() + " ";

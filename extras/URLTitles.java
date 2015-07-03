@@ -32,7 +32,6 @@ public class URLTitles {
 			host = urlc.getURL().getHost();
 			
 			Scanner scan = new Scanner(urlc.getInputStream());
-			int i = 0;
 			boolean titlefound = false;
 			boolean allcaps = false;
 			String titlecode = "";

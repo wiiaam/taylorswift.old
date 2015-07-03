@@ -8,9 +8,6 @@ import java.net.URISyntaxException;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Properties;
-import java.util.function.BiConsumer;
-
-import javax.swing.plaf.nimbus.NimbusLookAndFeel;
 
 import bot.Message;
 import bot.UserInfo;
