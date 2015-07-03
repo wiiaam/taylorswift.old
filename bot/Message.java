@@ -190,6 +190,18 @@ public class Message {
 		else server.notice(target, message);
 	}
 	
+	public void say(String target, String[] messagearray){
+		for(int i = 0; i < messagearray.length; i++){
+			if(target.startsWith("#")) server.pm(target, messagearray[i]);
+			else server.notice(target, messagearray[i]);
+			try {
+				Thread.sleep(500);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+	
 	public boolean senderIsAdmin(){
 		if (UserInfo.isRegistered(sender)) return Config.getAdmins().contains(sender);
 		else return false;
