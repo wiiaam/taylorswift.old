@@ -178,7 +178,7 @@ public class Money implements Module{
 			m.say(target,"[_[___________4#");
 			
 		}
-		if(m.botCommand().equals("give lol")){
+		if(m.botCommand().equals("give")){
 			if(!UserInfo.isRegistered(m.sender())){
 				m.say(target, "pls login m9");
 				return;
@@ -187,10 +187,14 @@ public class Money implements Module{
 				String togiveto = m.botParamsArray()[0];
 				double togive;
 				try{
-					togive = Integer.parseInt(m.botParamsArray()[0]);
+					togive = Integer.parseInt(m.botParamsArray()[1]);
 				}
 				catch (NumberFormatException e){
 					m.say(target, "cmon man help a brother out");
+					return;
+				}
+				if(togive < 1){
+					m.say(target, "dont be a cheap cunt");
 					return;
 				}
 				if(!bank.containsKey(m.sender())){
@@ -201,6 +205,9 @@ public class Money implements Module{
 					m.say(target, "u dont have enuf money bro");
 					return;
 				}
+				write(m.sender(), get(m.sender()) - togive);
+				write(togiveto, get(togiveto) + togive);
+				m.say(target, String.format("you gave %s 3$%.0f", togiveto, togive));
 			}
 		}
 	}
