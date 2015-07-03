@@ -22,6 +22,13 @@ public class Admin implements Module{
 			}
 		}
 		
+		if(m.command().equals("KICK")){
+			if(m.trailing().startsWith(Config.getNick())){
+				System.out.println(m.param().substring(1));
+				Config.removeRoom(m.param().substring(1));
+			}
+		}
+		
 		if(m.senderIsAdmin()){
 			if(m.botCommand().equals("admin")){
 				if(m.botParamsArray().length > 1){
@@ -94,6 +101,7 @@ public class Admin implements Module{
 			if(m.botCommand().equals("say")){
 				m.say(target, m.botParams());
 			}
+			
 		}
 	}
 

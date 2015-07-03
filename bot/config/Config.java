@@ -82,6 +82,9 @@ public class Config {
 	
 	public static boolean removeRoom(String s){
 		JsonArray jsonarray = json.get("rooms").getAsJsonArray();
+		if(s.startsWith("#")){
+			s = s.substring(1);
+		}
 		boolean found = true;
 		for(int i = 0; i < jsonarray.size(); i++){
 			if(jsonarray.get(i).getAsString().equals(s)){

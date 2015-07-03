@@ -33,39 +33,49 @@ public class URLTitles {
 			
 			Scanner scan = new Scanner(urlc.getInputStream());
 			int i = 0;
-			while(scan.hasNext()){
-				String next = scan.next();
-				if(!title.equals("Title not found")){
-					title += " " + next;
-					if(title.toLowerCase().contains("</title")){
-						title = title.split("</title")[0].split("</TITLE")[0].trim();
-						break;
-					}
+			boolean titlefound = false;
+			boolean allcaps = false;
+			String titlecode = "";
+			while(scan.hasNextLine()){
+				String next = scan.nextLine();
+				if(next.contains("<title") && !titlefound){
+					titlefound = true;
+					titlecode += next;
+					continue;
+					
 				}
-				if(next.contains("<title")){
-					if(next.split("title.*>").length == 1 ) title = "";
-					else title = next.split("title.*>")[1];
-					if(title.contains("</title")){
-						title = title.split("</title")[0].trim();
-						break;
-					}
+				if(next.contains("<TITLE") && !titlefound){
+					allcaps = true;
+					titlefound = true;
+					titlecode += next;
+					continue;
+					
 				}
-				if(next.contains("<TITLE")){
-					System.out.println(next.split("TITLE.*>").length);
-					if(next.split("TITLE.*>").length == 1 ) title = "";
-					else title = next.split("TITLE.*>")[1];
-					if(title.contains("</TITLE")){
-						title = title.split("</TITLE")[0].trim();
-						break;
-					}
+				if(titlefound){
+					titlecode +=  next;
 				}
-				if(i > 3000){
-					title = "Title not found";
+				if(titlecode.length() > 200){
+					titlecode += "...";
 					break;
 				}
-				i++;
+				if(titlecode.contains("</title>") || titlecode.contains("</TITLE>")){
+					break;
+				}
+				
+				
+			}
+			if(title.length() > 100){
+				title = title.substring(0, 95) + "...";
 			}
 			scan.close();
+			
+			if(allcaps){
+				title = titlecode.split("<TITLE?>")[1].split("</TITLE")[0];
+			}
+			else{
+				title = titlecode.split("<title?>")[1].split("</title")[0];
+			}
+			
 			if(title.equals("")) title = "Title not found";
 			title = title.replaceAll("&.*;","");
 		} catch (MalformedURLException e) {

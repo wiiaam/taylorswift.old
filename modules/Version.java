@@ -23,6 +23,7 @@ public class Version implements Module {
 				if(m.botCommand().equals("version") || m.botCommand().equals("ver")){
 					if(m.hasBotParams()){
 						for(int i = 0; i < m.botParamsArray().length; i++){
+							if(m.botParamsArray()[i].startsWith("#"))continue;
 							m.pm(m.botParamsArray()[i], "VERSION");
 							requests.put(m.botParamsArray()[i], target);
 						}
