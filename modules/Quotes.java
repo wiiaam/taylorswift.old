@@ -45,7 +45,7 @@ public class Quotes implements Module{
 	public void parse(Message m) {
 		String target = m.param();
 		if(!m.param().startsWith("#")) target = m.sender();
-		if(m.command().equals("PRIVMSG")){
+		if(m.command().equals("PRIVMSG") && m.botCommand().equals("")){
 			if(m.sender().equals("py-ctcp"))return;
 			if(quotes.has(m.sender())){
 				String quote = makeJsonString(m.trailing());
