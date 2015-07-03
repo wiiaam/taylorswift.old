@@ -48,7 +48,7 @@ public class IrcBot {
 		modules.add(new IBIP());
 		
 		modules.add(new Admin());
-		modules.add(new Autojoin());
+		//modules.add(new Autojoin());
 		modules.add(new Fortune());
 		modules.add(new Google());
 		modules.add(new Help());
@@ -57,6 +57,7 @@ public class IrcBot {
 		modules.add(new TopKek());
 		modules.add(new KiwiIRC());
 		modules.add(new London());
+		modules.add(new Money());
 		modules.add(new Rainbow());
 		modules.add(new Random());
 		modules.add(new SongLyrics());
