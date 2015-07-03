@@ -39,11 +39,6 @@ public class Server {
 	}
 	
 	public void pm(String target, String message){
-		if(target.equals("#r9kmode")){
-			String addition =  "           0,0," + (int)Math.floor(Math.random()*1000000);
-			
-			message = message + addition;
-		}
 		send(String.format("PRIVMSG %s :%s", target, message));
 	}
 	
