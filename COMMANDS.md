@@ -59,6 +59,8 @@ The current command char can be found with .help
 
 `durry` - Buy a durry.
 
+`give <user> <amount>` - Give money to a user.
+
 ## Admin commands
 
 `char <command char>` - Changes the command char to the one specified. If `self` is specified, the char will be 
