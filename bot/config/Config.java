@@ -145,7 +145,7 @@ public class Config {
 		for(JsonElement je : jsonarray){
 			if(je.getAsString().equals(s)) return;
 		}
-		jsonarray.add(gson.fromJson(s, JsonElement.class));
+		jsonarray.add(gson.fromJson(toadd, JsonElement.class));
 		save();
 	}
 	
