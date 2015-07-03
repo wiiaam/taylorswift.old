@@ -20,7 +20,7 @@ public class YoutubeParser {
 	public static String find(String s){
 		String videoid = "none";
 		if(s.contains("youtu.be")){
-			videoid = s.split("youtu.be/")[1].split("?")[0];
+			videoid = s.split("youtu.be/")[1].split("\\?")[0];
 		}
 		else{
 			videoid = s.split(".*/.*/.*v=")[1].split("\\?")[0];
