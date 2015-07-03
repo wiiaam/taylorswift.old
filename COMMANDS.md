@@ -78,9 +78,9 @@ The current command char can be found with .help
 
 `notice <target> <message>` Sends a NOTICE to the target.
 
-`lyricson` - Turns on random Taylor Swift lyric posting.
+`lyricson <room>` - Turns on random Taylor Swift lyric posting.
 
-`lyricsoff` - Turns off random Taylor Swift lyric posting.
+`lyricsoff <room>` - Turns off random Taylor Swift lyric posting.
 
 `kiwion` - Messages any KiwiIRC users that join.
 
