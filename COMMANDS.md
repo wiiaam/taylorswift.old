@@ -47,6 +47,18 @@ The current command char can be found with .help
 
 `london <message>` - :^) limit 10 chars. Usually kept turned off to stop channel spamming.
 
+`quote <user>` - Displays a random quote from the user.
+
+### Money
+
+`bene` - Get a payment.
+
+`pokies <amount>` - Bet a certain amount.
+
+`mug <user>` - Steal money from a user.
+
+`durry` - Buy a durry.
+
 ## Admin commands
 
 `char <command char>` - Changes the command char to the one specified. If `self` is specified, the char will be 
