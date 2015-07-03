@@ -58,6 +58,7 @@ public class IrcBot {
 		modules.add(new KiwiIRC());
 		modules.add(new London());
 		modules.add(new Money());
+		modules.add(new Quotes());
 		modules.add(new Rainbow());
 		modules.add(new Random());
 		modules.add(new SongLyrics());
