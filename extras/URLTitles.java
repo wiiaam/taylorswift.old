@@ -1,9 +1,11 @@
 package extras;
 
 import java.io.IOException;
+import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
+import java.net.UnknownHostException;
 import java.util.Scanner;
 
 import extras.urlparsers.FileParser;
@@ -25,13 +27,22 @@ public class URLTitles {
 			
 			url = new URL(s);
 			URLConnection urlc = url.openConnection();
-			urlc.setRequestProperty("User-Agent", "Mozilla/5.0 (Windows NT 5.1; rv:19.0) Gecko/20100101 Firefox/19.0");
+			System.out.println("conent" + urlc.getContentType());
+			urlc.addRequestProperty("Accept-Language", "en-US,en;q=0.8");
+			urlc.addRequestProperty("User-Agent", "Mozilla");
+			urlc.addRequestProperty("Referer", "google.com");
 			urlc.connect();
-			if(!urlc.getContentType().startsWith("text/html")) return FileParser.find(s);
 			
-			host = urlc.getURL().getHost();
+			
+			
 			
 			Scanner scan = new Scanner(urlc.getInputStream());
+			host = urlc.getURL().getHost();
+			
+			if(!urlc.getContentType().startsWith("text/html")) {
+				scan.close();
+				return FileParser.find(s);
+			}
 			boolean titlefound = false;
 			boolean allcaps = false;
 			String titlecode = "";
@@ -78,10 +89,8 @@ public class URLTitles {
 			if(title.equals("")) title = "Title not found";
 			title = title.replaceAll("&.*;","");
 		} catch (MalformedURLException e) {
-			e.printStackTrace();
 		} catch (IOException e) {
 			title = "Title not found";
-			e.printStackTrace();
 		}
 		title = String.format("[URL] %s (%s)",title.trim(), host);
 		return title;
