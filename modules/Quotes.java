@@ -6,6 +6,8 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.URISyntaxException;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.Scanner;
 
 import com.google.gson.Gson;
@@ -50,13 +52,20 @@ public class Quotes implements Module{
 			if(quotes.has(m.sender())){
 				String quote = makeJsonString(m.trailing());
 				JsonArray quotearray = quotes.get(m.sender()).getAsJsonArray();
-				quotearray.add(gson.fromJson("\"" + quote + "\"", JsonElement.class));;
+				JsonObject quotejson = new JsonObject();
+				quotejson.add("quote", gson.fromJson("\"" + quote + "\"", JsonElement.class));
+				quotejson.add("time", gson.fromJson("\"" + LocalDateTime.now(ZoneId.of("GMT")).toString() + "\"", JsonElement.class));
+				quotearray.add(quotejson);
+				quotes.add(m.sender(), quotearray);
 				save();
 			}
 			else{
 				String quote = makeJsonString(m.trailing());
 				JsonArray quotearray = new JsonArray();
-				quotearray.add(gson.fromJson("\"" + quote + "\"", JsonElement.class));
+				JsonObject quotejson = new JsonObject();
+				quotejson.add("quote", gson.fromJson("\"" + quote + "\"", JsonElement.class));
+				quotejson.add("time", gson.fromJson("\"" + LocalDateTime.now(ZoneId.of("GMT")).toString() + "\"", JsonElement.class));
+				quotearray.add(quotejson);
 				quotes.add(m.sender(), quotearray);
 				save();
 			}
@@ -66,7 +75,15 @@ public class Quotes implements Module{
 				if(quotes.has(m.botParamsArray()[0])){
 					String user = m.botParamsArray()[0];
 					int random = (int)Math.floor(Math.random()*quotes.get(m.botParamsArray()[0]).getAsJsonArray().size());
-					m.say(target,"<" + user + "> " + quotes.get(user).getAsJsonArray().get(random).getAsString());
+					JsonObject quotejson = quotes.get(user).getAsJsonArray().get(random).getAsJsonObject();
+					String quote = quotejson.get("quote").getAsString();
+					LocalDateTime ldt = LocalDateTime.parse(quotejson.get("time").getAsString());
+					String time = String.format("%d, %s %s %s, %02d:%02d:%02d", 
+							ldt.getYear(), 
+							ldt.getDayOfWeek().toString().substring(0, 3).toLowerCase().replaceFirst(".", String.valueOf(ldt.getDayOfWeek().toString().charAt(0))),
+							ldt.getDayOfMonth(), ldt.getMonth().toString().toLowerCase().replaceFirst(".", String.valueOf(ldt.getMonth().toString().charAt(0))),
+							ldt.getHour(), ldt.getMinute(), ldt.getSecond());
+					m.say(target,String.format("4​%s at 2​%s > %s", user, time, quote));
 				}
 				else{
 					m.say(target, "I don't know who that person is");
