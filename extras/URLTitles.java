@@ -27,7 +27,6 @@ public class URLTitles {
 			
 			url = new URL(s);
 			URLConnection urlc = url.openConnection();
-			System.out.println("conent" + urlc.getContentType());
 			urlc.addRequestProperty("Accept-Language", "en-US,en;q=0.8");
 			urlc.addRequestProperty("User-Agent", "Mozilla");
 			urlc.addRequestProperty("Referer", "google.com");
