@@ -21,6 +21,12 @@ public class Admin implements Module{
 			}
 		}
 		
+		if(m.command().equals("474")){
+			if(m.trailing().contains("Cannot join channel (+b)")){
+				Config.removeRoom(m.trailing().split("\\s+")[0]);
+			}
+		}
+		
 		if(m.command().equals("KICK")){
 			if(m.trailing().startsWith(Config.getNick())){
 				System.out.println(m.param().substring(1));
