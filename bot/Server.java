@@ -11,6 +11,7 @@ public class Server {
 	public Scanner in;
 	public PrintStream out;
 	private Socket socket;
+	private boolean isConnected;
 	
 	
 	public void connectTo(String address, int port){
@@ -27,6 +28,7 @@ public class Server {
 			socket = new Socket(address, port);
 			in = new Scanner(socket.getInputStream());
 			out = new PrintStream(socket.getOutputStream());
+			isConnected = true;
 		}
 		catch(Exception e){
 			e.printStackTrace();
@@ -34,6 +36,7 @@ public class Server {
 	}
 	
 	public void send(String s){
+		System.out.println("sending " + s);
 		out.println(s + "\r\n");
 		out.flush();
 	}
@@ -44,5 +47,8 @@ public class Server {
 	
 	public void notice(String target, String message){
 		send(String.format("NOTICE %s :%s", target, message));
+	}
+	public boolean isConnected(){
+		return isConnected;
 	}
 }
