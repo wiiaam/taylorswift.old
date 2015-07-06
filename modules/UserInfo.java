@@ -1,14 +1,16 @@
 package modules;
 
+import bot.IrcBot;
 import bot.Message;
+import bot.Server;
 import bot.config.Config;
 
 public class UserInfo implements Module {
 	
-	private Message m;
+	private Server s;
+	private boolean started = false;
 	@Override
 	public void parse(Message m) {
-		this.m = m;
 		if(m.command().equals("352")){
 			bot.UserInfo.parse(m.trailing());
 		}
@@ -22,29 +24,28 @@ public class UserInfo implements Module {
 		if(m.command().equals("QUIT")){
 			bot.UserInfo.remove(m.sender());
 		}
+		s = m.server;
+		if(!started){
+			started = true;
+			check();
+		}
 	}
 	
-	public UserInfo(){
+	private void check(){
 		new Thread(new Runnable() {
 			
 			@Override
 			public void run() {
 				while(true){
-					if(m != null){
-						for(String s : Config.getRooms()){
-							try {
-								long waittime = (long)((double)1 / Config.getRooms().size()*60000);
-								Thread.sleep(waittime);
-							} catch (InterruptedException e) {
-							m.send("WHO #" + s);
-							
-							}
-						}
+					for(String room : Config.getRooms()){
+						try {
+							long waittime = (long)((double)1 / Config.getRooms().size()*60000);
+							Thread.sleep(waittime);
+						} catch (InterruptedException e) {}
+						s.send("WHO #" + room);	
 					}
 				}
-				
 			}
 		}).start();
 	}
-
 }
