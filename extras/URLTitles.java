@@ -29,7 +29,7 @@ public class URLTitles {
 			URLConnection urlc = url.openConnection();
 			urlc.addRequestProperty("Accept-Language", "en-US,en;q=0.8");
 			urlc.addRequestProperty("User-Agent", "Mozilla");
-			urlc.addRequestProperty("Referer", "google.com");
+			//urlc.addRequestProperty("Referer", "google.com");
 			urlc.connect();
 			
 			
@@ -38,9 +38,10 @@ public class URLTitles {
 			Scanner scan = new Scanner(urlc.getInputStream());
 			host = urlc.getURL().getHost();
 			
+			System.out.println(urlc.getContentType());
 			if(!urlc.getContentType().startsWith("text/html")) {
 				scan.close();
-				return FileParser.find(s);
+				return FileParser.find(urlc);
 			}
 			boolean titlefound = false;
 			boolean allcaps = false;
@@ -88,7 +89,9 @@ public class URLTitles {
 			if(title.equals("")) title = "Title not found";
 			title = title.replaceAll("&.*;","");
 		} catch (MalformedURLException e) {
+			e.printStackTrace();
 		} catch (IOException e) {
+			e.printStackTrace();
 			title = "Title not found";
 		}
 		title = String.format("[URL] %s (%s)",title.trim(), host);
