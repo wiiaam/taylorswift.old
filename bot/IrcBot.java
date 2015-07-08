@@ -132,9 +132,4 @@ public class IrcBot {
 			}
 		}).start();
 	}
-	
-	public static void main(String[] args){
-		new IrcBot();
-	}
-	
 }
