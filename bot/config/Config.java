@@ -190,4 +190,17 @@ public class Config {
 		}
 		
 	}
+	    
+	public static String get(String key){
+		if(!json.has(key)){
+			return null;
+		}
+		return json.get(key).getAsString();
+	}
+	
+	public static void set(String key, String value){
+		String toadd = "\"" + value + "\"";
+		Gson gson = new GsonBuilder().create();
+		json.add(key, gson.fromJson(toadd, JsonElement.class));
+	}
 }
