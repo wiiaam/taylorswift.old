@@ -15,10 +15,10 @@ public class Random implements Module {
 		if(m.botCommand().equals("gen2")){
 			m.say(target, "<installgen2> how can I be aware of my sexual preferences until I am a bit older? for all I know I could easily be bi");
 		}
-		if(m.botCommand().equals(">")){
+		if(m.botCommand().equals("imply")){
 			m.say(target, "3>implying " + m.botParams());
 		}
-		if(m.botCommand().equals("gt")){
+		if(m.botCommand().equals(">")){
 			m.say(target, "3>" + m.botParams());
 		}
 		if(m.botCommand().equals("post")){
