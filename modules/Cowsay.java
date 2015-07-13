@@ -38,7 +38,12 @@ public class Cowsay implements Module {
 		}
 		if(m.botCommand().equals("cowsay") && (on || m.senderIsAdmin())){
 			if(m.hasBotParams()){
-				m.say(target, MakeCowSay.cowsay(m.botParams()));
+				try{
+					m.say(target, MakeCowSay.cowsay(m.botParams()));
+				}
+				catch(IllegalArgumentException e){
+					m.say(target, "u cant even in2 cowsay");
+				}
 			}
 		}
 	}
