@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import bot.Message;
 import bot.config.Config;
+import extras.MakeCowSay;
 
 public class Cowsay implements Module {
 	
@@ -25,47 +26,19 @@ public class Cowsay implements Module {
 		if(m.senderIsAdmin()){
 			if(m.botCommand().equals("cowsayon")){
 				m.say(target, "Cowsay is now on");
+				Config.set("cowsay","on");
+				on = true;
 			}
 			if(m.botCommand().equals("cowsayoff")){
 				m.say(target, "Cowsay is now off");
+				Config.set("cowsay","off");
+				on = false;
 			}
 				
 		}
 		if(m.botCommand().equals("cowsay") && (on || m.senderIsAdmin())){
 			if(m.hasBotParams()){
-				String[] messages = splitMessage(m.botParams());
-				ArrayList<String> tosay = new ArrayList<String>();
-				tosay.add(" _________________________________________");
-				for(int i = 0; i < messages.length; i++){
-					String prefix, suffix;
-					if(i == 0){
-						prefix = "/";
-						suffix = "\\";
-					}
-					else if(i == messages.length-1){
-						prefix = "\\";
-						suffix = "/";
-					}
-					else{
-						prefix = suffix = "|";
-					}
-					String toadd = prefix + " " + messages[i];
-					while(true){
-						if(toadd.length() > 40){
-							toadd += " " + suffix;
-							break;
-						}
-						toadd += " ";
-					}
-					tosay.add(toadd);
-				}
-				tosay.add(" -----------------------------------------");
-				tosay.add("        \\   ^__^");
-				tosay.add("         \\  (oo)\\_______");
-				tosay.add("            (__)\\       )\\/\\");
-				tosay.add("                ||----w |");
-				tosay.add("                ||     ||");
-				m.say(target, tosay.toArray(new String[0]));
+				m.say(target, MakeCowSay.cowsay(m.botParams()));
 			}
 		}
 	}
