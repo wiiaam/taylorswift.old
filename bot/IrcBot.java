@@ -49,6 +49,7 @@ public class IrcBot {
 		
 		modules.add(new Admin());
 		//modules.add(new Autojoin());
+		modules.add(new Cowsay());
 		modules.add(new Fortune());
 		modules.add(new Google());
 		modules.add(new Help());
@@ -63,6 +64,7 @@ public class IrcBot {
 		modules.add(new Random());
 		modules.add(new SongLyrics());
 		modules.add(new Spaghetti());
+		modules.add(new Spam());
 		modules.add(new Steam());
 		modules.add(new Time());
 		modules.add(new Triggers());
