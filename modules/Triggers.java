@@ -60,17 +60,14 @@ public class Triggers implements Module {
 					return;
 				}
 			}
-			if(m.botCommand().equals("triggers")){
-				if(m.botParamsArray()[0].equals("on")){
-					on = true;
-					m.say(target, "Triggers are now on");
-				}
-				if(m.botParamsArray()[0].equals("off")){
-					on = false;
-					m.say(target, "Triggers are now off");
-				}
+			if(m.botCommand().equals("triggerson")){
+				on = true;
+				m.say(target, "Triggers are now on");
 			}
-			
+			if(m.botCommand().equals("triggersoff")){
+				on = false;
+				m.say(target, "Triggers are now off");
+			}
 		}
 		if(m.botCommand().equals("listtriggers")){
 			if(triggers.size() == 1) m.say(target, String.format("There is %d trigger set", triggers.size()));

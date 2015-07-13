@@ -96,7 +96,9 @@ The current command char can be found with .help
 
 `untrigger <trigger>` - Removes the trigger.
 
-`triggers <on/off>` - Turns triggers on/off.
+`triggerson` - Turns triggers on.
+
+`triggersoff` - Turns triggers off.
 
 `londonon` - Turns london on.
 
