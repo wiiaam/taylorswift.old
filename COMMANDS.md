@@ -37,9 +37,9 @@ The current command char can be found with .help
 
 `post n00dz` - Posts n00dz. **NSFW**.
 
-`gt <message>` - Displays a >greentext of the message.
+`> <message>` - Displays a >greentext of the message.
 
-`>` - Displays >implying message
+`imply` - Displays >implying message
 
 `kek <kek>` - Displays the kek associated to the param.
 
@@ -48,6 +48,8 @@ The current command char can be found with .help
 `london <message>` - :^) limit 10 chars. Usually kept turned off to stop channel spamming.
 
 `quote <user>` - Displays a random quote from the user.
+
+`cowsay <message>` - Makes the cow say.
 
 ### Money
 
@@ -60,6 +62,8 @@ The current command char can be found with .help
 `durry` - Buy a durry.
 
 `give <user> <amount>` - Give money to a user.
+
+`stopspamming` - Stops `spam` messages
 
 ## Admin commands
 
@@ -101,3 +105,9 @@ The current command char can be found with .help
 `ignore <user>` - Ignores the user.
 
 `unignore <user>` - Unignores the user.
+
+`cowsayon` - Turn cowsay on.
+
+`cowsayoff` - Turn cowsay off.
+
+`spam <ircmessage>` - 
