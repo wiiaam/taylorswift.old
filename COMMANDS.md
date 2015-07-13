@@ -112,4 +112,4 @@ The current command char can be found with .help
 
 `cowsayoff` - Turn cowsay off.
 
-`spam <ircmessage>` - 
+`spam <ircmessage>` - Sends an ircformat message every 2 seconds.
