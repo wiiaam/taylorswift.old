@@ -76,6 +76,7 @@ public class Admin implements Module{
 						}
 						m.send("JOIN " + roomtojoin);
 						Config.addRoom(roomtojoin);
+						m.send("WHO " + roomtojoin);
 					}
 					m.say(target, "Now joining " + m.botParams());
 				}
