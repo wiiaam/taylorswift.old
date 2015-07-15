@@ -54,11 +54,11 @@ public class IrcBot {
 		modules.add(new Google());
 		modules.add(new Help());
 		modules.add(new Ignores());
-		modules.add(new Ping());
-		modules.add(new TopKek());
 		modules.add(new KiwiIRC());
 		modules.add(new London());
 		modules.add(new Money());
+		modules.add(new NoBro());
+		modules.add(new Ping());
 		modules.add(new Quotes());
 		modules.add(new Rainbow());
 		modules.add(new Random());
@@ -67,6 +67,7 @@ public class IrcBot {
 		modules.add(new Spam());
 		modules.add(new Steam());
 		modules.add(new Time());
+		modules.add(new TopKek());
 		modules.add(new Triggers());
 		modules.add(new TitleReporting());
 		modules.add(new UrbanDictionary());
