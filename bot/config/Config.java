@@ -3,7 +3,10 @@ package bot.config;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.io.PrintWriter;
+import java.io.Writer;
 import java.util.HashSet;
 import java.util.Scanner;
 
@@ -182,10 +185,10 @@ public class Config {
 	private static void save(){
 		Gson gson = new GsonBuilder().create();
 		try {
-			PrintWriter writer = new PrintWriter(jsonfile);
-			writer.println(gson.toJson(json));
+			Writer writer = new FileWriter(jsonfile);
+			gson.toJson(json,writer);
 			writer.close();
-		} catch (FileNotFoundException e) {
+		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		
