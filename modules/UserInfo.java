@@ -1,6 +1,5 @@
 package modules;
 
-import bot.IrcBot;
 import bot.Message;
 import bot.Server;
 import bot.config.Config;
@@ -33,7 +32,6 @@ public class UserInfo implements Module {
 	
 	private void check(){
 		new Thread(new Runnable() {
-			
 			@Override
 			public void run() {
 				while(true){
