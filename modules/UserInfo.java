@@ -39,7 +39,7 @@ public class UserInfo implements Module {
 				while(true){
 					for(String room : Config.getRooms()){
 						try {
-							long waittime = (long)((double)1 / Config.getRooms().size()*60000);
+							long waittime = (long)((double)1 / Config.getRooms().size()*120000);
 							Thread.sleep(waittime);
 						} catch (InterruptedException e) {}
 						s.send("WHO #" + room);	
