@@ -52,32 +52,35 @@ public class NoBro implements Module {
 		if(m.botCommand().equals("delbro") && m.senderIsAdmin()){
 			if(m.hasBotParams())delBro(m.botParams());
 		}
-		if(checkBroLike(m)){
-			for(String trigger : triggers){
-				if(m.trailing().toLowerCase().contains(trigger)){
-					if(!offences.containsKey(m.sender())){
-						offences.put(m.sender(), 1);
+		if(m.command().equals("PRIVMSG")){
+			String bro = checkBro(m);
+			if(bro.equals("possible")){
+				for(String trigger : triggers){
+					if(m.trailing().toLowerCase().contains(trigger)){
+						if(!offences.containsKey(m.sender())){
+							offences.put(m.sender(), 1);
+						}
+						else{
+							offences.put(m.sender(),offences.get(m.sender())+1);
+						}
+						if(offences.get(m.sender()) == 3){
+							addBro(m.senderWhole());
+							m.say(target, "shut up bro");
+						}
 					}
-					else{
-						offences.put(m.sender(),offences.get(m.sender())+1);
-					}
-					if(offences.get(m.sender()) == 3) addBro(m.senderWhole());
-					if(offences.get(m.sender()) >= 3) m.say(target, "shut up bro");
 				}
+			}
+			else if(bro.equals("yes")){
+				m.say(target, "shut up bro");
 			}
 		}
 		if(m.command().equals("JOIN")){
-			boolean isbro = false;
-			for(JsonElement je : json.get("bros").getAsJsonArray()){
-				JsonObject tocheck = je.getAsJsonObject();
-				if(tocheck.get("nickname").getAsString().equals(m.sender())) isbro = true;
-				if(tocheck.get("host").getAsString().equals(m.senderHost())) isbro = true;
-			}
-			if(isbro){
+			String checkbro = checkBro(m);
+			if(checkbro.equals("yes")){
 				m.say(m.trailing(), "4ALERT ALERT BRO DETECTED");
 				offences.put(m.sender(), 4);
 			}
-			else if(checkBroLike(m)){
+			else if(checkbro.equals("possible")){
 				m.say(m.trailing(), "4ALERT ALERT POSSIBLE BRO DETECTED");
 			}
 		}
@@ -100,11 +103,13 @@ public class NoBro implements Module {
 			return;
 		}
 		JsonArray array = json.get("bros").getAsJsonArray();
+		/*
 		for(JsonElement je : array){
 			if(je.getAsJsonObject().get("nickname").getAsString().equals(nickname))return;
 			if(je.getAsJsonObject().get("user").getAsString().equals(user))return;
 			if(je.getAsJsonObject().get("host").getAsString().equals(host))return;
 		}
+		*/
 		JsonObject newBro = new JsonObject();
 		newBro.addProperty("nickname", nickname);
 		newBro.addProperty("user", user);
@@ -143,8 +148,8 @@ public class NoBro implements Module {
 		
 	}
 	
-	private boolean checkBroLike(Message m){
-		if(m.sender().equals(Config.getNick()))return false;
+	private String checkBro(Message m){
+		if(m.sender().equals(Config.getNick()))return "no";
 		boolean isbro = false;
 		for(JsonElement je : json.get("bros").getAsJsonArray()){
 			
@@ -152,23 +157,21 @@ public class NoBro implements Module {
 			
 			if(tocheck.get("nickname").getAsString().equals(m.sender())){
 				isbro = true;
-				offences.put(m.sender(),4);
-				System.out.println("bro found");
 			}
 			if(tocheck.get("host").getAsString().equals(m.senderHost())) {
 				isbro = true;
-				offences.put(m.sender(),4);
-				System.out.println("bro found");
 			}
 		}
 		try{
-			return m.sender().startsWith("poo") 
+			if(isbro)return "yes";
+			if( m.sender().startsWith("poo") 
 				|| m.username().contains("zero@") 
 				|| m.senderHost().contains("bigpond")
-				|| isbro;
+			)return "possible";
 		}
 		catch(NullPointerException e){
-			return false;
+			return "no";
 		}
+		return "no";
 	}
 }
