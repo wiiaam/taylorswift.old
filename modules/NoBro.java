@@ -3,7 +3,7 @@ package modules;
 import bot.Message;
 
 public class NoBro implements Module {
-	private String[] triggers = {"kitykatt","man"};
+	private String[] triggers = {"kittykatt","man"};
 	@Override
 	public void parse(Message m) {
 		String target = m.param();
