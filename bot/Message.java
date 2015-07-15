@@ -19,6 +19,8 @@ public class Message {
 	public Server server;
 	private String commandChar;
 	private boolean hasBotParams = false;
+	private String username;
+	private String senderHost;
 
 	
 	public Message(String message, Server server){
@@ -38,6 +40,15 @@ public class Message {
 			if(sendersplit.length > 1){
 				sender = sendersplit[0];
 				senderAddress = sendersplit[1];
+				String[] senderAddressSplit = senderAddress.split("@");
+				if(senderAddressSplit.length > 1){
+					senderHost = senderAddressSplit[1];
+					username = senderAddressSplit[0];
+					if(username.startsWith("~")){
+						username = username.substring(1);
+					}
+				}
+				
 			}
 			else{
 				senderAddress = sender;
@@ -55,8 +66,16 @@ public class Message {
 			String[] sendersplit = senderWhole.split("!");
 			if(sendersplit.length > 1){
 				sender = sendersplit[0];
-				senderAddress = sendersplit[1].split("@")[0].substring(1);
-				senderAddress = sendersplit[1].split("@")[1];
+				senderAddress = sendersplit[1];
+				String[] senderAddressSplit = senderAddress.split("@");
+				if(senderAddressSplit.length > 1){
+					senderHost = senderAddressSplit[1];
+					username = senderAddressSplit[0];
+					if(username.startsWith("~")){
+						username = username.substring(1);
+					}
+				}
+				
 			}
 			else{
 				senderAddress = sender;
@@ -74,8 +93,16 @@ public class Message {
 			String[] sendersplit = senderWhole.split("!");
 			if(sendersplit.length > 1){
 				sender = sendersplit[0];
-				senderAddress = sendersplit[1].split("@")[0].substring(1);
-				senderAddress = sendersplit[1].split("@")[1];
+				senderAddress = sendersplit[1];
+				String[] senderAddressSplit = senderAddress.split("@");
+				if(senderAddressSplit.length > 1){
+					senderHost = senderAddressSplit[1];
+					username = senderAddressSplit[0];
+					if(username.startsWith("~")){
+						username = username.substring(1);
+					}
+				}
+				
 			}
 			else{
 				senderAddress = sender;
@@ -130,6 +157,14 @@ public class Message {
 	
 	public String senderAddress(){
 		return senderAddress;
+	}
+	
+	public String username(){
+		return username;
+	}
+	
+	public String senderHost(){
+		return senderHost;
 	}
 	
 	public String senderWhole(){
