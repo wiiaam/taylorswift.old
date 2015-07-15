@@ -37,8 +37,7 @@ public class Message {
 			String[] sendersplit = senderWhole.split("!");
 			if(sendersplit.length > 1){
 				sender = sendersplit[0];
-				senderAddress = sendersplit[1].split("@")[0].substring(1);
-				senderAddress = sendersplit[1].split("@")[1];
+				senderAddress = sendersplit[1];
 			}
 			else{
 				senderAddress = sender;
