@@ -81,7 +81,7 @@ public class IrcBot {
 	public void sendOnLogin(){
 		server.send(Config.getIdentification());
 		try {
-			Thread.sleep(500);
+			Thread.sleep(2000);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
