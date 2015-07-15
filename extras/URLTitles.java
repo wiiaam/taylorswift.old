@@ -44,7 +44,6 @@ public class URLTitles {
 				return FileParser.find(urlc);
 			}
 			boolean titlefound = false;
-			boolean allcaps = false;
 			String titlecode = "";
 			while(scan.hasNextLine()){
 				String next = scan.nextLine();
@@ -55,7 +54,6 @@ public class URLTitles {
 					
 				}
 				if(next.contains("<TITLE") && !titlefound){
-					allcaps = true;
 					titlefound = true;
 					titlecode += next;
 					continue;
@@ -78,16 +76,14 @@ public class URLTitles {
 				title = title.substring(0, 95) + "...";
 			}
 			scan.close();
-			
-			if(allcaps){
-				title = titlecode.split("<TITLE?>")[1].split("</TITLE")[0];
-			}
-			else{
-				title = titlecode.split("<title?>")[1].split("</title")[0];
-			}
+			if(titlecode.contains("<TITLE"))title = titlecode.split("<TITLE?>")[1];
+			if(titlecode.contains("<title"))title = titlecode.split("<title?>")[1];
+			if(title.contains("</TITLE>"))title = title.split("</TITLE")[0];
+			if(title.contains("</title>"))title = title.split("</title")[0];
+			//}
 			
 			if(title.equals("")) title = "Title not found";
-			title = title.replaceAll("&.*;","");
+			title = makeClean(title);
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
@@ -97,4 +93,11 @@ public class URLTitles {
 		title = String.format("[URL] %s (%s)",title.trim(), host);
 		return title;
 	}
+	
+	public static String makeClean(String s){
+		s = s.replaceAll("&#039;","'");
+		s = s.replaceAll("&#124;","|");
+		return s;
+	}
+	
 }
