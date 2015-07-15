@@ -181,6 +181,10 @@ public class Config {
 	public static String getSteamApiKey(){
 		return json.get("steamapikey").getAsString();
 	}
+
+	public static String getUploadApiKey(){
+		return json.get("uploadapikey").getAsString();
+	}
 	
 	private static void save(){
 		Gson gson = new GsonBuilder().create();

@@ -11,4 +11,5 @@
 	"ignores":["that guy that harasses you"],
 	"googleapikey":"yourkey",
 	"steamapikey":"yourkey"
+	"uploadapikey":"yourkey"
 }
