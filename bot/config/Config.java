@@ -186,6 +186,10 @@ public class Config {
 		return json.get("uploadapikey").getAsString();
 	}
 	
+	public static String getWeatherApiKey(){
+		return json.get("weatherapikey").getAsString();
+	}
+	
 	private static void save(){
 		Gson gson = new GsonBuilder().create();
 		try {

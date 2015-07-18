@@ -10,6 +10,7 @@
 	"admins":["your nickname"],
 	"ignores":["that guy that harasses you"],
 	"googleapikey":"yourkey",
-	"steamapikey":"yourkey"
-	"uploadapikey":"yourkey"
+	"steamapikey":"yourkey",
+	"uploadapikey":"yourkey",
+	"weatherapikey":"yourkey"
 }
