@@ -1,6 +1,14 @@
 package modules;
 
 import extras.Links;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.net.URLConnection;
+import java.util.Scanner;
+
 import bot.Message;
 
 public class Random implements Module {
@@ -17,6 +25,24 @@ public class Random implements Module {
 		}
 		if(m.botCommand().equals("imply")){
 			m.say(target, "3>implying " + m.botParams());
+		}
+		if(m.trailing().toLowerCase().contains("what day is it")){
+			try {
+				URL url = new URL("http://api.ddate.cc/v1/today.txt");
+				URLConnection urlc = url.openConnection();
+				urlc.addRequestProperty("Accept-Language", "en-US,en;q=0.8");
+				urlc.addRequestProperty("User-Agent", "Mozilla");
+				urlc.connect();
+				Scanner scan = new Scanner(urlc.getInputStream());
+				m.say(target, scan.nextLine());
+				scan.close();
+				
+			} catch (MalformedURLException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 		if(m.botCommand().equals(">")){
 			m.say(target, "3>" + m.botParams());
