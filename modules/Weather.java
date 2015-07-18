@@ -1,18 +1,14 @@
 package modules;
 
 import java.io.IOException;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.Scanner;
-
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-
 import bot.Message;
 import bot.config.Config;
 
@@ -51,7 +47,6 @@ public class Weather implements Module {
 						jsonstring += scan.next() + " ";
 					}
 					scan.close();
-					System.out.println(jsonstring);
 					Gson gson = new GsonBuilder().create();
 					JsonObject json = gson.fromJson(jsonstring, JsonElement.class).getAsJsonObject();
 					JsonObject response = json.get("response").getAsJsonObject();
@@ -78,7 +73,6 @@ public class Weather implements Module {
 						gson = new GsonBuilder().create();
 						json = gson.fromJson(jsonstring, JsonElement.class).getAsJsonObject();
 					}
-					System.out.println(jsonstring);
 					if(!json.has("current_observation")){
 						m.say(target, "No results for " + query.replace("_", " ") + " could be found");
 					}
