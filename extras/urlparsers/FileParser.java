@@ -22,31 +22,31 @@ public class FileParser {
 		
 		String filesize = "";
 		if(bytes < 1000){
-			filesize = String.format("%db ", Math.round(bytes));
+			filesize = String.format("%dB ", Math.round(bytes));
 		}
 		else if(kilobytes < 1000){
-			filesize = String.format("%dKb ", Math.round(kilobytes));
+			filesize = String.format("%dKB ", Math.round(kilobytes));
 		}
 		else if(megabytes < 1000){
-			filesize = String.format("%dMb ", Math.round(megabytes));
+			filesize = String.format("%dMB ", Math.round(megabytes));
 		}
 		else if(gigabytes < 1000){
-			filesize = String.format("%dGb ", Math.round(gigabytes));
+			filesize = String.format("%dGB ", Math.round(gigabytes));
 		}
 		else if(terabytes < 1000){
-			filesize = String.format("%dTb ", Math.round(terabytes));
+			filesize = String.format("%dTB ", Math.round(terabytes));
 		}
 		else if(petabytes < 1000){
-			filesize = String.format("%dPb ", Math.round(petabytes));
+			filesize = String.format("%dPB ", Math.round(petabytes));
 		}
 		else if(exabytes < 1000){
-			filesize = String.format("%dEb ", Math.round(exabytes));
+			filesize = String.format("%dEB ", Math.round(exabytes));
 		}
 		else if(zettabytes < 1000){
-			filesize = String.format("%dZb ", Math.round(zettabytes));
+			filesize = String.format("%dZB ", Math.round(zettabytes));
 		}
 		else if(yottabytes < 1000){
-			filesize = String.format("%dYb ", Math.round(yottabytes));
+			filesize = String.format("%dYB ", Math.round(yottabytes));
 		}
 		String type = "" + urlc.getContentType() + "";
 		if(urlc.getContentType().startsWith("image")){
