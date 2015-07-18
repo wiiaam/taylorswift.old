@@ -19,6 +19,8 @@ The current command char can be found with .help
 
 `ud <search>` - Searches urbandictionary for a term and returns the result.
 
+`w <place> weather <place> - Displays weather information for a specified place.
+
 `steaminfo <user>` - Displays steam information on the specified user.
 
 `8ball` - Ask the magic 8ball a question.
@@ -113,3 +115,7 @@ The current command char can be found with .help
 `cowsayoff` - Turn cowsay off.
 
 `spam <ircmessage>` - Sends an ircformat message every 2 seconds.
+
+`addbro <user>` - Adds a bro.
+
+`delbro <user>` - Deletes a bro.
