@@ -20,6 +20,8 @@ public class NoBro implements Module {
 	private String[] triggers = {"kittykatt","man","shut up","python"};
 	private JsonObject json;
 	private File jsonfile;
+	private final int MAX_OFFENCES = 5;
+	private final int WARN_OFFENCES = 3;
 	private HashMap<String, Integer> offences = new HashMap<String,Integer>();
 	
 	public NoBro() {
@@ -63,9 +65,13 @@ public class NoBro implements Module {
 						else{
 							offences.put(m.sender(),offences.get(m.sender())+1);
 						}
-						if(offences.get(m.sender()) == 3){
+						if(offences.get(m.sender()) == WARN_OFFENCES){
+							m.say(target, m.sender() + ": Warning, you are being very liquid like.");
+						}
+						if(offences.get(m.sender()) == MAX_OFFENCES){
 							addBro(m.senderWhole());
 							m.say(target, "shut up bro");
+							offences.put(m.sender(),offences.get(m.sender())+1);
 						}
 					}
 				}
@@ -166,8 +172,7 @@ public class NoBro implements Module {
 			if(isbro)return "yes";
 			if( m.sender().startsWith("poo") 
 				|| m.username().contains("zero@") 
-				|| m.senderHost().contains("bigpond")
-			)return "possible";
+				)return "possible";
 		}
 		catch(NullPointerException e){
 			return "no";
