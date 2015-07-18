@@ -54,6 +54,7 @@ public class IrcBot {
 		modules.add(new Google());
 		modules.add(new Help());
 		modules.add(new Ignores());
+		modules.add(new Invite());
 		modules.add(new KiwiIRC());
 		modules.add(new London());
 		modules.add(new Money());
@@ -104,11 +105,10 @@ public class IrcBot {
 		server.send(String.format("USER %s %s %s :%s", Config.getUsername(), Config.getUsername(), Config.getServer(), Config.getRealname()));
 		while(true){
 			if(server.in.hasNextLine()){
-				Message m = new Message(server.in.nextLine(), server);
-				if(m.command().equals("002")) out.println("Connected");
-				if(m.command().equals("433")) out.println("Nick in use");
-				if(m.command().equals("451")) out.println("Register first");
-				if(m.command().equals("376")) break;
+				String next = server.in.nextLine();
+				System.out.println(next);
+				Message m = new Message(next, server);
+				if(m.command().equals("001")) break;
 			}
 		}
 		return true;
