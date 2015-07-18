@@ -15,6 +15,7 @@ import bot.config.Config;
 public class TitleReporting implements Module {
 
 	private HashSet<String> rooms = new HashSet<String>();
+	private HashSet<String> users = new HashSet<String>();
 	File file;
 	
 	public TitleReporting() {
@@ -22,7 +23,9 @@ public class TitleReporting implements Module {
 			file = new File(this.getClass().getResource("files/titlereporting.txt").toURI());
 			Scanner scan = new Scanner(file);
 			while(scan.hasNextLine()){
-				rooms.add(scan.nextLine());
+				String next = scan.nextLine();
+				if(next.startsWith("#")) rooms.add(next);
+				else users.add(next);
 			}
 			scan.close();
 		} catch (URISyntaxException | FileNotFoundException e) {
@@ -37,7 +40,8 @@ public class TitleReporting implements Module {
 		if(m.botCommand().equals("titleson") && Config.getAdmins().contains(m.sender())){
 			if(m.hasBotParams()){
 				for(String s : m.botParamsArray()){
-					rooms.add(s);
+					if(s.startsWith("#"))rooms.add(s);
+					else users.add(s);
 				}
 				write();
 			}
@@ -45,14 +49,15 @@ public class TitleReporting implements Module {
 		if(m.botCommand().equals("titlesoff") && Config.getAdmins().contains(m.sender())){
 			if(m.hasBotParams()){
 				for(String s : m.botParamsArray()){
-					rooms.remove(s);
+					if(s.startsWith("#"))rooms.remove(s);
+					else users.remove(s);
 				}
 				write();
 			}
 		}
 		
 		if(!m.botCommand().equals(""))return;
-		if(rooms.contains(m.param())){
+		if(rooms.contains(m.param()) || users.contains(m.sender())){
 			if(m.trailing().contains("http://") || m.trailing().contains("https://")){
 				String[] messageSplit = m.trailing().split("\\s+");
 				for(int i = 0; i < messageSplit.length; i++){

@@ -82,9 +82,13 @@ The current command char can be found with .help
 
 `say <message>` - Says the message in the channel where the command was said.
 
-`pm <target> <message>` Sends a PRIVMSG to the target.
+`pm <target> <message>` - Sends a PRIVMSG to the target.
 
-`notice <target> <message>` Sends a NOTICE to the target.
+`notice <target> <message>` - Sends a NOTICE to the target.
+
+`titleson <room/user>` - Turns on title reporting for the user/room
+
+`titlesoff <room/user>` - Turns off title reporting for the user/room
 
 `lyricson <room>` - Turns on random Taylor Swift lyric posting.
 
