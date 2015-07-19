@@ -93,6 +93,7 @@ public class ChanParser {
 		s = s.replace("<br>", " ");
 		s = s.replace("&#039;", "'");
 		s = s.replace("<span class=\"quote\">", "");
+		s = s.replace("<span class=\"heading\">", "");
 		s = s.replace("&gt;", "3>");
 		s = s.replace("<p class=\"body-line ltr \">", "");
 		return s;
