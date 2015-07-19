@@ -10,6 +10,7 @@ import java.util.Properties;
 
 import extras.Rainbowfy;
 import bot.Message;
+import bot.Module;
 import bot.config.Config;
 
 public class Triggers implements Module {

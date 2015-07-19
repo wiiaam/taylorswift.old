@@ -10,6 +10,7 @@ import java.net.URLConnection;
 import java.util.Scanner;
 
 import bot.Message;
+import bot.Module;
 
 public class Random implements Module {
 

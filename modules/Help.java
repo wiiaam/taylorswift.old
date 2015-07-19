@@ -2,6 +2,8 @@ package modules;
 
 import bot.IrcBot;
 import bot.Message;
+import bot.Module;
+import bot.Modules;
 import bot.config.Config;
 
 public class Help implements Module {
@@ -12,7 +14,7 @@ public class Help implements Module {
 		if(!m.param().startsWith("#")) target = m.sender();
 		if(m.trailing().startsWith(".help") || m.botCommand().equals("help") || (m.param().equals(Config.getNick()) && m.trailing().toLowerCase().equals("help"))){
 			String modules = "Modules: ";
-			for(Module module : IrcBot.modules){
+			for(Module module : Modules.getModules()){
 				modules += module.getClass().getSimpleName() + ", ";
 			}
 			modules = modules.substring(0, modules.length()-2);

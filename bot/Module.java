@@ -1,6 +1,4 @@
-package modules;
-
-import bot.Message;
+package bot;
 
 public interface Module {
 	

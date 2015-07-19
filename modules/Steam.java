@@ -13,7 +13,7 @@ import com.google.gson.JsonObject;
 import bot.Message;
 import bot.config.Config;
 
-public class Steam implements Module {
+public class Steam implements bot.Module {
 
 	@Override
 	public void parse(Message m) {

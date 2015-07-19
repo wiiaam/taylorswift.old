@@ -5,9 +5,9 @@ import java.io.FileNotFoundException;
 import java.io.PrintStream;
 import java.net.URISyntaxException;
 import java.util.HashSet;
-
 import bot.config.Config;
 import modules.*;
+import bot.Modules;
 
 public class IrcBot {
 
@@ -27,7 +27,7 @@ public class IrcBot {
 			}
 			
 		out.println("Loading modules");
-		modules = Modules.loadAll();
+		Modules.loadAll();
 		out.println("Connecting to Server");
 		Server.connectTo(Config.getServer(), Config.getPort());
 		
@@ -84,7 +84,7 @@ public class IrcBot {
 					final Message m = new Message(Server.in.nextLine());
 					if(!Config.getAdmins().contains(m.sender()) && Config.getIgnores().contains(m.sender())) continue;
 					out.println(m.message());
-					for(Module module : modules){
+					for(Module module : Modules.getModules()){
 						new Thread(new Runnable(){
 							public void run(){
 								module.parse(m);

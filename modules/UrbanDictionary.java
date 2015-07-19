@@ -12,7 +12,7 @@ import com.google.gson.JsonObject;
 
 import bot.Message;
 
-public class UrbanDictionary implements Module {
+public class UrbanDictionary implements bot.Module {
 
 	@Override
 	public void parse(Message m) {

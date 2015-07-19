@@ -10,6 +10,7 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import bot.Message;
+import bot.Module;
 import bot.config.Config;
 
 public class Weather implements Module {

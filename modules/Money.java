@@ -13,7 +13,7 @@ import bot.Message;
 import bot.UserInfo;
 import bot.config.Config;
 
-public class Money implements Module{
+public class Money implements bot.Module{
 	private Properties bank = new Properties();
 	private HashMap<String,Long> lastpaid = new HashMap<String,Long>();
 	private HashMap<String, Long> jail = new HashMap<String,Long>();

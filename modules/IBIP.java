@@ -2,6 +2,7 @@ package modules;
 
 import extras.Lyrics;
 import bot.Message;
+import bot.Module;
 
 public class IBIP implements Module {
 	

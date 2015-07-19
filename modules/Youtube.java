@@ -14,7 +14,7 @@ import extras.urlparsers.YoutubeParser;
 import bot.Message;
 import bot.config.Config;
 
-public class Youtube implements Module {
+public class Youtube implements bot.Module {
 
 	@Override
 	public void parse(Message m) {

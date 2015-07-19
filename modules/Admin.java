@@ -1,6 +1,7 @@
 package modules;
 
 import bot.Message;
+import bot.Module;
 import bot.config.Config;
 
 public class Admin implements Module{

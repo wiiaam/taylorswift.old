@@ -3,14 +3,12 @@ package modules;
 import java.util.HashMap;
 
 import bot.Message;
+import bot.Module;
 
 	public class Ping implements Module{
 	
-	private HashMap<String, String> requests;
-	
-	public Ping(){
-		requests = new HashMap<String, String>();
-	}
+	private HashMap<String, String> requests = new HashMap<String, String>();
+	private boolean pong = false;
 	
 	public void parse(Message m){
 		if(m.command().equals("PING")){
@@ -39,5 +37,8 @@ import bot.Message;
 				}
 			}
 		}
+	}
+	public void sendPing(){
+		
 	}
 }

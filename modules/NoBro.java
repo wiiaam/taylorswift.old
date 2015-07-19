@@ -1,6 +1,7 @@
 package modules;
 
 import bot.Message;
+import bot.Module;
 
 import java.io.File;
 import java.io.FileInputStream;

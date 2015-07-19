@@ -4,6 +4,7 @@ import java.util.HashSet;
 
 import extras.Lyrics;
 import bot.Message;
+import bot.Module;
 import bot.config.Config;
 
 public class SongLyrics implements Module {

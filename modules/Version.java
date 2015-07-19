@@ -3,6 +3,7 @@ package modules;
 import java.util.HashMap;
 
 import bot.Message;
+import bot.Module;
 
 public class Version implements Module {
 	

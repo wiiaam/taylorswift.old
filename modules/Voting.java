@@ -4,6 +4,7 @@ package modules;
 import java.util.HashSet;
 
 import bot.Message;
+import bot.Module;
 
 public class Voting implements Module {
 	

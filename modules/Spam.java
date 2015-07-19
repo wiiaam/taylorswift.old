@@ -3,6 +3,7 @@ package modules;
 import java.util.HashSet;
 
 import bot.Message;
+import bot.Module;
 import bot.Server;
 
 public class Spam implements Module {

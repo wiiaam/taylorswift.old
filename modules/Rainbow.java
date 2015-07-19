@@ -3,7 +3,7 @@ package modules;
 import extras.Rainbowfy;
 import bot.Message;
 
-public class Rainbow implements Module {
+public class Rainbow implements bot.Module {
 
 	@Override
 	public void parse(Message m) {

@@ -12,7 +12,7 @@ import com.google.gson.JsonObject;
 
 import bot.Message;
 
-public class Google implements Module {
+public class Google implements bot.Module {
 
 	@Override
 	public void parse(Message m) {

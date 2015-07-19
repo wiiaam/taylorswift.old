@@ -9,7 +9,7 @@ import java.util.Properties;
 
 import bot.Message;
 
-public class TopKek implements Module {
+public class TopKek implements bot.Module {
 
 	Properties keks = new Properties();
 	

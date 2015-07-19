@@ -4,7 +4,7 @@ package modules;
 import bot.Message;
 import bot.config.Config;
 
-public class London implements Module {
+public class London implements bot.Module {
 	
 	private boolean on = false;
 	@Override

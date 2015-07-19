@@ -5,6 +5,7 @@ import java.time.LocalTime;
 import java.util.HashMap;
 
 import bot.Message;
+import bot.Module;
 
 public class Time implements Module {
 	

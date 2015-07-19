@@ -18,7 +18,7 @@ import com.google.gson.JsonObject;
 
 import bot.Message;
 
-public class Quotes implements Module{
+public class Quotes implements bot.Module{
 	private File jsonfile;
 	private JsonObject quotes;
 	private JsonObject json;

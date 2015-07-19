@@ -1,6 +1,7 @@
 package modules;
 
 import bot.Message;
+import bot.Module;
 
 public class Fortune implements Module {
 	

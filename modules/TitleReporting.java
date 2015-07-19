@@ -10,6 +10,7 @@ import java.util.Scanner;
 
 import extras.URLTitles;
 import bot.Message;
+import bot.Module;
 import bot.config.Config;
 
 public class TitleReporting implements Module {
