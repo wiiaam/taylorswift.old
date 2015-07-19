@@ -14,7 +14,7 @@ public class ModuleLoader implements Module {
 			if(m.hasBotParams()){
 				if(m.botParamsArray().length > 1){
 					if(!working.equals("")){
-						m.say(target, "Please wait until the previous module as finished " + working);
+						m.say(target, "Please wait until the previous module has finished " + working);
 						return;
 					}
 					if(m.botParamsArray()[0].equals("load")){
