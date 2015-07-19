@@ -16,16 +16,14 @@ public class Message {
 	private String botCommand = "";
 	private String[] botParamsArray;
 	private String botParams = "";
-	public Server server;
 	private String commandChar;
 	private boolean hasBotParams = false;
 	private String username;
 	private String senderHost;
 
 	
-	public Message(String message, Server server){
+	public Message(String message){
 		this.message = message;
-		this.server = server;
 		commandChar = Config.getChar();
 		String[] messageSplit = message.split("\\s+");
 		if(messageSplit.length == 2){
@@ -196,15 +194,15 @@ public class Message {
 	}
 	
 	public void send(String message){
-		server.send(message);
+		Server.send(message);
 	}
 	
 	public void notice(String target, String message){
-		server.notice(target, message);
+		Server.notice(target, message);
 	}
 	
 	public void pm(String target, String message){
-		server.pm(target, message);
+		Server.pm(target, message);
 	}
 	
 	public String commandChar(){
@@ -220,14 +218,14 @@ public class Message {
 	 * NOTICE for user
 	 */
 	public void say(String target, String message){
-		if(target.startsWith("#")) server.pm(target, message);
-		else server.notice(target, message);
+		if(target.startsWith("#")) Server.pm(target, message);
+		else Server.notice(target, message);
 	}
 	
 	public void say(String target, String[] messagearray){
 		for(int i = 0; i < messagearray.length; i++){
-			if(target.startsWith("#")) server.pm(target, messagearray[i]);
-			else server.notice(target, messagearray[i]);
+			if(target.startsWith("#")) Server.pm(target, messagearray[i]);
+			else Server.notice(target, messagearray[i]);
 			try {
 				Thread.sleep(500);
 			} catch (InterruptedException e) {

@@ -8,13 +8,16 @@ import java.util.Scanner;
 public class Server {
 	
 	// Fields
-	public Scanner in;
-	public PrintStream out;
-	private Socket socket;
-	private boolean isConnected;
+	public static Scanner in;
+	public static PrintStream out;
+	private static Socket socket;
+	private static boolean isConnected;
+	private static String address;
+	private static int port;
 	
-	
-	public void connectTo(String address, int port){
+	public static void connectTo(String address, int port){
+		Server.address = address;
+		Server.port = port;
 		if(socket != null){
 			try {
 				socket.close();
@@ -35,20 +38,27 @@ public class Server {
 		}
 	}
 	
-	public void send(String s){
+	public static void send(String s){
 		System.out.println("sending " + s);
 		out.println(s + "\r\n");
 		out.flush();
 	}
 	
-	public void pm(String target, String message){
+	public static void pm(String target, String message){
 		send(String.format("PRIVMSG %s :%s", target, message));
 	}
 	
-	public void notice(String target, String message){
+	public static void notice(String target, String message){
 		send(String.format("NOTICE %s :%s", target, message));
 	}
-	public boolean isConnected(){
+	public static boolean isConnected(){
 		return isConnected;
+	}
+	
+	public static void resetConnection(String reason){
+		send("QUIT :" + reason);
+		try {
+			socket.close();
+		} catch (IOException e) {}
 	}
 }

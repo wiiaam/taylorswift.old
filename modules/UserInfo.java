@@ -6,7 +6,6 @@ import bot.config.Config;
 
 public class UserInfo implements Module {
 	
-	private Server s;
 	private boolean started = false;
 	@Override
 	public void parse(Message m) {
@@ -23,7 +22,6 @@ public class UserInfo implements Module {
 		if(m.command().equals("QUIT")){
 			bot.UserInfo.remove(m.sender());
 		}
-		s = m.server;
 		if(!started){
 			started = true;
 			check();
@@ -40,7 +38,7 @@ public class UserInfo implements Module {
 							long waittime = (long)((double)1 / Config.getRooms().size()*120000);
 							Thread.sleep(waittime);
 						} catch (InterruptedException e) {}
-						s.send("WHO #" + room);	
+						Server.send("WHO #" + room);	
 					}
 				}
 			}
