@@ -1,5 +1,7 @@
 package modules;
 
+import java.util.HashMap;
+
 import bot.IrcBot;
 import bot.Message;
 import bot.Module;
@@ -14,8 +16,13 @@ public class Help implements Module {
 		if(!m.param().startsWith("#")) target = m.sender();
 		if(m.trailing().startsWith(".help") || m.botCommand().equals("help") || (m.param().equals(Config.getNick()) && m.trailing().toLowerCase().equals("help"))){
 			String modules = "Modules: ";
-			for(Module module : Modules.getModules()){
-				modules += module.getClass().getSimpleName() + ", ";
+			HashMap<String, String> map = Modules.getModuleStatuses();
+			for(HashMap.Entry<String, String> entry : map.entrySet()){
+				String color = "";
+				if(entry.getValue().equals("loaded")) color = "2";
+				else if(entry.getValue().equals("unloaded")) color = "4";
+				else if(entry.getValue().equals("changed")) color = "7";
+				modules += color + entry.getKey() + ", ";
 			}
 			modules = modules.substring(0, modules.length()-2);
 			m.notice(m.sender(), modules);
