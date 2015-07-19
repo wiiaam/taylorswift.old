@@ -1,5 +1,6 @@
 package modules;
 
+import bot.IrcBot;
 import bot.Message;
 import bot.config.Config;
 
@@ -10,12 +11,12 @@ public class Help implements Module {
 		String target = m.param();
 		if(!m.param().startsWith("#")) target = m.sender();
 		if(m.trailing().startsWith(".help") || m.botCommand().equals("help") || (m.param().equals(Config.getNick()) && m.trailing().toLowerCase().equals("help"))){
-			/*
-			try {
-				Thread.sleep(1000);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}*/
+			String modules = "Modules: ";
+			for(Module module : IrcBot.modules){
+				modules += module.getClass().getSimpleName() + ", ";
+			}
+			modules = modules.substring(0, modules.length()-2);
+			m.notice(m.sender(), modules);
 			m.notice(m.sender(), "Commands can be found at https://github.com/wiiam/Personal-Bot/blob/master/COMMANDS.md");
 			m.notice(m.sender(), "Source and license info can be found with .source and .license respectively");
 			m.notice(m.sender(), "My commandchar is currently " + m.commandChar());
