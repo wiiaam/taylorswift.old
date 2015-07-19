@@ -4,7 +4,10 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintStream;
 import java.net.URISyntaxException;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.ListIterator;
+
 import bot.config.Config;
 import modules.*;
 import bot.Modules;
@@ -84,12 +87,17 @@ public class IrcBot {
 					final Message m = new Message(Server.in.nextLine());
 					if(!Config.getAdmins().contains(m.sender()) && Config.getIgnores().contains(m.sender())) continue;
 					out.println(m.message());
-					for(Module module : Modules.getModules()){
-						new Thread(new Runnable(){
-							public void run(){
-								module.parse(m);
+					final ArrayList<Module> modules = Modules.getModules();
+					for(int i = 0; i < modules.size(); i++){
+						final int iter = i;
+						new Thread(new Runnable() {
+							
+							@Override
+							public void run() {
+								final Module mod = modules.get(iter);
+								mod.parse(m);
 							}
-						}).start();
+						}).start();;
 					}
 				}
 			}

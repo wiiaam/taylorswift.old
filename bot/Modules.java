@@ -1,15 +1,45 @@
 package bot;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
+import java.io.File;
+import java.lang.reflect.*;
+import java.net.URISyntaxException;
 
 import modules.*;
 
 public class Modules{
 	
 	private static ArrayList<Module> modules = new ArrayList<Module>();
+	private static HashMap<String, Class<bot.Module>> c = new HashMap<String, Class<Module>>();
 	
 	public static void loadAll(){
+		
+		try {
+			File directory = new File(new Modules().getClass().getResource("../modules/").toURI());
+			if(directory.exists()){
+				String[] files = directory.list();
+				for(int i = 0; i < files.length; i++){
+					if(files[i].endsWith(".class") && !files[i].endsWith("$1.class")){
+						System.out.println(files[i]);
+						String className = files[i].substring(0, files[i].length()-6);
+						try {
+							load(className);
+						} catch (ClassNotFoundException | IllegalArgumentException e) {
+							e.printStackTrace();
+						}
+					}
+				}
+			}
+		} catch (URISyntaxException e) {
+			e.printStackTrace();
+		}
+		
+		/*
 		add(new IBIP());
 		add(new Admin());
 		add(new Cowsay());
@@ -20,10 +50,11 @@ public class Modules{
 		add(new Invite());
 		add(new KiwiIRC());
 		add(new London());
+		add(new ModuleLoader());
 		add(new Money());
 		add(new NoBro());
 		add(new Ping());
-		add(new Quotes());
+		//add(new Quotes());
 		add(new Rainbow());
 		add(new Random());
 		add(new SongLyrics());
@@ -39,27 +70,54 @@ public class Modules{
 		add(new Voting());
 		add(new Youtube());
 		add(new Weather());
+		*/
 	}
+	
 	public static ArrayList<Module> getModules(){
 		return modules;
 	}
-	private static void reload(String module){
-		unload(module);
-		load(module);
-	}
-	
-	public static boolean load(String module){
-		for(int i = 0; i < modules.size(); i++){
-			if(modules.get(i).getClass().getSimpleName().equals(module)){
-				return false;
-			}
+	public static boolean reload(String module){
+		if(!unload(module))return false;
+		try {
+			load(module);
+		} catch (ClassNotFoundException e) {
+			return false;
 		}
 		return true;
+	}
+	
+	public static void load(String module) throws ClassNotFoundException, IllegalArgumentException{
+		for(int i = 0; i < modules.size(); i++){
+			if(modules.get(i).getClass().getSimpleName().equals(module)){
+				throw new IllegalArgumentException("Module already loaded"); 
+			}
+		}
+		Class cl;
+		cl = Class.forName("modules." + module);
+		Constructor con;
+		try {
+			con = cl.getConstructor();
+			Module toadd = (Module)con.newInstance();
+			modules.add(toadd);
+		} catch (NoSuchMethodException | SecurityException | InstantiationException 
+				| IllegalAccessException | IllegalArgumentException 
+				| InvocationTargetException e) {
+			e.printStackTrace();
+		}
+			
 	}
 	
 	private static void add(Module m){
 		System.out.println("added " + m.getClass().getSimpleName());
 		modules.add(m);
+		Collections.sort(modules, new Comparator<Module>() {
+
+			@Override
+			public int compare(Module o1, Module o2) {
+				// TODO Auto-generated method stub
+				return o1.getClass().getSimpleName().compareTo(o2.getClass().getSimpleName());
+			}
+		});
 	}
 	
 	public static boolean unload(String module){
