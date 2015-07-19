@@ -72,7 +72,7 @@ public class Config {
 	}
 	
 	public static void addRoom(String s){
-		s = s.replace("#", "");
+		s = s.substring(1);
 		String toadd = "\"" + s + "\"";
 		Gson gson = new GsonBuilder().create();
 		JsonArray jsonarray = json.get("rooms").getAsJsonArray();
