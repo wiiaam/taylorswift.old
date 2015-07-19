@@ -69,6 +69,8 @@ The current command char can be found with .help
 
 ## Admin commands
 
+`modules <load/unload/reload> <module>` - Modify the loaded modules.
+
 `admin <add/del> <user>` - Add/delete an admin.
 
 `char <command char>` - Changes the command char to the one specified. If `self` is specified, the char will be 
