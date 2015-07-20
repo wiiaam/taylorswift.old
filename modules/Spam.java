@@ -18,6 +18,7 @@ public class Spam implements Module {
 			@Override
 			public void run() {
 				while(true){
+					if(!Server.isConnected()) continue;
 					for(String meServerServerage : spams){
 						Server.send(meServerServerage);
 					}

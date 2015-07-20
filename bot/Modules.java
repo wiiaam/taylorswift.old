@@ -26,6 +26,7 @@ public class Modules{
 				for(int i = 0; i < files.length; i++){
 					if(files[i].endsWith(".class") && !files[i].endsWith("$1.class")){
 						String className = files[i].substring(0, files[i].length()-6);
+						if(className.equals("Quotes")) continue;
 						try {
 							load(className);
 						} catch (ClassNotFoundException | IllegalArgumentException e) {
@@ -139,8 +140,8 @@ public class Modules{
 					if(files[i].endsWith(".class") && !files[i].endsWith("$1.class")){
 						String className = files[i].substring(0, files[i].length()-6);
 						boolean found = false;
-						for(Module m : modules){
-							if(m.getClass().getSimpleName().equals(className)) {
+						for(int j = 0; j < modules.size(); j++){
+							if(modules.get(j).getClass().getSimpleName().equals(className)) {
 								map.put(className, "loaded");
 								found = true;
 								break;

@@ -2,17 +2,25 @@ package modules;
 
 import java.util.HashMap;
 
+import bot.IrcBot;
 import bot.Message;
 import bot.Module;
+import bot.Server;
 
 	public class Ping implements Module{
 	
 	private HashMap<String, String> requests = new HashMap<String, String>();
 	private boolean pong = false;
+	private boolean started = false;
+	private final int PING_TIMEOUT = 10;
 	
 	public void parse(Message m){
 		if(m.command().equals("PING")){
 			m.send("PONG :" + m.trailing());
+		}
+		
+		if(m.command().equals("PONG")){
+			pong = true;
 		}
 		
 		if(m.command().equals("NOTICE") && requests.containsKey(m.sender()) && m.trailing().startsWith("PING")){
@@ -37,8 +45,39 @@ import bot.Module;
 				}
 			}
 		}
+		if(!started){
+			started = true;
+			checkPing();
+		}
 	}
-	public void sendPing(){
-		
+	private void checkPing(){
+		new Thread(new Runnable(){
+			@Override
+			public void run() {
+				while(true){
+					try {
+						Thread.sleep(5000);
+					} catch (InterruptedException e1) {
+					}
+					if(Server.isConnected()){
+						pong = false;
+						Server.send("PING " + System.currentTimeMillis());
+						int i = 0;
+						while(true){
+							if(i == PING_TIMEOUT){
+								Server.resetConnection("No response from server");
+								break;
+							}
+							if(pong) break;
+							try {
+								Thread.sleep(1000);
+							} catch (InterruptedException e) {}
+							i++;
+						}
+						IrcBot.out.println("PONG received successfully");
+					}
+				}
+			}
+		}).start();
 	}
 }

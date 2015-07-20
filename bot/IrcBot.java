@@ -6,10 +6,7 @@ import java.io.PrintStream;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.ListIterator;
-
 import bot.config.Config;
-import modules.*;
 import bot.Modules;
 
 public class IrcBot {
@@ -18,7 +15,9 @@ public class IrcBot {
 	
 	// Fields
 	public static HashSet<Module> modules;
-	private static PrintStream out = System.out;
+	public static PrintStream out = System.out;
+	private static Thread serverListener;
+	private static boolean listening = false;
 	
 	public static void start(){
 		out.println("Reading config");
@@ -43,7 +42,7 @@ public class IrcBot {
 	}
 	
 	
-	public static void sendOnLogin(){
+	protected static void sendOnLogin(){
 		Server.send(Config.getIdentification());
 		try {
 			Thread.sleep(2000);
@@ -64,7 +63,7 @@ public class IrcBot {
 	/**
 	 * Attempts to login to the Server
 	 */
-	public static boolean attemptLogin(){
+	protected static boolean attemptLogin(){
 		Server.send("NICK " + Config.getNick());
 		Server.send(String.format("USER %s %s %s :%s", Config.getUsername(), Config.getUsername(), Config.getServer(), Config.getRealname()));
 		while(true){
@@ -73,16 +72,30 @@ public class IrcBot {
 				System.out.println(next);
 				Message m = new Message(next);
 				if(m.command().equals("001")) break;
+				if(m.command().equals("433")){
+					Server.send("NICK " + Config.getNick() + "_");
+					try {
+						Thread.sleep(2000);
+					} catch (InterruptedException e) {		
+					}
+					Server.pm("NickServ", "GHOST " + Config.getNick() + " " + Config.getIdentification().split("\\s+")[Config.getIdentification().split("\\s+").length-1]);
+					try {
+						Thread.sleep(2000);
+					} catch (InterruptedException e) {		
+					}
+					Server.send("NICK " + Config.getNick());
+				}
 			}
 		}
 		return true;
 		
 	}
 	
-	public static void listenToServer() {
-		new Thread(new Runnable(){
+	protected static void listenToServer() {
+		listening = true;
+		serverListener = new Thread(new Runnable(){
 			public void run() {
-				while(true){
+				while(listening){
 				if(Server.in.hasNextLine()){
 					final Message m = new Message(Server.in.nextLine());
 					if(!Config.getAdmins().contains(m.sender()) && Config.getIgnores().contains(m.sender())) continue;
@@ -102,6 +115,12 @@ public class IrcBot {
 				}
 			}
 			}
-		}).start();
+		});
+		serverListener.start();
+	}
+	
+	public static void stop(){
+		listening = false;
+		serverListener.interrupt();
 	}
 }

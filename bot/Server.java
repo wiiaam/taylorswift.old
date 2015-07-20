@@ -28,13 +28,25 @@ public class Server {
 			}
 		}
 		try{
+			if(socket != null)socket.close();
+			if(out != null) out.close();
+			if(in != null) in.close();
 			socket = new Socket(address, port);
 			in = new Scanner(socket.getInputStream());
 			out = new PrintStream(socket.getOutputStream());
 			isConnected = true;
 		}
 		catch(Exception e){
-			e.printStackTrace();
+			IrcBot.out.println("Could not connect: " + e.toString());
+			IrcBot.out.println("Retrying in 10 seconds");
+			try {
+				Thread.sleep(10000);
+			} catch (InterruptedException e1) {
+				e1.printStackTrace();
+			}
+		}
+		if(!isConnected){
+			connectTo(address,port);
 		}
 	}
 	
@@ -56,9 +68,19 @@ public class Server {
 	}
 	
 	public static void resetConnection(String reason){
-		send("QUIT :" + reason);
+		IrcBot.out.println("Resetting connection: " + reason);
+		isConnected = false;
+		IrcBot.stop();
 		try {
-			socket.close();
-		} catch (IOException e) {}
+			connectTo(address,port);
+			if(IrcBot.attemptLogin()){
+				IrcBot.sendOnLogin();
+				isConnected = true;
+				IrcBot.listenToServer();
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 }

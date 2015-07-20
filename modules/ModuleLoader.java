@@ -1,7 +1,10 @@
 package modules;
 
+import java.util.HashMap;
+
 import bot.Message;
 import bot.Module;
+import bot.Modules;
 import bot.config.Config;
 
 public class ModuleLoader implements Module {
@@ -50,11 +53,24 @@ public class ModuleLoader implements Module {
 						}
 						working = "";
 					}
-					else m.say(target, "Usage: " + Config.getChar() + "modules <load/unload/reload> <module>");
+					else m.say(target, "Usage: " + Config.getChar() + "modules <load/unload/reload/list> <module>");
 				}
-				else m.say(target, "Usage: " + Config.getChar() + "modules <load/unload/reload> <module>");
+				else if(m.botParamsArray()[0].equals("list")){
+					String modules = "Modules (blue = loaded, red = unloaded): ";
+					HashMap<String, String> map = Modules.getModuleStatuses();
+					for(HashMap.Entry<String, String> entry : map.entrySet()){
+						String color = "";
+						if(entry.getValue().equals("loaded")) color = "2";
+						else if(entry.getValue().equals("unloaded")) color = "4";
+						else if(entry.getValue().equals("changed")) color = "7";
+						modules += color + entry.getKey() + ", ";
+					}
+					modules = modules.substring(0, modules.length()-2);
+					m.say(target, modules);
+				}
+				else m.say(target, "Usage: " + Config.getChar() + "modules <load/unload/reload/list> <module>");
 			}
-			else m.say(target, "Usage: " + Config.getChar() + "modules <load/unload/reload> <module>");
+			else m.say(target, "Usage: " + Config.getChar() + "modules <load/unload/reload/list> <module>");
 		}
 	}
 

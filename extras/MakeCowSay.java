@@ -55,7 +55,8 @@ public class MakeCowSay {
 		}
 		tosay.add(" -----------------------------------------");
 		tosay.add("        \\   ^__^");
-		tosay.add("         \\  (oo)\\_______");
+		if(s.contains("420") || s.toLowerCase().contains("blaze"))tosay.add("         \\  (4oo)\\_______");
+		else tosay.add("         \\  (oo)\\_______");
 		tosay.add("            (__)\\       )\\/\\");
 		tosay.add("                ||----w |");
 		tosay.add("                ||     ||");

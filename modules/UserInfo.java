@@ -34,6 +34,7 @@ public class UserInfo implements Module {
 			@Override
 			public void run() {
 				while(true){
+					if(!Server.isConnected()) continue;
 					for(String room : Config.getRooms()){
 						try {
 							long waittime = (long)((double)1 / Config.getRooms().size()*120000);
