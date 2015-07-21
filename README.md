@@ -16,6 +16,7 @@ This bot has many features, including, but not limited to,
 - [IBIP](https://github.com/Teknikode/IBIP) compliant
 - URL title reporting, with a few APIs
 - CTCP version, time, ping checks
+- Basic administration features
 - Currency system
 - Cowsay
 - Taylor Swift related features
