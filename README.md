@@ -64,12 +64,11 @@ Any modules to add to the bot need to implement the [bot.Module](bot/Module.java
 
 When the bot has logged in correctly it will iterate over the Module list and parse each of them a [Message](bot/Message.java) 
 
-Then each module uses does whatever is in the `parse(Message m)` method. Outputs can be sent with the `Server` class
+Then each module does whatever is in the `parse(Message m)` method. Outputs can be sent with the `Server` class
 ```
 public static void send(String message) - Sends an irc format message
 public static void pm(String target, String message) - Sends a PRIVMSG to the target
-public static void notice(String target, String message) - Sends a NOTICE to the target
-public static void say(String target, String message) - Sends a PRIVMSG to a channel or a NOTICE to a user
+public static void notice(String targer, String message) - Sends a NOTICE to the target
 ```
 
 Some useful methods for getting info from the [Message](bot/Message.java) class,
