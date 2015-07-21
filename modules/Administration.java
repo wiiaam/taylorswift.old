@@ -141,19 +141,14 @@ public class Administration implements Module {
 	}
 	
 	private boolean isop(String chan){
-		System.out.println(0);
 		if(!Info.hasChannelInfo(chan))return false;
-		System.out.println(1);
 		Channel channel = Info.getChannelInfo(chan);
 		if(!channel.has(Config.getNick()))return false;
-		System.out.println(2);
 		String modes = channel.getModes(Config.getNick());
-		System.out.println(modes);
 		if(modes.contains("~")) return true;
 		if(modes.contains("&")) return true;
 		if(modes.contains("@")) return true;
 		if(modes.contains("%")) return true;
-		if(modes.contains("+")) return true;
 		return false;
 	}
 	

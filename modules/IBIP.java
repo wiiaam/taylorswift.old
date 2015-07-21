@@ -13,7 +13,7 @@ public class IBIP implements Module {
 		if(m.trailing().split("\\s+")[0].equals(".bots")){
 			String target = m.param();
 			if(!m.param().startsWith("#")) target = m.sender();
-			m.say(target, String.format("Reporting in! [Java] %s", Lyrics.getRandomShortLyric()));
+			m.pm(target, String.format("Reporting in! [Java] %s", Lyrics.getRandomShortLyric()));
 		}
 	}
 
