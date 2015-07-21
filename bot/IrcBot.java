@@ -56,8 +56,8 @@ public class IrcBot {
 			e.printStackTrace();
 		}
 		for(String s : Config.getRooms()){
-			Server.send("JOIN #" + s);
-			Server.send("WHO #" + s);
+			Server.send("JOIN " + s);
+			Server.send("WHO " + s);
 		}
 	}
 	
@@ -103,7 +103,12 @@ public class IrcBot {
 			public void run() {
 				while(listening){
 				if(Server.in.hasNextLine()){
-					final Message m = new Message(Server.in.nextLine());
+					String next = Server.in.nextLine();
+					if(next.startsWith("ERROR :Closing Link")){
+						Server.resetConnection("Socket cddlosed");
+						return;
+					}
+					final Message m = new Message(next);
 					if(!Config.getAdmins().contains(m.sender()) && Config.getIgnores().contains(m.sender())) continue;
 					out.println(m.message());
 					final ArrayList<Module> modules = Modules.getModules();

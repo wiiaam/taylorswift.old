@@ -2,6 +2,7 @@ package modules;
 
 import bot.Message;
 import bot.Module;
+import bot.Server;
 import bot.config.Config;
 
 public class Admin implements Module{
@@ -82,10 +83,12 @@ public class Admin implements Module{
 					m.say(target, "Now joining " + m.botParams());
 				}
 			}
-			if(m.botCommand().equals("raw")){
+			
+			if(m.botCommand().equals("send")){
 				if(m.hasBotParams()) m.send(m.botParams());
 			}
-			if(m.botCommand().equals("pm")){
+			
+			if(m.botCommand().equals("pm") || m.botCommand().equals("msg")){
 				if(m.hasBotParams()){
 					String tosend = "";
 					for(int i = 1; i < m.botParamsArray().length; i++){
@@ -107,6 +110,12 @@ public class Admin implements Module{
 			}
 			if(m.botCommand().equals("say")){
 				m.say(target, m.botParams());
+			}
+			
+			if(m.botCommand().equals("quit")){
+				Server.say(target, "o-ok");
+				Server.send("QUIT :Leaving");
+				Server.disconnect();
 			}
 			
 		}

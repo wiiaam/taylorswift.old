@@ -63,6 +63,28 @@ public class Server {
 	public static void notice(String target, String message){
 		send(String.format("NOTICE %s :%s", target, message));
 	}
+	
+	/**
+	 * PRIVMSG for room
+	 * NOTICE for user
+	 */
+	public static void say(String target, String message){
+		if(target.startsWith("#")) Server.pm(target, message);
+		else Server.notice(target, message);
+	}
+	
+	public static void say(String target, String[] messagearray){
+		for(int i = 0; i < messagearray.length; i++){
+			if(target.startsWith("#")) Server.pm(target, messagearray[i]);
+			else Server.notice(target, messagearray[i]);
+			try {
+				Thread.sleep(500);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+	
 	public static boolean isConnected(){
 		return isConnected;
 	}
@@ -82,5 +104,13 @@ public class Server {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public static void disconnect(){
+		try {
+			socket.close();
+		} catch (IOException e) {
+		}
+		System.exit(0);
 	}
 }

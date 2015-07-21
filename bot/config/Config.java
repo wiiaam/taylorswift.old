@@ -66,13 +66,15 @@ public class Config {
 		JsonArray jsonarray = json.get("rooms").getAsJsonArray();
 		HashSet<String> set = new HashSet<String>();
 		for(int i = 0; i < jsonarray.size(); i++){
-			set.add(jsonarray.get(i).getAsString());
+			set.add("#" + jsonarray.get(i).getAsString());
 		}
 		return set;
 	}
 	
 	public static void addRoom(String s){
-		s = s.substring(1);
+		if(s.startsWith("#")){
+			s = s.substring(1);
+		}
 		String toadd = "\"" + s + "\"";
 		Gson gson = new GsonBuilder().create();
 		JsonArray jsonarray = json.get("rooms").getAsJsonArray();

@@ -47,7 +47,7 @@ public class UserModes implements Module {
 							long waittime = (long)((double)1 / Config.getRooms().size()*120000);
 							Thread.sleep(waittime);
 						} catch (InterruptedException e) {}
-						Server.send("WHO #" + room);	
+						Server.send("WHO " + room);	
 					}
 				}
 			}

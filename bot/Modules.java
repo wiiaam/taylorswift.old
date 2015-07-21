@@ -70,7 +70,9 @@ public class Modules{
 		for(int i = 0; i < interfaces.length; i++){
 			if(interfaces[i].equals(bot.Module.class)) isModule = true;
 		}
-		if(!isModule)throw new IllegalArgumentException("Class does not implement module");
+		if(!isModule){
+			throw new IllegalArgumentException("Class " + cl.getName() + " does not implement module");
+		}
 		Constructor con;
 		try {
 			con = cl.getConstructor();
@@ -90,14 +92,6 @@ public class Modules{
 			if(m.getClass().getSimpleName().equals(module.getClass().getSimpleName())) return;
 		}
 		modules.add(m);
-		Collections.sort(modules, new Comparator<Module>() {
-
-			@Override
-			public int compare(Module o1, Module o2) {
-				// TODO Auto-generated method stub
-				return o1.getClass().getSimpleName().compareTo(o2.getClass().getSimpleName());
-			}
-		});
 		System.out.println("added " + m.getClass().getSimpleName());
 	}
 	
