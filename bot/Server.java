@@ -50,9 +50,9 @@ public class Server {
 		}
 	}
 	
-	public static void send(String s){
-		System.out.println("sending " + s);
-		out.println(s + "\r\n");
+	public static void send(String message){
+		System.out.println("sending " + message);
+		out.println(message + "\r\n");
 		out.flush();
 	}
 	

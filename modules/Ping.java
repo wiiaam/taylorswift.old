@@ -12,7 +12,7 @@ import bot.Server;
 	private HashMap<String, String> requests = new HashMap<String, String>();
 	private boolean pong = false;
 	private boolean started = false;
-	private final int PING_TIMEOUT = 10;
+	private final int PING_TIMEOUT = 30;
 	
 	public void parse(Message m){
 		if(m.command().equals("PING")){

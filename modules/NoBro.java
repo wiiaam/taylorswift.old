@@ -14,8 +14,10 @@ import java.util.HashMap;
 import java.util.Scanner;
 
 import com.google.gson.*;
-import bot.UserInfo;
+
 import bot.config.Config;
+import bot.info.Info;
+import bot.info.User;
 
 public class NoBro implements Module {
 	private String[] triggers = {"kittykatt","man","shut up","python"};
@@ -95,8 +97,8 @@ public class NoBro implements Module {
 	
 	private void addBro(String sender){
 		if(!sender.contains("!")){
-			HashMap<String, String> info = UserInfo.getInfo(sender);
-			sender = sender + "!" + info.get("user") + "@" + info.get("host");
+			User user = Info.getUserInfo(sender);
+			sender = sender + "!" + user.getUser() + "@" + user.getHost();
 		}
 		String nickname = sender.split("!")[0];
 		String host = "";

@@ -2,6 +2,7 @@ package bot;
 
 
 import bot.config.Config;
+import bot.info.Info;
 
 public class Message {
 	
@@ -235,7 +236,7 @@ public class Message {
 	}
 	
 	public boolean senderIsAdmin(){
-		if (UserInfo.isRegistered(sender)) return Config.getAdmins().contains(sender);
+		if (Info.isRegistered(sender)) return Config.getAdmins().contains(sender);
 		else return false;
 	}
 }

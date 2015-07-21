@@ -72,7 +72,7 @@ public class TitleReporting implements Module {
 		}
 	}
 	
-	public void write(){
+	private void write(){
 		try {
 			PrintWriter writer = new PrintWriter(file);
 			for(String s : rooms){

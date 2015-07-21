@@ -26,12 +26,16 @@ public class Modules{
 				for(int i = 0; i < files.length; i++){
 					if(files[i].endsWith(".class") && !files[i].endsWith("$1.class")){
 						String className = files[i].substring(0, files[i].length()-6);
-						if(className.equals("Quotes")) continue;
-						try {
-							load(className);
-						} catch (ClassNotFoundException | IllegalArgumentException e) {
-							e.printStackTrace();
-						}
+						//if(className.equals("Quotes")) continue;
+						new Thread(new Runnable(){
+							public void run(){
+								try {
+									load(className);
+								} catch (ClassNotFoundException | IllegalArgumentException e) {
+									e.printStackTrace();
+								}									
+							}
+						}).start();
 					}
 				}
 			}

@@ -4,24 +4,31 @@ import bot.Message;
 import bot.Module;
 import bot.Server;
 import bot.config.Config;
+import bot.info.Info;
 
-public class UserInfo implements Module {
+public class UserModes implements Module {
 	
 	private boolean started = false;
 	@Override
 	public void parse(Message m) {
 		if(m.command().equals("352")){
-			bot.UserInfo.parse(m.trailing());
+			bot.info.Info.parse(m.trailing());
 		}
 		
 		if(m.command().equals("NICK")){
-			bot.UserInfo.changeNick(m.sender(), m.trailing());
+			Info.forget(m.sender());
 		}
-		if(m.command().equals("PART")){
-			bot.UserInfo.removeChan(m.sender(), m.param());
+		if(m.command().equals("PART") || m.command().equals("KICK")){
+			bot.info.Info.removeChan(m.sender(), m.param());
 		}
 		if(m.command().equals("QUIT")){
-			bot.UserInfo.remove(m.sender());
+			Info.forget(m.sender());
+		}
+		if(m.command().equals("JOIN")){
+			Info.parse(String.format("%s %s %s * %s H :0 Unknown", m.trailing(), m.username(), m.senderHost(), m.sender()));
+		}
+		if(m.command().equals("MODE")){
+			Server.send("WHO " + m.param());
 		}
 		if(!started){
 			started = true;

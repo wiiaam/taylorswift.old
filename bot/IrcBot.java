@@ -29,7 +29,13 @@ public class IrcBot {
 			}
 			
 		out.println("Loading modules");
-		Modules.loadAll();
+		new Thread(new Runnable(){
+			public void run(){
+				Modules.loadAll();
+				out.println("All modules loaded");
+			}
+		}).start();
+		
 		out.println("Connecting to Server");
 		Server.connectTo(Config.getServer(), Config.getPort());
 		

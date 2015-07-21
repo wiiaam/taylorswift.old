@@ -10,8 +10,8 @@ import java.util.HashSet;
 import java.util.Properties;
 
 import bot.Message;
-import bot.UserInfo;
 import bot.config.Config;
+import bot.info.Info;
 
 public class Money implements bot.Module{
 	private Properties bank = new Properties();
@@ -72,7 +72,7 @@ public class Money implements bot.Module{
 			write(m.sender(), userbalance);
 		}
 		if(m.botCommand().equals("money") || m.botCommand().equals("wallet") || m.botCommand().equals("bank")){
-			if(!UserInfo.isRegistered(m.sender())){
+			if(!Info.isRegistered(m.sender())){
 				m.say(target, "pls login m9");
 				return;
 			}
@@ -82,7 +82,7 @@ public class Money implements bot.Module{
 			else m.say(target, String.format("You currently have3 $%.0f in the bnz", Double.parseDouble(bank.getProperty(m.sender())) ));
 		}
 		if(m.botCommand().equals("pokies")){
-			if(!UserInfo.isRegistered(m.sender())){
+			if(!Info.isRegistered(m.sender())){
 				m.say(target, "pls login m9");
 				return;
 			}
@@ -119,7 +119,7 @@ public class Money implements bot.Module{
 			}
 		}
 		if(m.botCommand().equals("mug")){
-			if(!UserInfo.isRegistered(m.sender())){
+			if(!Info.isRegistered(m.sender())){
 				m.say(target, "pls login m9");
 				return;
 			}
@@ -155,7 +155,7 @@ public class Money implements bot.Module{
 			}
 		}
 		if(m.botCommand().equals("durry")){
-			if(!UserInfo.isRegistered(m.sender())){
+			if(!Info.isRegistered(m.sender())){
 				m.say(target, "pls login m9");
 				return;
 			}
@@ -176,7 +176,7 @@ public class Money implements bot.Module{
 			
 		}
 		if(m.botCommand().equals("give")){
-			if(!UserInfo.isRegistered(m.sender())){
+			if(!Info.isRegistered(m.sender())){
 				m.say(target, "pls login m9");
 				return;
 			}
