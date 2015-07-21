@@ -68,7 +68,8 @@ Then each module uses does whatever is in the `parse(Message m)` method. Outputs
 ```
 public static void send(String message) - Sends an irc format message
 public static void pm(String target, String message) - Sends a PRIVMSG to the target
-public static void notice(String targer, String message) - Sends a NOTICE to the target
+public static void notice(String target, String message) - Sends a NOTICE to the target
+public static void say(String target, String message) - Sends a PRIVMSG to a channel or a NOTICE to a user
 ```
 
 Some useful methods for getting info from the [Message](bot/Message.java) class,
