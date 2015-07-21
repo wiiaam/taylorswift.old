@@ -15,7 +15,6 @@ import modules.*;
 public class Modules{
 	
 	private static ArrayList<Module> modules = new ArrayList<Module>();
-	private static HashMap<String, Class<bot.Module>> c = new HashMap<String, Class<Module>>();
 	
 	public static void loadAll(){
 		
@@ -42,39 +41,6 @@ public class Modules{
 		} catch (URISyntaxException e) {
 			e.printStackTrace();
 		}
-		
-		/*
-		add(new IBIP());
-		add(new Admin());
-		add(new Cowsay());
-		add(new Fortune());
-		add(new Google());
-		add(new Help());
-		add(new Ignores());
-		add(new Invite());
-		add(new KiwiIRC());
-		add(new London());
-		add(new ModuleLoader());
-		add(new Money());
-		add(new NoBro());
-		add(new Ping());
-		//add(new Quotes());
-		add(new Rainbow());
-		add(new Random());
-		add(new SongLyrics());
-		add(new Spam());
-		add(new Steam());
-		add(new Time());
-		add(new TopKek());
-		add(new Triggers());
-		add(new TitleReporting());
-		add(new UrbanDictionary());
-		add(new modules.UserInfo());
-		add(new Version());
-		add(new Voting());
-		add(new Youtube());
-		add(new Weather());
-		*/
 	}
 	
 	public static ArrayList<Module> getModules(){
@@ -90,6 +56,7 @@ public class Modules{
 		return true;
 	}
 	
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public static void load(String module) throws ClassNotFoundException, IllegalArgumentException{
 		for(int i = 0; i < modules.size(); i++){
 			if(modules.get(i).getClass().getSimpleName().equals(module)){
@@ -98,11 +65,17 @@ public class Modules{
 		}
 		Class cl;
 		cl = Class.forName("modules." + module);
+		Class[] interfaces = cl.getInterfaces();
+		boolean isModule = false;
+		for(int i = 0; i < interfaces.length; i++){
+			if(interfaces[i].equals(bot.Module.class)) isModule = true;
+		}
+		if(!isModule)throw new IllegalArgumentException("Class does not implement module");
 		Constructor con;
 		try {
 			con = cl.getConstructor();
 			Module toadd = (Module)con.newInstance();
-			modules.add(toadd);
+			add(toadd);
 		} catch (NoSuchMethodException | SecurityException | InstantiationException 
 				| IllegalAccessException | IllegalArgumentException 
 				| InvocationTargetException e) {
@@ -112,7 +85,10 @@ public class Modules{
 	}
 	
 	private static void add(Module m){
-		System.out.println("added " + m.getClass().getSimpleName());
+		final ArrayList<Module> modulesloaded = new ArrayList<Module>(modules);
+		for(Module module : modulesloaded){
+			if(m.getClass().getSimpleName().equals(module.getClass().getSimpleName())) return;
+		}
 		modules.add(m);
 		Collections.sort(modules, new Comparator<Module>() {
 
@@ -122,6 +98,7 @@ public class Modules{
 				return o1.getClass().getSimpleName().compareTo(o2.getClass().getSimpleName());
 			}
 		});
+		System.out.println("added " + m.getClass().getSimpleName());
 	}
 	
 	public static boolean unload(String module){
@@ -134,6 +111,7 @@ public class Modules{
 		return false;
 	}
 	
+	@SuppressWarnings("rawtypes")
 	public static HashMap<String, String> getModuleStatuses(){
 		HashMap<String, String> map = new HashMap<String, String>();
 		try {
@@ -143,6 +121,19 @@ public class Modules{
 				for(int i = 0; i < files.length; i++){
 					if(files[i].endsWith(".class") && !files[i].endsWith("$1.class")){
 						String className = files[i].substring(0, files[i].length()-6);
+						Class cl;
+						boolean isModule = false;
+						try {
+							cl = Class.forName("modules." + className);
+							Class[] interfaces = cl.getInterfaces();
+							
+							for(int j = 0; j < interfaces.length; j++){
+								if(interfaces[j].equals(bot.Module.class)) isModule = true;
+							}
+						} catch (ClassNotFoundException e) {
+							e.printStackTrace();
+						}
+						if(!isModule)continue;
 						boolean found = false;
 						for(int j = 0; j < modules.size(); j++){
 							if(modules.get(j).getClass().getSimpleName().equals(className)) {
