@@ -36,6 +36,12 @@ public class Admin implements Module{
 			}
 		}
 		
+		if(m.command().equals("PART")){
+			if(m.sender().equals(Config.getNick())){
+				Config.removeRoom(m.param().substring(1));
+			}
+		}
+		
 		if(m.senderIsAdmin()){
 			if(m.botCommand().equals("admin")){
 				if(m.botParamsArray().length > 1){
