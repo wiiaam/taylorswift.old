@@ -19,7 +19,7 @@ The current command char can be found with .help
 
 `ud <search>` - Searches urbandictionary for a term and returns the result.
 
-`w <place> weather <place> - Displays weather information for a specified place.
+`w <place> weather <place>` - Displays weather information for a specified place.
 
 `steaminfo <user>` - Displays steam information on the specified user.
 
@@ -53,6 +53,20 @@ The current command char can be found with .help
 
 `cowsay <message>` - Makes the cow say.
 
+`stopspamming` - Stops `spam` messages.
+
+`cb <message>` - Send a message to cleverbot.
+
+`shorten <url>` - Shorten a url
+
+### Github user info
+
+`gh <user>, github <user>` - Displays github profile information associated with the user.
+
+`repos <user>` - Displays all repos by the user.
+
+`repo <user> <repo>` - Displays information of a github repository.
+
 ### Money
 
 `bene` - Get a payment.
@@ -64,8 +78,6 @@ The current command char can be found with .help
 `durry` - Buy a durry.
 
 `give <user> <amount>` - Give money to a user.
-
-`stopspamming` - Stops `spam` messages
 
 ## Admin commands
 
