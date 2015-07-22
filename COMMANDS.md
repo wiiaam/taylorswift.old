@@ -77,8 +77,6 @@ The current command char can be found with .help
 
 ### Random
 
-`kill <bot> <channel>` - Kill a bot that is exploitable via `INVITE`.
-
 `> <message>` - Displays a >greentext of the message.
 
 `imply` - Displays >implying message
@@ -176,3 +174,7 @@ The current command char can be found with .help
 `addbro <user>` - Adds a bro.
 
 `delbro <user>` - Deletes a bro.
+
+### Random Commands
+
+`kill <bot> <channel>` - Kill a bot that is exploitable via `INVITE`.
