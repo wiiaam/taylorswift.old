@@ -5,6 +5,8 @@ The current command char can be found with .help
 
 ## Public Commands
 
+### Help
+
 `.help`, `help` - Displays help.
 
 `.source`, `source` - Displays a link to the current repository.
@@ -13,6 +15,16 @@ The current command char can be found with .help
 
 `.bots` - Responds to [IBIP](https://github.com/Teknikode/IBIP).
 
+### Administration
+
+(Note: this requires administration commands to be turned on in a channel)
+
+`kb <user>` - Kicks a user and bans their host.
+
+`topic <topic>` - Changes the topic.
+
+### Web Tools
+ 
 `g <search>`, `google <search>` - Searches google for the search term and returns the first result.
 
 `yt <search>`, `youtube <search>` - Searches YouTube for the search term and returns the first video found. 
@@ -23,41 +35,25 @@ The current command char can be found with .help
 
 `steaminfo <user>` - Displays steam information on the specified user.
 
-`8ball` - Ask the magic 8ball a question.
+`cb <message>` - Send a message to cleverbot.
 
-`fortune` - Displays your fortune.
+`shorten <url>` - Shorten a url
 
-`lyrics` - Displays a random Taylor Swift lyric.
+### Voting
 
-`vote <topic>` - Starts a vote. Votes can be placed with `voteyes` and `voteno`.
+`vote <topic>` - Starts a vote. 
 
-`ver <user>`, `version <user>` - Sends a ctcp VERSION to the user and displays the result if a response is received 
+`voteyes` - Vote yes.
+
+`voteno` - Vote no.
+
+### CTCP
+
+`ver <user>`, `version <user>` - Sends a ctcp VERSION to the user and displays the result if a response is received.
 
 `time <user>` - Sends a ctcp TIME to the user and displays the result if a response is received.
 
 `ping <user>` - Sends a ctcp PING to the user and displays the result if a response is received.
-
-`post n00dz` - Posts n00dz. **NSFW**.
-
-`> <message>` - Displays a >greentext of the message.
-
-`imply` - Displays >implying message
-
-`kek <kek>` - Displays the kek associated to the param.
-
-`listtriggers` - Lists all the triggers.
-
-`london <message>` - :^) limit 10 chars. Usually kept turned off to stop channel spamming.
-
-`quote <user>` - Displays a random quote from the user.
-
-`cowsay <message>` - Makes the cow say.
-
-`stopspamming` - Stops `spam` messages.
-
-`cb <message>` - Send a message to cleverbot.
-
-`shorten <url>` - Shorten a url
 
 ### Github user info
 
@@ -79,14 +75,41 @@ The current command char can be found with .help
 
 `give <user> <amount>` - Give money to a user.
 
-## Admin commands
+### Random
+
+`kill <bot> <channel>` - Kill a bot that is exploitable via `INVITE`.
+
+`> <message>` - Displays a >greentext of the message.
+
+`imply` - Displays >implying message
+
+`8ball` - Ask the magic 8ball a question.
+
+`fortune` - Displays your fortune.
+
+`lyrics` - Displays a random Taylor Swift lyric.
+
+`post n00dz` - Posts n00dz. **NSFW**.
+
+`london <message>` - :^) limit 10 chars. Usually kept turned off to stop channel spamming.
+
+`cowsay <message>` - Makes the cow say.
+
+`quote <user>` - Displays a random quote from the user.
+
+`listtriggers` - Lists all the current triggers.
+
+`stopspamming` - Stops `spam` messages.
+
+## Admin Commands
+
+### Bot administration
 
 `modules <load/unload/reload> <module>` - Modify the loaded modules.
 
 `admin <add/del> <user>` - Add/delete an admin.
 
-`char <command char>` - Changes the command char to the one specified. If `self` is specified, the char will be 
-`<nickname>:`
+`char <command char>` - Changes the command char to the one specified. If `self` is specified, the char will be `<nickname>: `
 
 `nick <nick>` - Changes the bots nickname.
 
@@ -102,17 +125,19 @@ The current command char can be found with .help
 
 `notice <target> <message>` - Sends a NOTICE to the target.
 
+`ignore <user>` - Ignores the user.
+
+`unignore <user>` - Unignores the user.
+
+`quit` - Close connection and end the process.
+
+### URL Title Reporting
+
 `titleson <room/user>` - Turns on title reporting for the user/room
 
 `titlesoff <room/user>` - Turns off title reporting for the user/room
 
-`lyricson <room>` - Turns on random Taylor Swift lyric posting.
-
-`lyricsoff <room>` - Turns off random Taylor Swift lyric posting.
-
-`kiwion` - Messages any KiwiIRC users that join.
-
-`kiwioff` - Turns off messages.
+### Triggers
 
 `trigger <trigger> : <message>` - Adds the trigger.
 
@@ -122,19 +147,31 @@ The current command char can be found with .help
 
 `triggersoff` - Turns triggers off.
 
+### Toggles
+
+`lyricson <room>` - Turns on random Taylor Swift lyric posting.
+
+`lyricsoff <room>` - Turns off random Taylor Swift lyric posting.
+
+`kiwion` - Messages any KiwiIRC users that join.
+
+`kiwioff` - Turns off messages.
+
 `londonon` - Turns london on.
 
 `londonoff` - Turns london off.
-
-`ignore <user>` - Ignores the user.
-
-`unignore <user>` - Unignores the user.
 
 `cowsayon` - Turn cowsay on.
 
 `cowsayoff` - Turn cowsay off.
 
+### Spam commands
+
 `spam <ircmessage>` - Sends an ircformat message every 2 seconds.
+
+`sadfrog` - feels bad man.
+
+### Bro Detection
 
 `addbro <user>` - Adds a bro.
 
