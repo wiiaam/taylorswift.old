@@ -39,6 +39,14 @@ The current command char can be found with .help
 
 `shorten <url>` - Shorten a url
 
+### Github User Info
+
+`gh <user>, github <user>` - Displays github profile information associated with the user.
+
+`repos <user>` - Displays all repos by the user.
+
+`repo <user> <repo>` - Displays information of a github repository.
+
 ### Voting
 
 `vote <topic>` - Starts a vote. 
@@ -54,14 +62,6 @@ The current command char can be found with .help
 `time <user>` - Sends a ctcp TIME to the user and displays the result if a response is received.
 
 `ping <user>` - Sends a ctcp PING to the user and displays the result if a response is received.
-
-### Github user info
-
-`gh <user>, github <user>` - Displays github profile information associated with the user.
-
-`repos <user>` - Displays all repos by the user.
-
-`repo <user> <repo>` - Displays information of a github repository.
 
 ### Money
 
