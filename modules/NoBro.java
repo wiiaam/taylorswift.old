@@ -2,6 +2,7 @@ package modules;
 
 import bot.Message;
 import bot.Module;
+import bot.Server;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -69,12 +70,13 @@ public class NoBro implements Module {
 							offences.put(m.sender(),offences.get(m.sender())+1);
 						}
 						if(offences.get(m.sender()) == WARN_OFFENCES){
-							m.say(target, m.sender() + ": Warning, you are being very liquid like.");
+							m.say(target,"4" + m.sender() + ": Warning, you are being very liquid like.");
 						}
 						if(offences.get(m.sender()) == MAX_OFFENCES){
 							addBro(m.senderWhole());
 							m.say(target, "shut up bro");
 							offences.put(m.sender(),offences.get(m.sender())+1);
+							Server.send("KICK " + m.param() + " " + m.sender());
 						}
 					}
 				}

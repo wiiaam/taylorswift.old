@@ -104,8 +104,13 @@ public class IrcBot {
 				while(listening){
 				if(Server.in.hasNextLine()){
 					String next = Server.in.nextLine();
+					if(next.contains("KILL")){
+						if(next.contains("GHOST")){
+							Server.disconnect();
+						}
+					}
 					if(next.startsWith("ERROR :Closing Link")){
-						Server.resetConnection("Socket cddlosed");
+						Server.resetConnection("Socket closed");
 						return;
 					}
 					final Message m = new Message(next);

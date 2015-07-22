@@ -8,6 +8,7 @@ import java.net.URISyntaxException;
 import java.util.HashSet;
 import java.util.Scanner;
 
+import extras.URLShortener;
 import extras.URLTitles;
 import bot.Message;
 import bot.Module;
