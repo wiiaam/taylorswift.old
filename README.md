@@ -13,6 +13,7 @@ This bot can be found on **#pasta** on [**irc.rizon.net**](irc://irc.rizon.net).
 
 This bot has many features, including, but not limited to,
 
+- SSL Connections
 - [IBIP](https://github.com/Teknikode/IBIP) compliant
 - URL title reporting, with a few APIs
 - CTCP version, time, ping checks
@@ -46,7 +47,7 @@ If you wish to use this bot
 
 1. Clone the repo with `$ git clone https://github.com/wiiam/Personal-Bot.git`
 2. `$ cd Personal-Bot`
-3. Rename the config file `bot/config/config.json.example` to `config.json` then edit with your configuration 
+3. Rename the config file `config.json.example` to `config.json` then edit with your configuration 
 4. `$ chmod +x compile.sh` then `$ ./compile.sh`
 5. Then run the bot with `$ chmod +x run.sh` `$ ./run.sh`
 
