@@ -227,11 +227,6 @@ public class Message {
 		for(int i = 0; i < messagearray.length; i++){
 			if(target.startsWith("#")) Server.pm(target, messagearray[i]);
 			else Server.notice(target, messagearray[i]);
-			try {
-				Thread.sleep(500);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
 		}
 	}
 	
