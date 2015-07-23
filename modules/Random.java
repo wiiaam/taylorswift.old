@@ -10,6 +10,7 @@ import java.util.Scanner;
 
 import bot.Message;
 import bot.Module;
+import bot.Server;
 
 public class Random implements Module {
 
@@ -95,6 +96,33 @@ public class Random implements Module {
 			outputs[35] = "▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓█    ";
 			outputs[36] = "▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓█    ";
 			m.say(target, outputs);
+		}
+		
+		if(m.botCommand().equals("troll") && m.senderIsAdmin()){
+			String[] outputs = new String[15];
+			outputs[0] = "░░░░░▄▄▄▄▀▀▀▀▀▀▀▀▄▄▄▄▄▄░░░░░░░";
+			outputs[1] = "░░░░░█░░░░▒▒▒▒▒▒▒▒▒▒▒▒░░▀▀▄░░░░";
+			outputs[2] = "░░░░█░░░▒▒▒▒▒▒░░░░░░░░▒▒▒░░█░░░";
+			outputs[3] = "░░░█░░░░░░▄██▀▄▄░░░░░▄▄▄░░░░█░░";
+			outputs[4] = "░▄▀▒▄▄▄▒░█▀▀▀▀▄▄█░░░██▄▄█░░░░█░";
+			outputs[5] = "█░▒█▒▄░▀▄▄▄▀░░░░░░░░█░░░▒▒▒▒▒░█";
+			outputs[6] = "█░▒█░█▀▄▄░░░░░█▀░░░░▀▄░░▄▀▀▀▄▒█";
+			outputs[7] = "░█░▀▄░█▄░█▀▄▄░▀░▀▀░▄▄▀░░░░█░░█░";
+			outputs[8] = "░░█░░░▀▄▀█▄▄░█▀▀▀▄▄▄▄▀▀█▀██░█░░";
+			outputs[9] = "░░░█░░░░██░░▀█▄▄▄█▄▄█▄████░█░░░";
+			outputs[10] = "░░░░█░░░░▀▀▄░█░░░█░█▀██████░█░░";
+			outputs[11] = "░░░░░▀▄░░░░░▀▀▄▄▄█▄█▄█▄█▄▀░░█░░";
+			outputs[12] = "░░░░░░░▀▄▄░▒▒▒▒░░░░░░░░░░▒░░░█░";
+			outputs[13] = "░░░░░░░░░░▀▀▄▄░▒▒▒▒▒▒▒▒▒▒░░░░█░";
+			outputs[14] = "░░░░░░░░░░░░░░▀▄▄▄▄▄░░░░░░░░█░░";
+			Server.lessPrioritySay(target, outputs);
+		}
+		if(m.param().equals("#pasta") || m.param().equals("#taylorswift")){
+			if(m.trailing().contains(" spam ") || m.trailing().startsWith("spam ") || m.trailing().endsWith(" spam") || m.trailing().equals("spam")){
+				Server.lessPrioritySay(target, "I'd just like to interject for a moment. What you are referring to as spam, is in fact, copypasta/spam, or as I've recently taken to calling it, copypasta plus spam. Spam is not shitposting unto itself, but rather another free component of a fully functioning ironic shitposting system made useful by the moot, lel [a/jp] namefigs and vital kek components comprising a full board as defined by /s4s/.");
+				Server.lessPrioritySay(target, "Many anonymous users use a modified version of the ironic shitposting system every day, without realizing it. Through a peculiar turn of events, the version of ironic shitposting which is widely used today is often called \"Spam\", and many of its users are not aware that it is basically the ironic shitpostings system, developed by the Gippo Dudee Project.");
+				Server.lessPrioritySay(target, "There really is spam, and these people are using it, but it is just a part of the irony they use. Spam is the core: the ingredient in the irony that allocates the reader's braincells to the nearest bin. The core is an essential part of a shitposting system, buy useless by itself; it can only function in the context of a complete ironic shitposting system. Spam is normally used in combination with the ironic shitposting operating system: the whole system is basically ironic shitposting with spam added, or Ironic shitposting/Spam. all the so-called \"Spam\" copypastas are really copypastas of Ironic shitposting/Spam.");
+			}
 		}
 	}
 }
