@@ -61,9 +61,8 @@ public class Server {
 						}
 						public void checkServerTrusted ( X509Certificate[] cert, String authType ) throws CertificateException {
 						}
-
 						public X509Certificate[] getAcceptedIssuers (){
-							return null;  // I've seen someone return new X509Certificate[ 0 ]; 
+							return null; 
 						}
 					}};
 					SSLContext context = SSLContext.getInstance ("SSL");
