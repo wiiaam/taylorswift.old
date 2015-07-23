@@ -24,8 +24,8 @@ public class NoBro implements Module {
 	private String[] triggers = {"kittykatt","man","shut up","python"};
 	private JsonObject json;
 	private File jsonfile;
-	private final int MAX_OFFENCES = 5;
-	private final int WARN_OFFENCES = 3;
+	private final int MAX_OFFENCES = 8;
+	private final int WARN_OFFENCES = 5;
 	private HashMap<String, Integer> offences = new HashMap<String,Integer>();
 	
 	public NoBro() {
@@ -61,6 +61,27 @@ public class NoBro implements Module {
 		if(m.command().equals("PRIVMSG")){
 			String bro = checkBro(m);
 			if(bro.equals("possible")){
+				if(m.trailing().toUpperCase().equals(m.trailing())){
+					if(!offences.containsKey(m.sender())){
+						offences.put(m.sender(), 1);
+					}
+					else{
+						offences.put(m.sender(),offences.get(m.sender())+1);
+					}
+					if(offences.get(m.sender()) == WARN_OFFENCES){
+						m.say(target,"4" + m.sender() + ": Warning, you are being very liquid like.");
+					}
+					if(offences.get(m.sender()) >= MAX_OFFENCES){
+						offences.put(m.sender(),offences.get(m.sender())+1);
+						if(m.param().equals("#pasta")){
+							m.say(target, "shut up bro");
+							Server.send("KICK " + m.param() + " :" + m.sender());
+						}
+					}
+					if(offences.get(m.sender()) == MAX_OFFENCES){
+						addBro(m.senderWhole());
+					}
+				}
 				for(String trigger : triggers){
 					if(m.trailing().toLowerCase().contains(trigger)){
 						if(!offences.containsKey(m.sender())){
@@ -72,11 +93,15 @@ public class NoBro implements Module {
 						if(offences.get(m.sender()) == WARN_OFFENCES){
 							m.say(target,"4" + m.sender() + ": Warning, you are being very liquid like.");
 						}
+						if(offences.get(m.sender()) >= MAX_OFFENCES){
+							offences.put(m.sender(),offences.get(m.sender())+1);
+							if(m.param().equals("#pasta")){
+								m.say(target, "shut up bro");
+								Server.send("KICK " + m.param() + " :" + m.sender());
+							}
+						}
 						if(offences.get(m.sender()) == MAX_OFFENCES){
 							addBro(m.senderWhole());
-							m.say(target, "shut up bro");
-							offences.put(m.sender(),offences.get(m.sender())+1);
-							Server.send("KICK " + m.param() + " " + m.sender());
 						}
 					}
 				}
@@ -89,7 +114,7 @@ public class NoBro implements Module {
 			String checkbro = checkBro(m);
 			if(checkbro.equals("yes")){
 				m.say(m.trailing(), "4ALERT ALERT BRO DETECTED");
-				offences.put(m.sender(), 4);
+				offences.put(m.sender(), 5);
 			}
 			else if(checkbro.equals("possible")){
 				m.say(m.trailing(), "4ALERT ALERT POSSIBLE BRO DETECTED");
