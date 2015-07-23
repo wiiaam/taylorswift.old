@@ -2,10 +2,10 @@ package modules;
 
 import java.util.HashMap;
 
+import bot.Config;
 import bot.Message;
 import bot.Module;
 import bot.Modules;
-import bot.config.Config;
 
 public class ModuleLoader implements Module {
 	public String working = "";

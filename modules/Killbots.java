@@ -5,10 +5,10 @@ import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.HashSet;
 
+import bot.Config;
 import bot.Message;
 import bot.Module;
 import bot.Server;
-import bot.config.Config;
 
 public class Killbots implements Module {
 	

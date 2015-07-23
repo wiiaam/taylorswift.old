@@ -9,9 +9,9 @@ import java.net.URISyntaxException;
 import java.util.HashSet;
 import java.util.Scanner;
 
+import bot.Config;
 import bot.Message;
 import bot.Module;
-import bot.config.Config;
 import bot.info.Channel;
 import bot.info.Info;
 

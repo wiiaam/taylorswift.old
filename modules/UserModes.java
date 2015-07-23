@@ -1,9 +1,9 @@
 package modules;
 
+import bot.Config;
 import bot.Message;
 import bot.Module;
 import bot.Server;
-import bot.config.Config;
 import bot.info.Info;
 
 public class UserModes implements Module {

@@ -21,8 +21,6 @@ import javax.net.ssl.SSLSocketFactory;
 import javax.net.ssl.TrustManager;
 import javax.net.ssl.X509TrustManager;
 
-import bot.config.Config;
-
 public class Server {
 	
 	// Fields
@@ -54,7 +52,7 @@ public class Server {
 			if(in != null) in.close();
 			
 			if(useSSL){
-				System.setProperty("javax.net.ssl.trustStore", "/usr/java/jdk1.8.0_45/jre/lib/security/cacerts");
+				System.setProperty("javax.net.ssl.trustStore", Config.getPathToKeystore());
 				try {
 					X509TrustManager[] tm = new X509TrustManager[] { new X509TrustManager(){
 						public void checkClientTrusted ( X509Certificate[] cert, String authType ) throws CertificateException {

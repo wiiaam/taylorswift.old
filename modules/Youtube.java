@@ -11,8 +11,8 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
 import extras.urlparsers.YoutubeParser;
+import bot.Config;
 import bot.Message;
-import bot.config.Config;
 
 public class Youtube implements bot.Module {
 

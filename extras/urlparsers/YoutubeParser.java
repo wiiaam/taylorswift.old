@@ -8,7 +8,7 @@ import java.util.Locale;
 import java.util.Scanner;
 import java.util.regex.Pattern;
 
-import bot.config.Config;
+import bot.Config;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;

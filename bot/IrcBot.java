@@ -6,7 +6,7 @@ import java.io.PrintStream;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.HashSet;
-import bot.config.Config;
+
 import bot.Modules;
 
 public class IrcBot {
@@ -62,7 +62,7 @@ public class IrcBot {
 	}
 	
 	public static boolean readConfig() throws FileNotFoundException, URISyntaxException{
-		Config.load(new File(new IrcBot().getClass().getResource("config/config.json").toURI()));
+		Config.load(new File(new IrcBot().getClass().getResource("../config.json").toURI()));
 		return true;
 	}
 	

@@ -1,8 +1,8 @@
 package modules;
 
 
+import bot.Config;
 import bot.Message;
-import bot.config.Config;
 
 public class London implements bot.Module {
 	

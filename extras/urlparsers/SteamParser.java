@@ -5,7 +5,7 @@ import java.io.InputStream;
 import java.net.URL;
 import java.util.Scanner;
 
-import bot.config.Config;
+import bot.Config;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;

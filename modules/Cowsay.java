@@ -2,9 +2,9 @@ package modules;
 
 import java.util.ArrayList;
 
+import bot.Config;
 import bot.Message;
 import bot.Module;
-import bot.config.Config;
 import extras.MakeCowSay;
 
 public class Cowsay implements Module {

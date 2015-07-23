@@ -1,4 +1,4 @@
-package bot.config;
+package bot;
 
 import java.io.File;
 import java.io.FileInputStream;

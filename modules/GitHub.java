@@ -12,9 +12,9 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
+import bot.Config;
 import bot.Message;
 import bot.Module;
-import bot.config.Config;
 
 public class GitHub implements Module{
 	

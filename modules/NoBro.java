@@ -1,5 +1,6 @@
 package modules;
 
+import bot.Config;
 import bot.Message;
 import bot.Module;
 import bot.Server;
@@ -16,7 +17,6 @@ import java.util.Scanner;
 
 import com.google.gson.*;
 
-import bot.config.Config;
 import bot.info.Info;
 import bot.info.User;
 

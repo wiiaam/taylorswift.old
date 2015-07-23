@@ -9,9 +9,9 @@ import java.util.Map.Entry;
 import java.util.Properties;
 
 import extras.Rainbowfy;
+import bot.Config;
 import bot.Message;
 import bot.Module;
-import bot.config.Config;
 
 public class Triggers implements Module {
 

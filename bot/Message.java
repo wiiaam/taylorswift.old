@@ -1,7 +1,6 @@
 package bot;
 
 
-import bot.config.Config;
 import bot.info.Info;
 
 public class Message {

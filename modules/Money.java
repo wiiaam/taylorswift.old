@@ -9,8 +9,8 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Properties;
 
+import bot.Config;
 import bot.Message;
-import bot.config.Config;
 import bot.info.Info;
 
 public class Money implements bot.Module{

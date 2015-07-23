@@ -2,11 +2,11 @@ package modules;
 
 import java.util.HashMap;
 
+import bot.Config;
 import bot.IrcBot;
 import bot.Message;
 import bot.Module;
 import bot.Modules;
-import bot.config.Config;
 
 public class Help implements Module {
 
