@@ -20,14 +20,10 @@ This bot has many features, including, but not limited to,
 - Basic administration features
 - Currency system
 - Cowsay
-- Taylor Swift related features
 - Ignores
 - Automatic nick ghosting
 - Web searches
-- bro detection
-- Steam user info
 - Triggers
-- Weather info
 - Sad frogs
 - User quotes
 
