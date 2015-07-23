@@ -12,5 +12,8 @@
 	"googleapikey":"yourkey",
 	"steamapikey":"yourkey",
 	"uploadapikey":"yourkey",
-	"weatherapikey":"yourkey"
+	"weatherapikey":"yourkey",
+	"cowsay":"on",
+	"usessl":true,
+	"keystorepath":"/usr/java/jdk1.8.0_45/jre/lib/security/cacerts"
 }

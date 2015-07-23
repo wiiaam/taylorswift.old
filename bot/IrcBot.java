@@ -37,7 +37,7 @@ public class IrcBot {
 		}).start();
 		
 		out.println("Connecting to Server");
-		Server.connectTo(Config.getServer(), Config.getPort());
+		Server.connectTo(Config.getServer(), Config.getPort(), Config.useSSL());
 		
 		out.println("Logging in");
 		if(attemptLogin()){
@@ -102,34 +102,40 @@ public class IrcBot {
 		serverListener = new Thread(new Runnable(){
 			public void run() {
 				while(listening){
-				if(Server.in.hasNextLine()){
-					String next = Server.in.nextLine();
-					if(next.contains("KILL")){
-						if(next.contains("GHOST")){
-							Server.disconnect();
+					try {
+						Thread.sleep(1);
+					} catch (InterruptedException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					if(Server.in.hasNextLine()){
+						String next = Server.in.nextLine();
+						if(next.contains("KILL")){
+							if(next.contains("GHOST")){
+								Server.disconnect();
+							}
+						}
+						if(next.startsWith("ERROR :Closing Link")){
+							Server.resetConnection("Socket closed");
+							return;
+						}
+						final Message m = new Message(next);
+						if(!Config.getAdmins().contains(m.sender()) && Config.getIgnores().contains(m.sender())) continue;
+						out.println(m.message());
+						final ArrayList<Module> modules = Modules.getModules();
+						for(int i = 0; i < modules.size(); i++){
+							final int iter = i;
+							new Thread(new Runnable() {
+								
+								@Override
+								public void run() {
+									final Module mod = modules.get(iter);
+									mod.parse(m);
+								}
+							}).start();;
 						}
 					}
-					if(next.startsWith("ERROR :Closing Link")){
-						Server.resetConnection("Socket closed");
-						return;
-					}
-					final Message m = new Message(next);
-					if(!Config.getAdmins().contains(m.sender()) && Config.getIgnores().contains(m.sender())) continue;
-					out.println(m.message());
-					final ArrayList<Module> modules = Modules.getModules();
-					for(int i = 0; i < modules.size(); i++){
-						final int iter = i;
-						new Thread(new Runnable() {
-							
-							@Override
-							public void run() {
-								final Module mod = modules.get(iter);
-								mod.parse(m);
-							}
-						}).start();;
-					}
 				}
-			}
 			}
 		});
 		serverListener.start();

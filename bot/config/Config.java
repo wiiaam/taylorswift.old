@@ -62,6 +62,14 @@ public class Config {
 		return json.get("identification").getAsString();
 	}
 	
+	public static boolean useSSL(){
+		return json.get("usessl").getAsBoolean();
+	}
+	
+	public static String getPathToKeystore(){
+		return json.get("keystorepath").getAsString();
+	}
+	
 	public static HashSet<String> getRooms(){
 		JsonArray jsonarray = json.get("rooms").getAsJsonArray();
 		HashSet<String> set = new HashSet<String>();
