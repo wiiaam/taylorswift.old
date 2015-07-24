@@ -65,7 +65,7 @@ Then each module does whatever is in the `parse(Message m)` method. Outputs can 
 ```
 public static void send(String message) - Sends an irc format message
 public static void pm(String target, String message) - Sends a PRIVMSG to the target
-public static void notice(String targer, String message) - Sends a NOTICE to the target
+public static void notice(String target, String message) - Sends a NOTICE to the target
 public static void say(String target, String message) - Sends a PRIVMSG to a channel/NOTICE to a user
 ```
 
