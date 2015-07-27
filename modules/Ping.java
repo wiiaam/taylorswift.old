@@ -74,7 +74,6 @@ import bot.Server;
 							} catch (InterruptedException e) {}
 							i++;
 						}
-						IrcBot.out.println("PONG received successfully");
 					}
 				}
 			}

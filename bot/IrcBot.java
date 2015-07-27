@@ -122,6 +122,14 @@ public class IrcBot {
 						final Message m = new Message(next);
 						if(!Config.getAdmins().contains(m.sender()) && Config.getIgnores().contains(m.sender())) continue;
 						out.println(m.message());
+						/*
+						if(m.command().equals("PRIVMSG")){
+							System.out.printf("%s <%s> %s\n", m.param(), m.senderWhole(), m.trailing());
+						}
+						else if(m.command().equals("NOTICE")){
+							System.out.printf("%s -%s- %s\n", m.param(), m.senderWhole(), m.trailing());
+						}
+						*/
 						final ArrayList<Module> modules = Modules.getModules();
 						for(int i = 0; i < modules.size(); i++){
 							final int iter = i;

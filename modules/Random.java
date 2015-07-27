@@ -117,7 +117,7 @@ public class Random implements Module {
 			outputs[14] = "░░░░░░░░░░░░░░▀▄▄▄▄▄░░░░░░░░█░░";
 			Server.lessPrioritySay(target, outputs);
 		}
-		if(m.param().equals("#pasta") || m.param().equals("#taylorswift")){
+		if(m.param().equals("#pasta") && m.param().equals("#taylorswift")){
 			if(m.trailing().contains(" spam ") || m.trailing().startsWith("spam ") || m.trailing().endsWith(" spam") || m.trailing().equals("spam")){
 				Server.lessPrioritySay(target, "I'd just like to interject for a moment. What you are referring to as spam, is in fact, copypasta/spam, or as I've recently taken to calling it, copypasta plus spam. Spam is not shitposting unto itself, but rather another free component of a fully functioning ironic shitposting system made useful by the moot, lel [a/jp] namefigs and vital kek components comprising a full board as defined by /s4s/.");
 				Server.lessPrioritySay(target, "Many anonymous users use a modified version of the ironic shitposting system every day, without realizing it. Through a peculiar turn of events, the version of ironic shitposting which is widely used today is often called \"Spam\", and many of its users are not aware that it is basically the ironic shitpostings system, developed by the Gippo Dudee Project.");

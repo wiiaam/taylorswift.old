@@ -107,7 +107,7 @@ public class NoBro implements Module {
 				}
 			}
 			else if(bro.equals("yes")){
-				m.say(target, "shut up bro");
+				//m.say(target, "shut up bro");
 			}
 		}
 		if(m.command().equals("JOIN")){

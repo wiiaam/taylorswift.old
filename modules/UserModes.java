@@ -19,7 +19,7 @@ public class UserModes implements Module {
 			Info.forget(m.sender());
 		}
 		if(m.command().equals("PART") || m.command().equals("KICK")){
-			bot.info.Info.removeChan(m.sender(), m.param());
+			Info.removeChan(m.sender(), m.param());
 		}
 		if(m.command().equals("QUIT")){
 			Info.forget(m.sender());

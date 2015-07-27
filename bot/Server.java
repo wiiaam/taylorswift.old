@@ -112,7 +112,7 @@ public class Server {
 	}
 	
 	public static void lessPrioritySend(String message){
-		System.out.println("sending " + message);
+		//System.out.println("sending " + message);
 		toserverlesspriority.add(message);
 	}
 	
@@ -125,7 +125,7 @@ public class Server {
 	}
 	
 	public static void prioritySend(String message){
-		System.out.println("sending " + message);
+		//System.out.println("sending " + message);
 		toserver.addFirst(message);
 	}
 	
@@ -232,6 +232,7 @@ public class Server {
 					try{
 						if(toserver.size() != 0){
 							String tosend = toserver.poll();
+							System.out.println(tosend);
 							out.println(tosend + "\r\n");
 							out.flush();
 							thread.sleep(500);
