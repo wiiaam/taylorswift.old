@@ -174,7 +174,3 @@ The current command char can be found with .help
 `addbro <user>` - Adds a bro.
 
 `delbro <user>` - Deletes a bro.
-
-### Random Commands
-
-`kill <bot> <channel>` - Kill a bot that is exploitable via `INVITE`.
