@@ -194,6 +194,7 @@ public class Server {
 		IrcBot.stop();
 		try {
 			connectTo(address,port,useSSL);
+			Thread.sleep(2000);
 			if(IrcBot.attemptLogin()){
 				IrcBot.sendOnLogin();
 				isConnected = true;
