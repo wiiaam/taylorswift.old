@@ -113,34 +113,53 @@ public class Message {
 				else cmd = false;
 				
 			}
+			boolean isToBot = false;
+			if(param.equals(Config.getNick())){
+				isToBot = true;
+				cmd = true;
+			}
 			
 			if(cmd && command.equals("PRIVMSG")){
-				String[] trailingSplit = trailing.split("\\s+");
-				int i;
-				int diff;
-				if(commandChar.equals(Config.getNick() + ": ")){
-					if(trailingSplit.length == 1){
-						cmd = false;
-						return;
+				if(isToBot){
+					String[] trailingSplit = trailing.split("\\s+");
+					botCommand = trailingSplit[0];
+					if(trailingSplit.length > 1){
+						botParamsArray = new String[trailingSplit.length - 1];
+						hasBotParams = true;
+						for(int i = 1; i < trailingSplit.length; i++){
+							botParamsArray[i-1] = trailingSplit[i];
+						}
 					}
-					botCommand = trailingSplit[1];
-					i = 2;
-					diff = 2;
-					botParamsArray = new String[trailingSplit.length - 2];
 				}
 				else{
-					botCommand = trailingSplit[0].substring(commandChar.length());
-					i = 1;
-					diff = 1;
-					botParamsArray = new String[trailingSplit.length - 1];
+					String[] trailingSplit = trailing.split("\\s+");
+					int i;
+					int diff;
+					if(commandChar.equals(Config.getNick() + ": ")){
+						if(trailingSplit.length == 1){
+							cmd = false;
+							return;
+						}
+						botCommand = trailingSplit[1];
+						i = 2;
+						diff = 2;
+						botParamsArray = new String[trailingSplit.length - 2];
+					}
+					else{
+						botCommand = trailingSplit[0].substring(commandChar.length());
+						i = 1;
+						diff = 1;
+						botParamsArray = new String[trailingSplit.length - 1];
+					}
+					
+					hasBotParams = true;
+					for(;  i < trailingSplit.length; i++){
+						botParamsArray[i-diff] = trailingSplit[i];
+						botParams += trailingSplit[i] + " ";
+					}
+					botParams = botParams.trim();
 				}
 				
-				hasBotParams = true;
-				for(;  i < trailingSplit.length; i++){
-					botParamsArray[i-diff] = trailingSplit[i];
-					botParams += trailingSplit[i] + " ";
-				}
-				botParams = botParams.trim();
 			}
 		}
 		
@@ -182,7 +201,7 @@ public class Message {
 	}
 	
 	public String botCommand(){
-		return botCommand;
+		return botCommand.toLowerCase();
 	}
 	
 	public String[] botParamsArray(){

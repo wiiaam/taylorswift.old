@@ -60,13 +60,15 @@ public class TitleReporting implements Module {
 		
 		if(!m.botCommand().equals(""))return;
 		if(rooms.contains(m.param()) || users.contains(m.sender())){
-			if(m.trailing().contains("http://") || m.trailing().contains("https://")){
-				String[] messageSplit = m.trailing().split("\\s+");
-				for(int i = 0; i < messageSplit.length; i++){
-					if(messageSplit[i].startsWith("http://") || messageSplit[i].startsWith("https://")){
-						String title = URLTitles.find(messageSplit[i]);
-						if(title != null) m.say(target, title);
-						break;
+			if(m.command().equals("PRIVMSG")){
+				if(m.trailing().contains("http://") || m.trailing().contains("https://")){
+					String[] messageSplit = m.trailing().split("\\s+");
+					for(int i = 0; i < messageSplit.length; i++){
+						if(messageSplit[i].startsWith("http://") || messageSplit[i].startsWith("https://")){
+							String title = URLTitles.find(messageSplit[i]);
+							if(title != null) m.say(target, title);
+							break;
+						}
 					}
 				}
 			}

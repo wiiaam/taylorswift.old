@@ -27,4 +27,8 @@ public class Channel {
 	public boolean has(String nick){
 		return usermodes.containsKey(nick);
 	}
+	public void changeNick(String from, String to){
+		usermodes.put(to, usermodes.get(from));
+		usermodes.remove(from);
+	}
 }

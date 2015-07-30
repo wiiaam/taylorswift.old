@@ -72,6 +72,21 @@ public class Info {
 		else return false;
 	}
 	
+	public static void changeNick(String from, String to){
+		if(!users.containsKey(from)) return;
+		HashMap<String, Channel> tempmap = new HashMap<String, Channel>();
+		for(Entry<String, Channel> en : channels.entrySet()){
+			Channel c = en.getValue();
+			c.changeNick(from, to);
+			tempmap.put(en.getKey(), c);
+		}
+		channels = tempmap;
+		User user = users.get(from);
+		user.changeNick(to);
+		users.remove(from);
+		users.put(to, user);
+	}
+	
 	public static void removeChan(String nick, String chan){
 		User user = users.get(nick);
 		user.removeChan(chan);

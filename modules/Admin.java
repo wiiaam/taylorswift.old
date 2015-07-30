@@ -4,6 +4,7 @@ import bot.Config;
 import bot.Message;
 import bot.Module;
 import bot.Server;
+import bot.info.Info;
 
 public class Admin implements Module{
 	
@@ -14,17 +15,17 @@ public class Admin implements Module{
 		if(!m.param().startsWith("#")) target = m.sender();
 		
 		if(m.command().equals("NICK")){
-			System.out.println(m.trailing());
 			if(m.sender().equals(Config.getNick())){
 				if(Config.getChar().startsWith(Config.getNick())){
 					Config.setChar(m.trailing() + ": " );
 				}
 				Config.setNick(m.trailing());
+				Info.changeNick(m.sender(), m.trailing());
 			}
 		}
 		
 		if(m.command().equals("474")){
-			if(m.trailing().contains("Cannot join channel (+b)")){
+			if(m.trailing().contains("+b")){
 				Config.removeRoom(m.trailing().split("\\s+")[0]);
 			}
 		}

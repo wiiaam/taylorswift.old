@@ -70,5 +70,10 @@ public class User {
 		return false;
 	}
 	
+	public void changeNick(String to){
+		nickname = to;
+		modes.replace("r", "");
+	}
+	
 	
 }

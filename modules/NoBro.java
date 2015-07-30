@@ -75,11 +75,9 @@ public class NoBro implements Module {
 						offences.put(m.sender(),offences.get(m.sender())+1);
 						if(m.param().equals("#pasta")){
 							m.say(target, "shut up bro");
-							Server.send("KICK " + m.param() + " :" + m.sender());
+							Server.send("KICK " + m.param() + " " + m.sender() + " :shut up bro");
+							addBro(m.senderWhole());
 						}
-					}
-					if(offences.get(m.sender()) == MAX_OFFENCES){
-						addBro(m.senderWhole());
 					}
 				}
 				for(String trigger : triggers){
@@ -97,17 +95,16 @@ public class NoBro implements Module {
 							offences.put(m.sender(),offences.get(m.sender())+1);
 							if(m.param().equals("#pasta")){
 								m.say(target, "shut up bro");
-								Server.send("KICK " + m.param() + " :" + m.sender());
+								Server.send("KICK " + m.param() + " " + m.sender() + " :shut up bro");
+								addBro(m.senderWhole());
 							}
-						}
-						if(offences.get(m.sender()) == MAX_OFFENCES){
-							addBro(m.senderWhole());
 						}
 					}
 				}
 			}
 			else if(bro.equals("yes")){
 				//m.say(target, "shut up bro");
+				Server.send("KICK " + m.param() + " " + m.sender() + " :shut up bro");
 			}
 		}
 		if(m.command().equals("JOIN")){

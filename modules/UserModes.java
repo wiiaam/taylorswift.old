@@ -17,6 +17,7 @@ public class UserModes implements Module {
 		
 		if(m.command().equals("NICK")){
 			Info.forget(m.sender());
+			Info.changeNick(m.sender(), m.trailing());
 			Server.send("WHO " + m.trailing());
 		}
 		if(m.command().equals("PART") || m.command().equals("KICK")){
