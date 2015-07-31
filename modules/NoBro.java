@@ -64,7 +64,7 @@ public class NoBro implements Module {
 				offences.remove(m.sender());
 			}
 		}
-		if(m.command().equals("PRIVMSG")){
+		if(m.command().equals("PRIVMSG") && m.param().equals("#pasta")){
 			String bro = checkBro(m);
 			if(bro.equals("possible")){
 				if(m.trailing().toUpperCase().equals(m.trailing())){
@@ -113,7 +113,7 @@ public class NoBro implements Module {
 				Server.send("KICK " + m.param() + " " + m.sender() + " :shut up bro");
 			}
 		}
-		if(m.command().equals("JOIN")){
+		if(m.command().equals("JOIN") && m.trailing().equals("#pasta")){
 			String checkbro = checkBro(m);
 			if(checkbro.equals("yes")){
 				m.say(m.trailing(), "4ALERT ALERT BRO DETECTED");
@@ -204,7 +204,8 @@ public class NoBro implements Module {
 		try{
 			if(isbro)return "yes";
 			if( m.sender().startsWith("poo") 
-				|| m.username().contains("zero@") 
+				|| m.username().contains("zero@")
+				|| m.senderAddress().endsWith("bigpond.net.au") 
 				)return "possible";
 		}
 		catch(NullPointerException e){
