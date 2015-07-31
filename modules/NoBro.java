@@ -58,6 +58,12 @@ public class NoBro implements Module {
 		if(m.botCommand().equals("delbro") && m.senderIsAdmin()){
 			if(m.hasBotParams())delBro(m.botParams());
 		}
+		if(m.command().equals("NICK")){
+			if(offences.containsKey(m.sender())){
+				offences.put(m.trailing(), offences.get(m.sender()));
+				offences.remove(m.sender());
+			}
+		}
 		if(m.command().equals("PRIVMSG")){
 			String bro = checkBro(m);
 			if(bro.equals("possible")){
