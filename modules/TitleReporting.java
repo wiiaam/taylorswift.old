@@ -66,6 +66,7 @@ public class TitleReporting implements Module {
 					for(int i = 0; i < messageSplit.length; i++){
 						if(messageSplit[i].startsWith("http://") || messageSplit[i].startsWith("https://")){
 							String title = URLTitles.find(messageSplit[i]);
+							if(title.contains("http://") || title.contains("https://")) return;
 							if(title != null) m.say(target, title);
 							break;
 						}
