@@ -18,11 +18,14 @@ public class Random implements Module {
 	public void parse(Message m) {
 		String target = m.param();
 		if(!m.param().startsWith("#")) target = m.sender();
-		if(m.botCommand().equals("Pr0Wolf29")){
+		if(m.botCommand().equalsIgnoreCase("Pr0Wolf29")){
 			m.say(target, "https://p.teknik.io/1349");
 		}
 		if(m.botCommand().equals("gen2")){
 			m.say(target, "<installgen2> how can I be aware of my sexual preferences until I am a bit older? for all I know I could easily be bi");
+		}
+		if(m.botCommand().equals("mofukka")){
+			Server.say(target, "http://vocaroo.com/i/s0kcPiuidwIs");
 		}
 		if(m.botCommand().equals("imply")){
 			m.say(target, "3>implying " + m.botParams());
