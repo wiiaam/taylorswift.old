@@ -44,7 +44,8 @@ public class RedditParser {
 			String postTitle = infodata.get("title").getAsString();
 			String link = "";
 			if(!infodata.get("domain").getAsString().startsWith("self.")){
-				link = "URL " + infodata.get("url").getAsString() + " | ";
+				link = "URL: " + infodata.get("url").getAsString() + " | ";
+				link = link.replace("http://", "").replace("https://", "");
 			}
 			title = String.format("/r/%s | 2%s | %sCreated %s", subreddit, postTitle, link, created);
 			return title;

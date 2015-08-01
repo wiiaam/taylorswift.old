@@ -76,11 +76,9 @@ public class ChanParser {
 			String created = new Date(op.get("time").getAsLong() * 1000).toGMTString();
 			
 			title = String.format("/%s/ - %s | Thread no %d | Created %s | %d replies", board, subject, no, created, replies);
-		} catch (MalformedURLException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
-		} catch (IOException e) {
-			title = "/" + ssplit[3] + "/ - Thread does not exist";
-			e.printStackTrace();
+			title = "Reddit - No info could be found";
 		}
 		return title;
 	}
