@@ -22,7 +22,6 @@ public class ChanParser {
 		s = s.replace("thread", "res");
 		String[] ssplit = s.split("/");
 		ssplit[5] = ssplit[5].split("\\.")[0];
-		System.out.println(ssplit[5]);
 		String urlstring = s.split("res/?")[0] + "res/" + ssplit[5] + ".json";
 		try{
 			URL url = new URL(urlstring);

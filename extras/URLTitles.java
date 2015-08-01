@@ -10,6 +10,7 @@ import java.util.Scanner;
 
 import extras.urlparsers.ChanParser;
 import extras.urlparsers.FileParser;
+import extras.urlparsers.RedditParser;
 import extras.urlparsers.SteamParser;
 import extras.urlparsers.YoutubeParser;
 
@@ -23,6 +24,7 @@ public class URLTitles {
 				)
 				&& (s.contains("/thread/") || s.contains("/res/"))) return ChanParser.find(s);
 		if(s.contains("steamcommunity.com") && (s.contains("/id/") || s.contains("/profiles/"))) return SteamParser.find(s);
+		if(s.contains("/comments/") && s.contains("reddit.com/r/")) return RedditParser.find(s);
 		URL url;
 		String title = "Title not found";
 		String host = "";

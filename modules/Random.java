@@ -13,7 +13,6 @@ import bot.Module;
 import bot.Server;
 
 public class Random implements Module {
-
 	@Override
 	public void parse(Message m) {
 		String target = m.param();
