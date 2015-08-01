@@ -47,7 +47,7 @@ public class RedditParser {
 				link = "URL: " + infodata.get("url").getAsString() + " | ";
 				link = link.replace("http://", "").replace("https://", "");
 			}
-			title = String.format("/r/%s | 2%s | %sCreated %s", subreddit, postTitle, link, created);
+			title = String.format("/r/%s | 2%s | %sComments: %d | Created %s", subreddit, postTitle, link, numComments, created);
 			return title;
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
