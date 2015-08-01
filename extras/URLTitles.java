@@ -20,13 +20,6 @@ public class URLTitles {
 	
 	
 	public static String find(String s){
-		if(s.contains("youtube.com/watch?") || s.contains("youtu.be/")) return YoutubeParser.find(s);
-		if((s.contains("boards.4chan.org/") ||
-				s.contains("//8ch.net")
-				)
-				&& (s.contains("/thread/") || s.contains("/res/"))) return ChanParser.find(s);
-		if(s.contains("steamcommunity.com") && (s.contains("/id/") || s.contains("/profiles/"))) return SteamParser.find(s);
-		if(s.contains("/comments/") && s.contains("reddit.com/r/")) return RedditParser.find(s);
 		URL url;
 		String title = "Title not found";
 		String host = "";
@@ -49,6 +42,25 @@ public class URLTitles {
 			if(!urlc.getContentType().startsWith("text/html")) {
 				scan.close();
 				return FileParser.find(urlc);
+			}
+			if(s.contains("youtube.com/watch?") || s.contains("youtu.be/")){
+				scan.close();
+				return YoutubeParser.find(s);
+			}
+			if((s.contains("boards.4chan.org/") ||
+					s.contains("//8ch.net")
+					)
+					&& (s.contains("/thread/") || s.contains("/res/"))){
+				scan.close();
+				return ChanParser.find(s);
+			}
+			if(s.contains("steamcommunity.com") && (s.contains("/id/") || s.contains("/profiles/"))) {
+				scan.close();
+				return SteamParser.find(s);
+			}
+			if(s.contains("/comments/") && s.contains("reddit.com/r/")){
+				scan.close();
+				return RedditParser.find(s);
 			}
 			boolean titlefound = false;
 			String titlecode = "";

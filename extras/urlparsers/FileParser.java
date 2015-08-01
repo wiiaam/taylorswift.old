@@ -55,10 +55,10 @@ public class FileParser {
 				type += " (" + image.getWidth() + " x " + image.getHeight() + ")";
 			} catch(IOException e){}
 		}
-		if(urlc.getContentType().startsWith("application")){
-			type = "application";
-		}
-		String title = String.format("File Type: %s size: %s", type, filesize);
+		//if(urlc.getContentType().startsWith("application")){
+		//	type = "application";
+		//}
+		String title = String.format("%s size: %s", type, filesize);
 		return title;
 	}
 }
