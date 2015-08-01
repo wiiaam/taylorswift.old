@@ -1,6 +1,8 @@
 package extras;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -103,6 +105,28 @@ public class URLTitles {
 		s = s.replaceAll("&#039;","'");
 		s = s.replaceAll("&#124;","|");
 		return s;
+	}
+	
+	public static String readUrl(String urlString) throws Exception {
+	    BufferedReader reader = null;
+	    try {
+	        URL url = new URL(urlString);
+	        URLConnection urlc = url.openConnection();
+			urlc.addRequestProperty("Accept-Language", "en-US,en;q=0.8");
+			urlc.addRequestProperty("User-Agent", "Mozilla");
+			urlc.connect();
+	        reader = new BufferedReader(new InputStreamReader(urlc.getInputStream()));
+	        StringBuffer buffer = new StringBuffer();
+	        int read;
+	        char[] chars = new char[1024];
+	        while ((read = reader.read(chars)) != -1)
+	            buffer.append(chars, 0, read); 
+
+	        return buffer.toString();
+	    } finally {
+	        if (reader != null)
+	            reader.close();
+	    }
 	}
 	
 }

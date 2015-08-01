@@ -13,23 +13,29 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
+import extras.URLTitles;
+
 public class RedditParser {
 	public static String find(String s){
 		String title = "none";
 		String urlstring = s;
 		urlstring = urlstring + ".json";
 		try{
+			/*
 			URL url = new URL(urlstring);
 			URLConnection urlc = url.openConnection();
 			urlc.addRequestProperty("Accept-Language", "en-US,en;q=0.8");
 			urlc.addRequestProperty("User-Agent", "Mozilla");
 			urlc.connect();
+			
 			Scanner scan = new Scanner(urlc.getInputStream());
 			String jsonstring = "";
 			while(scan.hasNext()){
 				jsonstring += scan.next() + " ";
 			}
 			scan.close();
+			*/
+			String jsonstring = URLTitles.readUrl(urlstring);
 			
 			Gson gson = new GsonBuilder().create();
 			JsonArray json = gson.fromJson(jsonstring, JsonElement.class).getAsJsonArray();
@@ -53,6 +59,9 @@ public class RedditParser {
 			e.printStackTrace();
 		} catch (IOException e) {
 			title = "Could not find info";
+			e.printStackTrace();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return title;
