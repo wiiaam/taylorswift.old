@@ -59,6 +59,7 @@ public class TitleReporting implements Module {
 		}
 		
 		if(!m.botCommand().equals(""))return;
+		if(m.trailing().contains("Reporting in!"))return;
 		if(rooms.contains(m.param()) || users.contains(m.sender())){
 			if(m.command().equals("PRIVMSG")){
 				if(m.trailing().contains("http://") || m.trailing().contains("https://")){
