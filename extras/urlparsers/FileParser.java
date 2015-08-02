@@ -58,7 +58,7 @@ public class FileParser {
 		//if(urlc.getContentType().startsWith("application")){
 		//	type = "application";
 		//}
-		String title = String.format(",%s size: %s", type, filesize);
+		String title = String.format("%s size: %s", type, filesize);
 		return title;
 	}
 }
