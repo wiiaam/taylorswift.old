@@ -86,7 +86,26 @@ public class NoBro implements Module {
 						}
 					}
 				}
-				for(String trigger : triggers){
+				else if(m.trailing().trim().endsWith(",")){
+					if(!offences.containsKey(m.sender())){
+						offences.put(m.sender(), 1);
+					}
+					else{
+						offences.put(m.sender(),offences.get(m.sender())+1);
+					}
+					if(offences.get(m.sender()) == WARN_OFFENCES){
+						m.say(target,"4" + m.sender() + ": Warning, you are being very liquid like.");
+					}
+					if(offences.get(m.sender()) >= MAX_OFFENCES){
+						offences.put(m.sender(),offences.get(m.sender())+1);
+						if(m.param().equals("#pasta")){
+							m.say(target, "shut up bro");
+							Server.send("KICK " + m.param() + " " + m.sender() + " :shut up bro");
+							addBro(m.senderWhole());
+						}
+					}
+				}
+				else for(String trigger : triggers){
 					if(m.trailing().toLowerCase().contains(trigger)){
 						if(!offences.containsKey(m.sender())){
 							offences.put(m.sender(), 1);
