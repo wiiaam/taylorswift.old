@@ -24,8 +24,8 @@ public class NoBro implements Module {
 	private String[] triggers = {"kittykatt","man","shut up","python"};
 	private JsonObject json;
 	private File jsonfile;
-	private final int MAX_OFFENCES = 8;
-	private final int WARN_OFFENCES = 5;
+	private final int MAX_OFFENCES = 5;
+	private final int WARN_OFFENCES = 3;
 	private HashMap<String, Integer> offences = new HashMap<String,Integer>();
 	
 	public NoBro() {
