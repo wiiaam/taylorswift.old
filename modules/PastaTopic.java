@@ -11,12 +11,12 @@ import bot.Module;
 import bot.Server;
 import bot.info.Info;
 
-public class PastaTitle implements Module {
+public class PastaTopic implements Module {
 
 	public File file;
 	public String topicmain = "";
 	
-	public PastaTitle() {
+	public PastaTopic() {
 		try {
 			file = new File(this.getClass().getResource("files/pastatitle.txt").toURI());
 			Scanner scan = new Scanner(file);
