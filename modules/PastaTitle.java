@@ -6,9 +6,6 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.URISyntaxException;
 import java.util.Scanner;
-
-import com.sun.jna.platform.win32.Netapi32Util.UserInfo;
-
 import bot.Message;
 import bot.Module;
 import bot.Server;
