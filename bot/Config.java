@@ -70,6 +70,10 @@ public class Config {
 		return json.get("keystorepath").getAsString();
 	}
 	
+	public static String getWolframAPIKey(){
+		return json.get("wolframapikey").getAsString();
+	}
+	
 	public static HashSet<String> getRooms(){
 		JsonArray jsonarray = json.get("rooms").getAsJsonArray();
 		HashSet<String> set = new HashSet<String>();
