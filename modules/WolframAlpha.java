@@ -32,8 +32,11 @@ public class WolframAlpha implements Module {
 					Element ele = dom.getDocumentElement();
 					if(ele.getAttribute("success").equals("true")){
 						NodeList nl = ele.getElementsByTagName("pod");
-						String result = nl.item(1).getFirstChild().getFirstChild().getNodeValue();
-						Server.say(target, "[WA] Result :" + result);
+						Element pod1 = (Element)nl.item(1);
+						Element subpod = (Element)pod1.getElementsByTagName("subpod").item(0);
+						Element plaintext = (Element)subpod.getElementsByTagName("plaintext").item(0);
+						String result = plaintext.getTextContent();
+						Server.say(target, "[WA] Result: " + result);
 						
 					}
 					
