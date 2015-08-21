@@ -38,7 +38,7 @@ public class NoBro implements Module {
 				jsonstring += scan.next() + " ";
 			}
 			scan.close();
-			Gson gson = new GsonBuilder().create();
+			Gson gson = new GsonBuilder().setPrettyPrinting().create();
 			json = gson.fromJson(jsonstring, JsonElement.class).getAsJsonObject();
 		} catch (URISyntaxException e) {
 			e.printStackTrace();
@@ -195,7 +195,7 @@ public class NoBro implements Module {
 		
 	}
 	private void save(){
-		Gson gson = new GsonBuilder().create();
+		Gson gson = new GsonBuilder().setPrettyPrinting().create();
 		try {
 			Writer writer = new FileWriter(jsonfile);
 			gson.toJson(json,writer);

@@ -29,7 +29,7 @@ public class Config {
 			jsonstring += scan.next() + " ";
 		}
 		scan.close();
-		Gson gson = new GsonBuilder().create();
+		Gson gson = new GsonBuilder().setPrettyPrinting().create();
 		json = gson.fromJson(jsonstring, JsonElement.class).getAsJsonObject();
 		
 	}
@@ -88,7 +88,7 @@ public class Config {
 			s = s.substring(1);
 		}
 		String toadd = "\"" + s + "\"";
-		Gson gson = new GsonBuilder().create();
+		Gson gson = new GsonBuilder().setPrettyPrinting().create();
 		JsonArray jsonarray = json.get("rooms").getAsJsonArray();
 		for(JsonElement je : jsonarray){
 			if(je.getAsString().equals(s)) return;
@@ -124,7 +124,7 @@ public class Config {
 	
 	public static void addAdmin(String s){
 		String toadd = "\"" + s + "\"";
-		Gson gson = new GsonBuilder().create();
+		Gson gson = new GsonBuilder().setPrettyPrinting().create();
 		JsonArray jsonarray = json.get("admins").getAsJsonArray();
 		for(JsonElement je : jsonarray){
 			if(je.getAsString().equals(s)) return;
@@ -157,7 +157,7 @@ public class Config {
 	
 	public static void addIgnore(String s){
 		String toadd = "\"" + s + "\"";
-		Gson gson = new GsonBuilder().create();
+		Gson gson = new GsonBuilder().setPrettyPrinting().create();
 		JsonArray jsonarray = json.get("ignores").getAsJsonArray();
 		for(JsonElement je : jsonarray){
 			if(je.getAsString().equals(s)) return;
@@ -225,7 +225,7 @@ public class Config {
 	
 	public static void set(String key, String value){
 		String toadd = "\"" + value + "\"";
-		Gson gson = new GsonBuilder().create();
+		Gson gson = new GsonBuilder().setPrettyPrinting().create();
 		json.add(key, gson.fromJson(toadd, JsonElement.class));
 	}
 }
