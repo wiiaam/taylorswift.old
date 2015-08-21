@@ -35,7 +35,7 @@ public class Spam implements Module {
 	
 	@Override
 	public void parse(Message m) {
-		if(m.botCommand().equals("Serverpam") && m.senderIsAdmin()){
+		if(m.botCommand().equals("spam") && m.senderIsAdmin()){
 			if(m.hasBotParams()){
 				spams.add(m.botParams());
 				if(!started){
