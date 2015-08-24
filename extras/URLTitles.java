@@ -60,15 +60,14 @@ public class URLTitles {
 			}
 			Document doc = Jsoup.connect(s).get();
 			Elements ps = doc.select("title");
-			title = ps.text().replace("\n","");
+			title = ps.text().replaceAll("\r", "").replaceAll("\n", "");
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
 			title = "Title not found";
 		}
-		title = String.format("[URL] %s (%s)",title.trim(), host).replace("\n","");
-		title = title.replace("\n","");
+		title = String.format("[URL] %s (%s)",title.trim(), host);
 		return title;
 	}
 	
