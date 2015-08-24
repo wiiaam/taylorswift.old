@@ -93,7 +93,7 @@ public class URLTitles {
 	    }
 	}
 	public static String makeClean(String htmlString){
-		return Jsoup.parse(htmlString).text();
+		return Jsoup.parse(htmlString).text().replace("\n","");
 	}
 	
 }
