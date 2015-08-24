@@ -67,7 +67,8 @@ public class URLTitles {
 			e.printStackTrace();
 			title = "Title not found";
 		}
-		title = String.format("[URL] %s (%s)",title.trim(), host);
+		title = String.format("[URL] %s (%s)",title.trim(), host).replace("\n","");
+		title = title.replace("\n","");
 		return title;
 	}
 	
