@@ -15,6 +15,8 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
+import extras.URLTitles;
+
 public class ChanParser {
 	@SuppressWarnings("deprecation")
 	public static String find(String s){
@@ -42,7 +44,7 @@ public class ChanParser {
 			JsonArray posts = json.get("posts").getAsJsonArray();
 			JsonObject op = posts.get(0).getAsJsonObject();
 			String board = ssplit[3];
-			String subject = makeClean(op.get("com").getAsString().split("<br>")[0] + "");
+			String subject = URLTitles.makeClean(op.get("com").getAsString().split("<br>")[0] + "");
 			int no = op.get("no").getAsInt();
 			int replies = posts.size()-1;
 			
@@ -68,7 +70,7 @@ public class ChanParser {
 			}
 			*/
 			if(op.get("sub") != null){
-				subject = "12" + makeClean(op.get("sub").getAsString()) + "";
+				subject = "12" + URLTitles.makeClean(op.get("sub").getAsString()) + "";
 			}
 			if(subject.length() > 50){
 				subject = subject.substring(0, 49).trim() + "...";
@@ -81,18 +83,5 @@ public class ChanParser {
 			title = "Reddit - No info could be found";
 		}
 		return title;
-	}
-	
-	private static String makeClean(String s){
-		s = s.replace("</span>", "");
-		s = s.replace("<wbr>", "");
-		s = s.replace("</wbr>", "");
-		s = s.replace("<br>", " ");
-		s = s.replace("&#039;", "'");
-		s = s.replace("<span class=\"quote\">", "");
-		s = s.replace("<span class=\"heading\">", "");
-		s = s.replace("&gt;", "3>");
-		s = s.replace("<p class=\"body-line ltr \">", "");
-		return s;
 	}
 }

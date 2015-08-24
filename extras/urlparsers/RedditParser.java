@@ -47,7 +47,7 @@ public class RedditParser {
 			int numComments = infodata.get("num_comments").getAsInt();
 			String created = new Date((long)infodata.get("created_utc").getAsDouble() * 1000).toGMTString();
 			String subreddit = infodata.get("subreddit").getAsString();
-			String postTitle = infodata.get("title").getAsString();
+			String postTitle = URLTitles.makeClean(infodata.get("title").getAsString());
 			String link = "";
 			if(!infodata.get("domain").getAsString().startsWith("self.")){
 				link = "URL: " + infodata.get("url").getAsString() + " | ";

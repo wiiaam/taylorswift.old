@@ -9,6 +9,7 @@ import java.util.Scanner;
 import java.util.regex.Pattern;
 
 import bot.Config;
+import extras.URLTitles;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -42,7 +43,7 @@ public class YoutubeParser {
 			JsonObject contentDetails = items.get("contentDetails").getAsJsonObject();
 			JsonObject statistics = items.get("statistics").getAsJsonObject();
 			
-			String title = snippet.get("title").getAsString();
+			String title = URLTitles.makeClean(snippet.get("title").getAsString());
 			String uploader = snippet.get("channelTitle").getAsString();
 			String views = NumberFormat.getNumberInstance(Locale.US).format(statistics.get("viewCount").getAsInt());
 			String likes = NumberFormat.getNumberInstance(Locale.US).format(statistics.get("likeCount").getAsInt());
@@ -112,7 +113,7 @@ public class YoutubeParser {
             }
             likebar += "";
             
-            String videoinfo = String.format("%s | Uploader: %s | Duration: %s | Views: %s |3 %s %s4 %s ", title, uploader, duration, views, likes, likebar, dislikes);
+            String videoinfo = String.format("%s | Uploader: %s | Duration: %s | Views: %s |3 %s↑4 %s↓ ", title, uploader, duration, views, likes, dislikes);
 			return videoinfo;
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -141,7 +142,7 @@ public class YoutubeParser {
 			JsonObject contentDetails = items.get("contentDetails").getAsJsonObject();
 			JsonObject statistics = items.get("statistics").getAsJsonObject();
 			
-			String title = snippet.get("title").getAsString();
+			String title = URLTitles.makeClean(snippet.get("title").getAsString());
 			String uploader = snippet.get("channelTitle").getAsString();
 			String views = NumberFormat.getNumberInstance(Locale.US).format(statistics.get("viewCount").getAsInt());
 			String likes = NumberFormat.getNumberInstance(Locale.US).format(statistics.get("likeCount").getAsInt());
@@ -211,7 +212,7 @@ public class YoutubeParser {
             }
             likebar += "";
             
-            String videoinfo = String.format("%s | Uploader: %s | Duration: %s | Views: %s |3 %s %s4 %s ", title, uploader, duration, views, likes, likebar, dislikes);
+            String videoinfo = String.format("%s | Uploader: %s | Duration: %s | Views: %s |3 %s↑4 %s↓ ", title, uploader, duration, views, likes, dislikes);
 			return videoinfo;
 		} catch (IOException e) {
 			e.printStackTrace();
