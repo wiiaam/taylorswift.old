@@ -1,9 +1,3 @@
-Wiiam's Personal Bot
-======
-
-_**A bot to do anything I please.**_
-
----
 
 ## Where to find this bot
 
