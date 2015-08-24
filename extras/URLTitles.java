@@ -60,7 +60,7 @@ public class URLTitles {
 			}
 			Document doc = Jsoup.connect(s).get();
 			Elements ps = doc.select("title");
-			title = ps.text();
+			title = ps.text().replaceAll("\r", "").replaceAll("\n", "");
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
@@ -93,7 +93,7 @@ public class URLTitles {
 	    }
 	}
 	public static String makeClean(String htmlString){
-		return Jsoup.parse(htmlString).text();
+		return Jsoup.parse(htmlString).text().replaceAll("\r", "").replaceAll("\n", "");
 	}
 	
 }
