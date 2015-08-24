@@ -60,7 +60,7 @@ public class URLTitles {
 			}
 			Document doc = Jsoup.connect(s).get();
 			Elements ps = doc.select("title");
-			title = ps.text();
+			title = ps.text().replace("\n","");
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
