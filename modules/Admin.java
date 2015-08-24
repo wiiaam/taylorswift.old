@@ -43,6 +43,13 @@ public class Admin implements Module{
 			}
 		}
 		
+		if(m.botCommand().equals("part")){
+			for(String s : m.botParamsArray()){
+				Server.send("PART " + s);
+				Config.removeRoom(s);
+			}
+		}
+		
 		if(m.senderIsAdmin()){
 			if(m.botCommand().equals("admin")){
 				if(m.botParamsArray().length > 1){
