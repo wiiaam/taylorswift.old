@@ -58,7 +58,7 @@ public class URLTitles {
 			if(s.contains("/comments/") && s.contains("reddit.com/r/")){
 				return RedditParser.find(s);
 			}
-			Document doc = Jsoup.connect(s).get();
+			Document doc = Jsoup.connect(s).followRedirects(true).get();
 			Elements ps = doc.select("title");
 			title = ps.text().replaceAll("\r", "").replaceAll("\n", "");
 		} catch (MalformedURLException e) {
