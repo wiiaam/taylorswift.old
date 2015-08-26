@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 import java.text.NumberFormat;
+import java.time.LocalDateTime;
 import java.util.Locale;
 import java.util.Scanner;
 import java.util.regex.Pattern;
@@ -26,7 +27,8 @@ public class YoutubeParser {
 		else{
 			videoid = s.split(".*/.*/.*v=")[1].split("\\?")[0];
 		}
-		
+		return findById(videoid);
+		/**
 		try {
 			URL url = new URL("https://www.googleapis.com/youtube/v3/videos?key=" + Config.getGoogleApiKey() + "&part=snippet,statistics,contentDetails&id=" + videoid);
 			InputStream in = url.openStream();
@@ -50,6 +52,8 @@ public class YoutubeParser {
 			String dislikes = NumberFormat.getNumberInstance(Locale.US).format(statistics.get("dislikeCount").getAsInt());
 			//String comments = NumberFormat.getNumberInstance(Locale.US).format(statistics.get("commentCount").getAsInt());
 			String duration = contentDetails.get("duration").getAsString();
+			LocalDateTime ldt = LocalDateTime.parse(snippet.get("publishedAt").getAsString().split("\\.")[0]);
+			String uploaded = ldt.getDayOfWeek() + " " + ldt.getMonth().name().substring(0, 2) + " " + ldt.getDayOfMonth() + " at " + ldt.toLocalTime().toString();
 			
 			
 			String dur;
@@ -122,6 +126,7 @@ public class YoutubeParser {
 			return "" + s + " is not a valid YouTube video.";
 		}
 		return null;
+		*/
 	}
 	public static String findById(String s){
 		String videoid = s;
@@ -185,6 +190,16 @@ public class YoutubeParser {
             }
             duration = dur;
             
+            LocalDateTime ldt = LocalDateTime.parse("2008-06-03T20:09:14.000Z".split("\\.")[0]);
+    		int date = ldt.getDayOfMonth();
+    		String dateString = "";
+    		switch(date){
+    			case 1: dateString = "1st"; break;
+    			case 2: dateString = "2nd"; break;
+    			case 3: dateString = "3rd"; break;
+    		}
+    		if(dateString.equals("")) dateString = date + "th";
+    		String uploaded = ldt.getMonth().name().charAt(0) + ldt.getMonth().name().toLowerCase().substring(1) + " " + dateString + " " + ldt.getYear();
             
             
             double percentlike;
@@ -212,7 +227,7 @@ public class YoutubeParser {
             }
             likebar += "";
             
-            String videoinfo = String.format("%s | Uploader: %s | Duration: %s | Views: %s |3 %s↑4 %s↓ ", title, uploader, duration, views, likes, dislikes);
+            String videoinfo = String.format("%s | Uploader: %s | Duration: %s | Uploaded: %s | Views: %s |3 %s↑4 %s↓ ", title, uploader, duration, uploaded, views, likes, dislikes);
 			return videoinfo;
 		} catch (IOException e) {
 			e.printStackTrace();
