@@ -49,16 +49,37 @@ public class FileParser {
 			filesize = String.format("%dYB ", Math.round(yottabytes));
 		}
 		String type = "" + urlc.getContentType() + "";
-		if(urlc.getContentType().startsWith("image")){
-			try{
-				BufferedImage image = ImageIO.read(urlc.getURL());
-				type += " (" + image.getWidth() + " x " + image.getHeight() + ")";
-			} catch(IOException e){}
+		System.out.println(urlc.getContentType());
+		if(megabytes < 5){
+			if(urlc.getContentType().startsWith("image")){
+				
+				try{
+					BufferedImage image = ImageIO.read(urlc.getURL());
+					type += " (" + image.getWidth() + " x " + image.getHeight() + ")";
+				} catch(IOException e){}
+			}
 		}
 		//if(urlc.getContentType().startsWith("application")){
 		//	type = "application";
 		//}
 		String title = String.format("%s size: %s", type, filesize);
 		return title;
+	}
+	
+	public static String find(String url){
+		URL URLurl;
+		try {
+			URLurl = new URL(url);
+			URLConnection urlc = URLurl.openConnection();
+			urlc.addRequestProperty("Accept-Language", "en-US,en;q=0.8");
+			urlc.addRequestProperty("User-Agent", "Mozilla");
+			//urlc.addRequestProperty("Referer", "google.com");
+			urlc.connect();
+			return find(urlc);
+		} catch (IOException e) {
+			e.printStackTrace();
+			return null;
+		}
+		
 	}
 }
