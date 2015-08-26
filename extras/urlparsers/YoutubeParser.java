@@ -92,7 +92,7 @@ public class YoutubeParser {
             }
             duration = dur;
             
-            LocalDateTime ldt = LocalDateTime.parse("2008-06-03T20:09:14.000Z".split("\\.")[0]);
+            LocalDateTime ldt = LocalDateTime.parse(snippet.get("publishedAt").getAsString().split("\\.")[0]);
     		int date = ldt.getDayOfMonth();
     		String dateString = "";
     		switch(date){
