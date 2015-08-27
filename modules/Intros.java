@@ -97,7 +97,7 @@ public class Intros implements Module {
 								intro = intro.trim();
 								if(userintros.size() == 10){
 									Server.say(target, m.sender() + ": Sorry, you have already set the max number of intros. Use " + 
-											Config.getChar() + "intro del <intro> to remove some.");
+											Config.getChar() + "intros del <intro> to remove some.");
 								}
 								else{
 									userintros.add( gson.fromJson("\"" + intro + "\"", JsonElement.class));
