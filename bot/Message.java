@@ -17,7 +17,6 @@ public class Message {
 	private String[] botParamsArray;
 	private String botParams = "";
 	private String commandChar;
-	private boolean hasBotParams = false;
 	private String username;
 	private String senderHost;
 
@@ -125,7 +124,6 @@ public class Message {
 					botCommand = trailingSplit[0];
 					if(trailingSplit.length > 1){
 						botParamsArray = new String[trailingSplit.length - 1];
-						hasBotParams = true;
 						for(int i = 1; i < trailingSplit.length; i++){
 							botParamsArray[i-1] = trailingSplit[i];
 						}
@@ -152,7 +150,6 @@ public class Message {
 						botParamsArray = new String[trailingSplit.length - 1];
 					}
 					
-					hasBotParams = true;
 					for(;  i < trailingSplit.length; i++){
 						botParamsArray[i-diff] = trailingSplit[i];
 						botParams += trailingSplit[i] + " ";
@@ -229,7 +226,8 @@ public class Message {
 	}
 	
 	public boolean hasBotParams(){
-		return hasBotParams;
+		if(botParamsArray == null)return false;
+		return botParamsArray.length > 0;
 	}
 	
 	/**
