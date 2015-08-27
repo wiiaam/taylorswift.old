@@ -94,7 +94,14 @@ public class Intros implements Module {
 								for(int i = 1; i < m.botParamsArray().length; i++){
 									intro += m.botParamsArray()[i] + " ";
 								}
-								intro = intro.trim();
+								intro = intro.trim()
+										.replaceAll("\\", "\\\\")
+										.replaceAll("{", "\\{")
+										.replaceAll("}", "\\}")
+										.replaceAll("[", "\\[")
+										.replaceAll("]", "\\]")
+										.replaceAll(";", "\\;")
+										.replaceAll(":", "\\:");
 								if(userintros.size() == 10){
 									Server.say(target, m.sender() + ": Sorry, you have already set the max number of intros. Use " + 
 											Config.getChar() + "intros del <intro> to remove some.");

@@ -100,7 +100,7 @@ public class Server {
 	
 	public static void send(String message){
 		System.out.println("sending " + message);
-		toserver.add(message);
+		toserver.add(message.replaceAll("\r", "").replaceAll("\n", ""));
 	}
 	
 	public static void pm(String target, String message){
@@ -113,7 +113,7 @@ public class Server {
 	
 	public static void lessPrioritySend(String message){
 		//System.out.println("sending " + message);
-		toserverlesspriority.add(message);
+		toserverlesspriority.add(message.replaceAll("\r", "").replaceAll("\n", ""));
 	}
 	
 	public static void lessPriorityPm(String target, String message){
@@ -126,7 +126,7 @@ public class Server {
 	
 	public static void prioritySend(String message){
 		//System.out.println("sending " + message);
-		toserver.addFirst(message);
+		toserver.addFirst(message.replaceAll("\r", "").replaceAll("\n", ""));
 	}
 	
 	public static void priorityPm(String target, String message){
@@ -232,14 +232,14 @@ public class Server {
 					}
 					try{
 						if(toserver.size() != 0){
-							String tosend = toserver.poll();
+							String tosend = toserver.poll().replaceAll("\r", "").replaceAll("\n", "");;
 							System.out.println(tosend);
 							out.println(tosend + "\r\n");
 							out.flush();
 							thread.sleep(500);
 						}
 						else if(toserverlesspriority.size() != 0){
-							String tosend = toserverlesspriority.poll();
+							String tosend = toserverlesspriority.poll().replaceAll("\r", "").replaceAll("\n", "");;
 							out.println(tosend + "\r\n");
 							out.flush();
 							thread.sleep(500);
