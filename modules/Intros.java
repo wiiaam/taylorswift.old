@@ -171,7 +171,7 @@ public class Intros implements Module {
 				if(intros.get(m.trailing()).getAsJsonObject().has(m.sender())){
 					JsonArray userintros = intros.get(m.trailing()).getAsJsonObject().get(m.sender()).getAsJsonArray();
 					int rand = (int)Math.floor(Math.random() * userintros.size());
-					Server.say(m.trailing(), userintros.get(rand).getAsString());
+					Server.say(m.trailing(), "​" + userintros.get(rand).getAsString());
 				}
 			}
 		}
