@@ -99,8 +99,27 @@ public class Server {
 	}
 	
 	public static void send(String message){
-		System.out.println("sending " + message);
-		toserver.add(message.replaceAll("\r", "").replaceAll("\n", ""));
+		message = message.replaceAll("\r", "").replaceAll("\n", "");
+		String[] split = message.split("\\s+");
+		String tosend = "";
+		System.out.println();
+		System.out.println("MESSAGE " + message);
+		System.out.println();
+		boolean hitLimit = false;
+		for(int i = 0;i < split.length;i++){
+			tosend += split[i] + " ";
+			if(tosend.length() > 300){
+				toserver.add(tosend);
+				hitLimit = true;
+				String next = split[0] + " " + split[1] + " :";
+				for(int j = i+1; j < split.length; j++){
+					next += split[j] + " ";
+				}
+				send(next);
+				break;
+			}
+		}
+		if(!hitLimit)toserver.add(tosend);
 	}
 	
 	public static void pm(String target, String message){
@@ -112,8 +131,24 @@ public class Server {
 	}
 	
 	public static void lessPrioritySend(String message){
-		//System.out.println("sending " + message);
-		toserverlesspriority.add(message.replaceAll("\r", "").replaceAll("\n", ""));
+		message = message.replaceAll("\r", "").replaceAll("\n", "");
+		String[] split = message.split("\\s+");
+		String tosend = "";
+		boolean hitLimit = false;
+		for(int i = 0;i < split.length;i++){
+			tosend += split[i] + " ";
+			if(tosend.length() > 300){
+				toserverlesspriority.add(tosend);
+				hitLimit = true;
+				String next = split[0] + " " + split[1] + " :";
+				for(int j = i+1; j < split.length; j++){
+					next += split[j] + " ";
+				}
+				send(next);
+				break;
+			}
+		}
+		if(!hitLimit)toserverlesspriority.add(tosend);
 	}
 	
 	public static void lessPriorityPm(String target, String message){
@@ -125,8 +160,26 @@ public class Server {
 	}
 	
 	public static void prioritySend(String message){
-		//System.out.println("sending " + message);
-		toserver.addFirst(message.replaceAll("\r", "").replaceAll("\n", ""));
+		message = message.replaceAll("\r", "").replaceAll("\n", "");
+		String[] split = message.split("\\s+");
+		String tosend = "";
+		boolean hitLimit = false;
+		for(int i = 0;i < split.length;i++){
+			tosend += split[i] + " ";
+			if(tosend.length() > 300){
+				toserver.addFirst(tosend);
+				hitLimit = true;
+				String next = split[0] + " " + split[1] + " :";
+				for(int j = i+1; j < split.length; j++){
+					next += split[j] + " ";
+				}
+				prioritySend(next);
+				break;
+			}
+		}
+		if(!hitLimit)toserver.addFirst(tosend);
+		
+		
 	}
 	
 	public static void priorityPm(String target, String message){
