@@ -44,7 +44,13 @@ public class ChanParser {
 			JsonArray posts = json.get("posts").getAsJsonArray();
 			JsonObject op = posts.get(0).getAsJsonObject();
 			String board = ssplit[3];
-			String subject = URLTitles.makeClean(op.get("com").getAsString().split("<br>")[0] + "");
+			String subject;
+			if(op.has("com")){
+				 subject = URLTitles.makeClean(op.get("com").getAsString() + "");
+			}
+			else{
+				subject = "No Subject";
+			}
 			int no = op.get("no").getAsInt();
 			int replies = posts.size()-1;
 			
@@ -80,7 +86,7 @@ public class ChanParser {
 			title = String.format("/%s/ - %s | Thread no %d | Created %s | %d replies", board, subject, no, created, replies);
 		} catch (Exception e) {
 			e.printStackTrace();
-			title = "Reddit - No info could be found";
+			title = "Error, no info could be found";
 		}
 		return title;
 	}
