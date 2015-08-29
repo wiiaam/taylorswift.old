@@ -21,7 +21,8 @@ public class Money implements bot.Module{
 	
 	public Money(){
 		pros.add("gen2");
-		pros.add("wiiaamm");
+		pros.add("wiiaam");
+		pros.add("installgen2");
 		try {
 			bank.load(new FileInputStream(new File(this.getClass().getResource("properties/money.properties").toURI())));
 		} catch (IOException | URISyntaxException e) {
@@ -133,7 +134,7 @@ public class Money implements bot.Module{
 					m.say(target, "they dont have any money to steal");
 					return;
 				}
-				if(pros.contains(m.sender())){
+				if(pros.contains(m.sender()) && Info.isRegistered(m.sender())){
 					double targetmoney = get(tomug);
 					double tosteal = Math.floor(Math.random()*(targetmoney/2));
 					m.say(target, String.format("oh shit, its the notorious %s! %s ran off at the sight of them, but accidentally dropped 3$%.0f",m.sender(),tomug,tosteal));
