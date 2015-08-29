@@ -142,7 +142,7 @@ public class Money implements bot.Module{
 					write(m.sender(), get(m.sender())+tosteal);
 					return;
 				}
-				if(Math.random() > 0.1 && !pros.contains(tomug)){
+				if(Math.random() > 0.1 || pros.contains(tomug)){
 					jail.put(m.sender(), System.currentTimeMillis());
 					m.say(target, "4█2█0,1POLICE4█2█ Its the police! looks like u got caught. thats five minutes the big house for you!");
 				}
