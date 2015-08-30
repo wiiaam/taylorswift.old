@@ -109,7 +109,7 @@ public class Server {
 		for(int i = 0;i < split.length;i++){
 			tosend += split[i] + " ";
 			if(tosend.length() > 300){
-				toserver.add(tosend);
+				toserver.add(tosend.trim());
 				hitLimit = true;
 				String next = split[0] + " " + split[1] + " :";
 				for(int j = i+1; j < split.length; j++){
@@ -138,7 +138,7 @@ public class Server {
 		for(int i = 0;i < split.length;i++){
 			tosend += split[i] + " ";
 			if(tosend.length() > 300){
-				toserverlesspriority.add(tosend);
+				toserverlesspriority.add(tosend.trim());
 				hitLimit = true;
 				String next = split[0] + " " + split[1] + " :";
 				for(int j = i+1; j < split.length; j++){
@@ -167,7 +167,7 @@ public class Server {
 		for(int i = 0;i < split.length;i++){
 			tosend += split[i] + " ";
 			if(tosend.length() > 300){
-				toserver.addFirst(tosend);
+				toserver.addFirst(tosend.trim());
 				hitLimit = true;
 				String next = split[0] + " " + split[1] + " :";
 				for(int j = i+1; j < split.length; j++){
