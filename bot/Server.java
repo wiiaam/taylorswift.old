@@ -100,7 +100,7 @@ public class Server {
 	
 	public static void send(String message){
 		message = message.replaceAll("\r", "").replaceAll("\n", "");
-		String[] split = message.split("\\s+");
+		String[] split = message.split(" ");
 		String tosend = "";
 		System.out.println();
 		System.out.println("MESSAGE " + message);
@@ -132,7 +132,7 @@ public class Server {
 	
 	public static void lessPrioritySend(String message){
 		message = message.replaceAll("\r", "").replaceAll("\n", "");
-		String[] split = message.split("\\s+");
+		String[] split = message.split(" ");
 		String tosend = "";
 		boolean hitLimit = false;
 		for(int i = 0;i < split.length;i++){
@@ -161,7 +161,7 @@ public class Server {
 	
 	public static void prioritySend(String message){
 		message = message.replaceAll("\r", "").replaceAll("\n", "");
-		String[] split = message.split("\\s+");
+		String[] split = message.split(" ");
 		String tosend = "";
 		boolean hitLimit = false;
 		for(int i = 0;i < split.length;i++){
