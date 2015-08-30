@@ -115,11 +115,11 @@ public class Server {
 				for(int j = i+1; j < split.length; j++){
 					next += split[j] + " ";
 				}
-				send(next);
+				send(next.trim());
 				break;
 			}
 		}
-		if(!hitLimit)toserver.add(tosend);
+		if(!hitLimit)toserver.add(tosend.trim());
 	}
 	
 	public static void pm(String target, String message){
@@ -144,11 +144,11 @@ public class Server {
 				for(int j = i+1; j < split.length; j++){
 					next += split[j] + " ";
 				}
-				send(next);
+				lessPrioritySend(next.trim());
 				break;
 			}
 		}
-		if(!hitLimit)toserverlesspriority.add(tosend);
+		if(!hitLimit)toserverlesspriority.add(tosend.trim());
 	}
 	
 	public static void lessPriorityPm(String target, String message){
@@ -173,11 +173,11 @@ public class Server {
 				for(int j = i+1; j < split.length; j++){
 					next += split[j] + " ";
 				}
-				prioritySend(next);
+				prioritySend(next.trim());
 				break;
 			}
 		}
-		if(!hitLimit)toserver.addFirst(tosend);
+		if(!hitLimit)toserver.addFirst(tosend.trim());
 		
 		
 	}
