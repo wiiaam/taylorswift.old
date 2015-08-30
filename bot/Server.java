@@ -109,17 +109,17 @@ public class Server {
 		for(int i = 0;i < split.length;i++){
 			tosend += split[i] + " ";
 			if(tosend.length() > 300){
-				toserver.add(tosend.trim());
+				toserver.add(tosend.substring(0, tosend.length()-1));
 				hitLimit = true;
 				String next = split[0] + " " + split[1] + " :";
 				for(int j = i+1; j < split.length; j++){
 					next += split[j] + " ";
 				}
-				send(next.trim());
+				send(next.substring(0, next.length()-1));
 				break;
 			}
 		}
-		if(!hitLimit)toserver.add(tosend.trim());
+		if(!hitLimit)toserver.add(tosend.substring(0, tosend.length()-1));
 	}
 	
 	public static void pm(String target, String message){
@@ -138,17 +138,17 @@ public class Server {
 		for(int i = 0;i < split.length;i++){
 			tosend += split[i] + " ";
 			if(tosend.length() > 300){
-				toserverlesspriority.add(tosend.trim());
+				toserverlesspriority.add(tosend.substring(0, tosend.length()-1));
 				hitLimit = true;
 				String next = split[0] + " " + split[1] + " :";
 				for(int j = i+1; j < split.length; j++){
 					next += split[j] + " ";
 				}
-				lessPrioritySend(next.trim());
+				lessPrioritySend(next.substring(0, next.length()-1));
 				break;
 			}
 		}
-		if(!hitLimit)toserverlesspriority.add(tosend.trim());
+		if(!hitLimit)toserverlesspriority.add(tosend.substring(0, tosend.length()-1));
 	}
 	
 	public static void lessPriorityPm(String target, String message){
@@ -167,17 +167,17 @@ public class Server {
 		for(int i = 0;i < split.length;i++){
 			tosend += split[i] + " ";
 			if(tosend.length() > 300){
-				toserver.addFirst(tosend.trim());
+				toserver.addFirst(tosend.substring(0, tosend.length()-1));
 				hitLimit = true;
 				String next = split[0] + " " + split[1] + " :";
 				for(int j = i+1; j < split.length; j++){
 					next += split[j] + " ";
 				}
-				prioritySend(next.trim());
+				prioritySend(next.substring(0, next.length()-1));
 				break;
 			}
 		}
-		if(!hitLimit)toserver.addFirst(tosend.trim());
+		if(!hitLimit)toserver.addFirst(tosend.substring(0, tosend.length()-1));
 		
 		
 	}
