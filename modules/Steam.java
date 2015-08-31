@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 import java.util.Scanner;
+
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonArray;
@@ -12,6 +13,7 @@ import com.google.gson.JsonObject;
 
 import bot.Config;
 import bot.Message;
+import bot.Server;
 
 public class Steam implements bot.Module {
 
@@ -44,18 +46,18 @@ public class Steam implements bot.Module {
 							id = response.get("steamid").getAsString();
 						}
 						else{
-							m.say(target, "Steam vanity ID not found");
+							Server.say(target, "Steam vanity ID not found");
 							return;
 						}
 					}
 					catch(ArrayIndexOutOfBoundsException | IOException e){
-						m.say(target, "Invalid steam vanity ID");
+						Server.say(target, "Invalid steam vanity ID");
 						return;
 					}
 					
 				}
 				if(id.toLowerCase().contains("steam_0")){
-					m.say(target, "Only 64bit IDs are supported right now");
+					Server.say(target, "Only 64bit IDs are supported right now");
 				}
 				String title = "";
 				String friends = "";
@@ -77,7 +79,7 @@ public class Steam implements bot.Module {
 					JsonObject response = json.get("response").getAsJsonObject();
 					JsonArray players = response.get("players").getAsJsonArray();
 					if(players.size() < 1){
-						m.say(target, "No steam info could be found");
+						Server.say(target, "No steam info could be found");
 						return;
 					}
 					JsonObject player = players.get(0).getAsJsonObject();
@@ -133,12 +135,12 @@ public class Steam implements bot.Module {
 					friends = String.format("This user has %d friends", friendslist.size());
 					
 				} catch (IOException e) {
-					m.say(target, "No steam info could be found");
+					Server.say(target, "No steam info could be found");
 					return;
 				}
-				m.say(target, title);
-				if(!onlinestatus.equals(""))m.say(target, onlinestatus);
-				if(!friends.equals(""))m.say(target, friends);
+				Server.say(target, title);
+				if(!onlinestatus.equals(""))Server.say(target, onlinestatus);
+				if(!friends.equals(""))Server.say(target, friends);
 			}
 		}
 	}

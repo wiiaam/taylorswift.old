@@ -11,6 +11,7 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
 import bot.Message;
+import bot.Server;
 
 public class Google implements bot.Module {
 
@@ -39,13 +40,13 @@ public class Google implements bot.Module {
 				if(urltitle.length() > 100) urltitle = urltitle.substring(0, 99).trim() + "...";
 				//String description = "";
 				String title = String.format("Results for %s: (%s) %s", m.botParams(),  results.get("unescapedUrl").getAsString(), urltitle);
-				m.say(target, title);
+				Server.say(target, title);
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
 			catch (IndexOutOfBoundsException e){
 				String title = "No results found for " + m.botParams();
-				m.say(target, title);
+				Server.say(target, title);
 			}
 		}
 	}

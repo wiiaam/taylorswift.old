@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import bot.Config;
 import bot.Message;
 import bot.Module;
+import bot.Server;
 import extras.MakeCowSay;
 
 public class Cowsay implements Module {
@@ -26,12 +27,12 @@ public class Cowsay implements Module {
 		if(!m.param().startsWith("#")) target = m.sender();
 		if(m.senderIsAdmin()){
 			if(m.botCommand().equals("cowsayon")){
-				m.say(target, "Cowsay is now on");
+				Server.say(target, "Cowsay is now on");
 				Config.set("cowsay","on");
 				on = true;
 			}
 			if(m.botCommand().equals("cowsayoff")){
-				m.say(target, "Cowsay is now off");
+				Server.say(target, "Cowsay is now off");
 				Config.set("cowsay","off");
 				on = false;
 			}
@@ -40,10 +41,10 @@ public class Cowsay implements Module {
 		if(m.botCommand().equals("cowsay") && (on || m.senderIsAdmin())){
 			if(m.hasBotParams()){
 				try{
-					m.say(target, MakeCowSay.cowsay(m.botParams()));
+					Server.say(target, MakeCowSay.cowsay(m.botParams()));
 				}
 				catch(IllegalArgumentException e){
-					m.say(target, "u cant even in2 cowsay");
+					Server.say(target, "u cant even in2 cowsay");
 				}
 			}
 		}

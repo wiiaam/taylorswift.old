@@ -12,6 +12,7 @@ import extras.Lyrics;
 import bot.Config;
 import bot.Message;
 import bot.Module;
+import bot.Server;
 
 public class SongLyrics implements Module {
 
@@ -36,7 +37,7 @@ public class SongLyrics implements Module {
 		String target = m.param();
 		if(!m.param().startsWith("#")) target = m.sender();
 		if(m.botCommand().equals("lyrics") || m.botCommand().equals("lyric")){
-			m.say(target,Lyrics.getRandomLyric());
+			Server.say(target,Lyrics.getRandomLyric());
 		}
 		if(m.botCommand().equals("lyricson") && Config.getAdmins().contains(m.sender())){
 			if(m.hasBotParams()){

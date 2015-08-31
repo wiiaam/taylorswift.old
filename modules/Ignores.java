@@ -3,6 +3,7 @@ package modules;
 import bot.Config;
 import bot.Message;
 import bot.Module;
+import bot.Server;
 
 public class Ignores implements Module {
 
@@ -15,13 +16,13 @@ public class Ignores implements Module {
 					for(String nick : m.botParamsArray()){
 						Config.addIgnore(nick);
 					}
-					m.say(target, "The specified users have been ignored");
+					Server.say(target, "The specified users have been ignored");
 				}
 				if(m.botCommand().endsWith("unignore")){
 					for(String nick : m.botParamsArray()){
 						Config.removeIgnore(nick);
 					}
-					m.say(target, "The specified users have been unignored");
+					Server.say(target, "The specified users have been unignored");
 				}
 			}
 		}

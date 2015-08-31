@@ -43,23 +43,18 @@ public class Admin implements Module{
 			}
 		}
 		
-		if(m.botCommand().equals("part")){
-			for(String s : m.botParamsArray()){
-				Server.send("PART " + s);
-				Config.removeRoom(s);
-			}
-		}
+		
 		
 		if(m.senderIsAdmin()){
 			if(m.botCommand().equals("admin")){
 				if(m.botParamsArray().length > 1){
 					if(m.botParamsArray()[0].equals("add")){
 						Config.addAdmin(m.botParamsArray()[1]);
-						m.say(target, m.botParamsArray()[1] + " is now an admin.");
+						Server.say(target, m.botParamsArray()[1] + " is now an admin.");
 					}
 					if(m.botParamsArray()[0].equals("del")){
-						if(Config.removeAdmin(m.botParamsArray()[1])) m.say(target, m.botParamsArray()[1] + " is no longer an admin");
-						else m.say(target, m.botParamsArray()[1] + " is not an admin");
+						if(Config.removeAdmin(m.botParamsArray()[1])) Server.say(target, m.botParamsArray()[1] + " is no longer an admin");
+						else Server.say(target, m.botParamsArray()[1] + " is not an admin");
 					}
 				}
 			}
@@ -72,7 +67,7 @@ public class Admin implements Module{
 				if(commandChar.equals("self")) {
 					commandChar = Config.getNick() + ": ";
 				}
-				m.say(target, "changed char to " + commandChar);
+				Server.say(target, "changed char to " + commandChar);
 				Config.setChar(commandChar);
 			}
 			if(m.botCommand().equals("nick")){
@@ -87,14 +82,14 @@ public class Admin implements Module{
 					for(int i = 0; i < m.botParamsArray().length; i++){
 						String roomtojoin = m.botParamsArray()[i];
 						if(roomtojoin.contains(",")){
-							m.say(target, "nice try");
+							Server.say(target, "nice try");
 							continue;
 						}
 						m.send("JOIN " + roomtojoin);
 						Config.addRoom(roomtojoin);
 						m.send("WHO " + roomtojoin);
 					}
-					m.say(target, "Now joining " + m.botParams());
+					Server.say(target, "Now joining " + m.botParams());
 				}
 			}
 			
@@ -123,13 +118,19 @@ public class Admin implements Module{
 				}
 			}
 			if(m.botCommand().equals("say")){
-				m.say(target, m.botParams());
+				Server.say(target, m.botParams());
 			}
 			
 			if(m.botCommand().equals("quit")){
-				Server.say(target, "o-ok");
-				Server.send("QUIT :Leaving");
+				Server.prioritySay(target, "o-ok");
 				Server.disconnect();
+			}
+			
+			if(m.botCommand().equals("part")){
+				for(String s : m.botParamsArray()){
+					Server.send("PART " + s);
+					Config.removeRoom(s);
+				}
 			}
 			
 		}

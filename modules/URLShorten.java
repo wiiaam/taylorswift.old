@@ -2,6 +2,7 @@ package modules;
 
 import bot.Message;
 import bot.Module;
+import bot.Server;
 import extras.URLShortener;
 
 public class URLShorten implements Module {
@@ -14,7 +15,7 @@ public class URLShorten implements Module {
 		if(m.botCommand().equals("shorten")){
 			if(m.hasBotParams()){
 				String url = m.botParamsArray()[0];
-				m.say(target, "Shortened url: " + URLShortener.shorten(url));
+				Server.say(target, "Shortened url: " + URLShortener.shorten(url));
 			}
 		}
 	}

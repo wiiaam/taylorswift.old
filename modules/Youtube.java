@@ -13,6 +13,7 @@ import com.google.gson.JsonObject;
 import extras.urlparsers.YoutubeParser;
 import bot.Config;
 import bot.Message;
+import bot.Server;
 
 public class Youtube implements bot.Module {
 
@@ -39,12 +40,12 @@ public class Youtube implements bot.Module {
 				JsonObject id = items.get("id").getAsJsonObject();
 				String videoId = id.get("videoId").getAsString();
 				String title = "https://youtu.be/" + videoId + " | " + YoutubeParser.findById(videoId);
-				m.say(target, title);
+				Server.say(target, title);
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
 			catch(IndexOutOfBoundsException e){
-				m.say(target,"No results found for " + m.botParams());
+				Server.say(target,"No results found for " + m.botParams());
 			}
 		}
 	}

@@ -7,6 +7,7 @@ import bot.IrcBot;
 import bot.Message;
 import bot.Module;
 import bot.Modules;
+import bot.Server;
 
 public class Help implements Module {
 
@@ -32,7 +33,7 @@ public class Help implements Module {
 			m.notice(m.sender(), "If you want me to join a channel, use /invite " + Config.getNick());
 		}
 		if(m.trailing().startsWith(".source") || m.botCommand().equals("source")){
-			m.say(m.sender(), "https://github.com/wiiam/Personal-Bot");
+			Server.say(m.sender(), "https://github.com/wiiam/Personal-Bot");
 		}
 		if(m.trailing().startsWith(".license") || m.botCommand().equals("license")){
 			m.notice(m.sender(), "I am licensed under GNU AGPL. The terms of this license can be found here: https://github.com/wiiam/Personal-Bot/blob/master/LICENSE");

@@ -20,13 +20,17 @@ public class UserModes implements Module {
 			Info.changeNick(m.sender(), m.trailing());
 			Server.send("WHO " + m.trailing());
 		}
-		if(m.command().equals("PART") || m.command().equals("KICK")){
+		if(m.command().equals("PART")){
 			Info.removeChan(m.sender(), m.param());
+		}
+		if(m.command().equals("KICK")){
+			Info.removeChan(m.trailing().split("\\s+")[0], m.param());
 		}
 		if(m.command().equals("QUIT")){
 			Info.forget(m.sender());
 		}
 		if(m.command().equals("JOIN")){
+			Server.send("WHO " + m.sender());
 			Info.parse(String.format("%s %s %s * %s H :0 Unknown", m.trailing(), m.username(), m.senderHost(), m.sender()));
 		}
 		if(m.command().equals("MODE")){

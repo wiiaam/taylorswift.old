@@ -38,7 +38,7 @@ public class PastaTopic implements Module {
 						topicmain = m.botParams();
 						write();
 					}
-					else m.say(target, "You need to be at least AOP to use this command");
+					else Server.say(target, "You need to be at least AOP to use this command");
 				}
 			}
 		}

@@ -209,6 +209,7 @@ public class Message {
 		return botParams;
 	}
 	
+	
 	public void send(String message){
 		Server.send(message);
 	}
@@ -228,22 +229,6 @@ public class Message {
 	public boolean hasBotParams(){
 		if(botParamsArray == null)return false;
 		return botParamsArray.length > 0;
-	}
-	
-	/**
-	 * PRIVMSG for room
-	 * NOTICE for user
-	 */
-	public void say(String target, String message){
-		if(target.startsWith("#")) Server.pm(target, message);
-		else Server.notice(target, message);
-	}
-	
-	public void say(String target, String[] messagearray){
-		for(int i = 0; i < messagearray.length; i++){
-			if(target.startsWith("#")) Server.pm(target, messagearray[i]);
-			else Server.notice(target, messagearray[i]);
-		}
 	}
 	
 	public boolean senderIsAdmin(){

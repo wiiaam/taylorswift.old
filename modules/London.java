@@ -3,6 +3,7 @@ package modules;
 
 import bot.Config;
 import bot.Message;
+import bot.Server;
 
 public class London implements bot.Module {
 	
@@ -17,7 +18,7 @@ public class London implements bot.Module {
 		}
 		if(m.botCommand().equals("london") && (on || Config.getAdmins().contains(m.sender()))){
 			if(m.botParams().length() > 10){
-				m.say(target, "dats 2 long man");
+				Server.say(target, "dats 2 long man");
 				return;
 			}
 			char[] chars = m.botParams().toCharArray();
@@ -26,14 +27,14 @@ public class London implements bot.Module {
 				first += String.valueOf(chars[i]).toUpperCase() + " ";
 			}
 			first.trim();
-			m.say(target, first);
+			Server.say(target, first);
 			for(int i = 1; i < chars.length; i++){
-				m.say(target, String.valueOf(chars[i]).toUpperCase());
+				Server.say(target, String.valueOf(chars[i]).toUpperCase());
 			}
 		}
 		if(m.botCommand().equals("sqlondon") && (on || Config.getAdmins().contains(m.sender()))){
 			if(m.botParams().length() > 10){
-				m.say(target, "dats 2 long man");
+				Server.say(target, "dats 2 long man");
 				return;
 			}
 			char[] chars = m.botParams().toCharArray();
@@ -42,21 +43,21 @@ public class London implements bot.Module {
 				first += String.valueOf(chars[i]).toUpperCase() + " ";
 			}
 			first.trim();
-			m.say(target, first);
+			Server.say(target, first);
 			for(int i = 1; i < chars.length-1; i++){
 				String tosay = String.valueOf(chars[i]).toUpperCase();
 				for(int j = 0; j < (chars.length-1)+(chars.length-2); j++){
 					tosay += " ";
 				}
 				tosay += String.valueOf(chars[chars.length-i-1]).toUpperCase();
-				m.say(target,tosay);
+				Server.say(target,tosay);
 			}
 			String last = "";
 			for(int i = chars.length-1; i >= 0; i--){
 				last += String.valueOf(chars[i]).toUpperCase() + " ";
 			}
 			last.trim();
-			m.say(target, last);
+			Server.say(target, last);
 		}
 		
 	}

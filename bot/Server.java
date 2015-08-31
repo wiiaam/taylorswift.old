@@ -260,11 +260,19 @@ public class Server {
 	}
 	
 	public static void disconnect(){
+		prioritySend("QUIT :Shutting down!");
 		try {
 			socket.close();
 		} catch (IOException e) {
 		}
-		System.exit(0);
+		try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		System.exit(1);
+		//Runtime.getRuntime().exit(1);
 	}
 	
 	private static void readToServerStream(){

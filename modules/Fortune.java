@@ -2,6 +2,7 @@ package modules;
 
 import bot.Message;
 import bot.Module;
+import bot.Server;
 
 public class Fortune implements Module {
 	
@@ -31,10 +32,10 @@ public class Fortune implements Module {
 		if(!m.param().startsWith("#")) target = m.sender();
 		
 		if(m.botCommand().equals("8ball")){
-			m.say(target, eightball[(int)(Math.floor(Math.random() * eightball.length))]);
+			Server.say(target, eightball[(int)(Math.floor(Math.random() * eightball.length))]);
 		}
 		if(m.botCommand().equals("fortune")){
-			m.say(target, fortunes[(int)(Math.floor(Math.random() * fortunes.length))]);
+			Server.say(target, fortunes[(int)(Math.floor(Math.random() * fortunes.length))]);
 		}
 	}
 }

@@ -67,7 +67,7 @@ The current command char can be found with .help
 
 `bene` - Get a payment.
 
-`pokies <amount>` - Bet a certain amount.
+`pokies <amount>`, `bet <amount>` - Bet a certain amount.
 
 `mug <user>` - Steal money from a user.
 
@@ -75,19 +75,19 @@ The current command char can be found with .help
 
 `give <user> <amount>` - Give money to a user.
 
+`money`, `wallet`, `balance`, `bank` - Displays your balance.
+
 ### Random
 
 `> <message>` - Displays a >greentext of the message.
 
-`imply` - Displays >implying message
+`imply` - Displays >implying message.
 
 `8ball` - Ask the magic 8ball a question.
 
 `fortune` - Displays your fortune.
 
 `lyrics` - Displays a random Taylor Swift lyric.
-
-`post n00dz` - Posts n00dz. **NSFW**.
 
 `london <message>` - :^) limit 10 chars. Usually kept turned off to stop channel spamming.
 
@@ -115,6 +115,8 @@ The current command char can be found with .help
 
 `leave` - Leaves the channel where the command was said.
 
+`part <channels>` - Leaves the specified channels.
+
 `raw <message>` - Sends a raw IRC format message.
 
 `say <message>` - Says the message in the channel where the command was said.
@@ -141,9 +143,9 @@ The current command char can be found with .help
 
 `untrigger <trigger>` - Removes the trigger.
 
-`triggerson` - Turns triggers on.
+`triggerson <room>` - Turns triggers on.
 
-`triggersoff` - Turns triggers off.
+`triggersoff <room>` - Turns triggers off.
 
 ### Toggles
 
@@ -168,9 +170,3 @@ The current command char can be found with .help
 `spam <ircmessage>` - Sends an ircformat message every 2 seconds.
 
 `sadfrog` - feels bad man.
-
-### Bro Detection
-
-`addbro <user>` - Adds a bro.
-
-`delbro <user>` - Deletes a bro.

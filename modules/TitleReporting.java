@@ -13,6 +13,7 @@ import extras.URLTitles;
 import bot.Config;
 import bot.Message;
 import bot.Module;
+import bot.Server;
 
 public class TitleReporting implements Module {
 
@@ -68,7 +69,7 @@ public class TitleReporting implements Module {
 						if(messageSplit[i].startsWith("http://") || messageSplit[i].startsWith("https://")){
 							String title = URLTitles.find(messageSplit[i]);
 							title = title.replace("http://", "").replace("https://", "");
-							if(title != null) m.say(target, title);
+							if(title != null) Server.say(target, title);
 							break;
 						}
 					}

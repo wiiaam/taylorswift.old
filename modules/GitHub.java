@@ -15,6 +15,7 @@ import com.google.gson.JsonObject;
 import bot.Config;
 import bot.Message;
 import bot.Module;
+import bot.Server;
 
 public class GitHub implements Module{
 	
@@ -36,7 +37,7 @@ public class GitHub implements Module{
 					Gson gson = new GsonBuilder().create();
 					JsonObject json = gson.fromJson(jsonstring, JsonElement.class).getAsJsonObject();
 					if(json.has("message")){
-						m.say(target, "Could not find user: " + m.botParamsArray()[0]);
+						Server.say(target, "Could not find user: " + m.botParamsArray()[0]);
 						return;
 					}
 					String login = json.get("login").getAsString();
@@ -47,7 +48,7 @@ public class GitHub implements Module{
 					int following = json.get("following").getAsInt();
 					int repos = json.get("public_repos").getAsInt();
 					String tosay = String.format("Github for %s: %s%d followers | Following %d users | %d repos (%s)", login, name, followers, following, repos, htmlUrl);
-					m.say(target, tosay);
+					Server.say(target, tosay);
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
@@ -71,7 +72,7 @@ public class GitHub implements Module{
 					repos = gson.fromJson(jsonstring, JsonElement.class).getAsJsonArray();
 				}
 				catch(Exception e){
-					m.say(target, "Could not find user: " + m.botParamsArray()[0]);
+					Server.say(target, "Could not find user: " + m.botParamsArray()[0]);
 					return;
 				}
 				String tosay = "Repos for " + m.botParamsArray()[0] + ": ";
@@ -86,9 +87,9 @@ public class GitHub implements Module{
 					tosay += toappend;
 				}
 				tosay = tosay.substring(0, tosay.length()-2);
-				m.say(target, tosay);
+				Server.say(target, tosay);
 			} catch (IOException e) {
-				m.say(target, "Could not find user: " + m.botParamsArray()[0]);
+				Server.say(target, "Could not find user: " + m.botParamsArray()[0]);
 				return;
 			}
 		}
@@ -128,9 +129,9 @@ public class GitHub implements Module{
 					int forks = json.get("forks_count").getAsInt();
 					String language = json.get("language").getAsString();
 					String tosay = String.format("%s: %sLanguage: %s | Watchers: %d Stars: %d Forks: %d (%s)", fullName, fork, language, watchers, stars, forks, htmlUrl );
-					m.say(target, tosay);
+					Server.say(target, tosay);
 				}catch (IOException e) {
-					m.say(target, "Could not find repo");
+					Server.say(target, "Could not find repo");
 					return;
 				}
 			}

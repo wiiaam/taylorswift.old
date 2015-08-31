@@ -15,6 +15,7 @@ import extras.Rainbowfy;
 import bot.Config;
 import bot.Message;
 import bot.Module;
+import bot.Server;
 
 public class Triggers implements Module {
 
@@ -57,8 +58,8 @@ public class Triggers implements Module {
 					} catch (IOException | URISyntaxException e) {
 						e.printStackTrace();
 					}
-					if(triggers.size() == 1) m.say(target, String.format("Trigger added. There is now %d trigger set", triggers.size()));
-					else m.say(target, String.format("Trigger added. There are now %d triggers set", triggers.size()));
+					if(triggers.size() == 1) Server.say(target, String.format("Trigger added. There is now %d trigger set", triggers.size()));
+					else Server.say(target, String.format("Trigger added. There are now %d triggers set", triggers.size()));
 					return;
 				}
 			}
@@ -70,8 +71,8 @@ public class Triggers implements Module {
 					} catch (IOException | URISyntaxException e) {
 						e.printStackTrace();
 					}
-					if(triggers.size() == 1) m.say(target, String.format("Trigger removed. There is now %d trigger set", triggers.size()));
-					else m.say(target, String.format("Trigger removed. There are now %d triggers set", triggers.size()));
+					if(triggers.size() == 1) Server.say(target, String.format("Trigger removed. There is now %d trigger set", triggers.size()));
+					else Server.say(target, String.format("Trigger removed. There are now %d triggers set", triggers.size()));
 					return;
 				}
 			}
@@ -97,10 +98,10 @@ public class Triggers implements Module {
 			}
 		}
 		if(m.botCommand().equals("listtriggers")){
-			if(triggers.size() == 1) m.say(target, String.format("There is %d trigger set", triggers.size()));
-			else m.say(target, String.format("There are %d triggers set", triggers.size()));
+			if(triggers.size() == 1) Server.say(target, String.format("There is %d trigger set", triggers.size()));
+			else Server.say(target, String.format("There are %d triggers set", triggers.size()));
 			for(Entry<Object, Object> e : triggers.entrySet()){
-				m.say(target,e.getKey().toString() + " : " + e.getValue().toString());
+				Server.say(target,e.getKey().toString() + " : " + e.getValue().toString());
 			}
 		}
 		if(!rooms.contains(m.param()))return;
@@ -129,9 +130,9 @@ public class Triggers implements Module {
 					trigger = trigger.replace(" %rb ","" );
 					trigger = trigger.replace("%rb ","" );
 					trigger = trigger.replace("%rb","" );
-					m.say(target, Rainbowfy.convert(trigger));
+					Server.say(target, Rainbowfy.convert(trigger));
 				}
-				else m.say(target, trigger);
+				else Server.say(target, trigger);
 			}
 		}
 		

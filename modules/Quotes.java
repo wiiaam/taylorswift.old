@@ -17,6 +17,7 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
 import bot.Message;
+import bot.Server;
 
 public class Quotes implements bot.Module{
 	private File jsonfile;
@@ -86,10 +87,10 @@ public class Quotes implements bot.Module{
 							ldt.getDayOfWeek().toString().substring(0, 3).toLowerCase().replaceFirst(".", String.valueOf(ldt.getDayOfWeek().toString().charAt(0))),
 							ldt.getDayOfMonth(), ldt.getMonth().toString().toLowerCase().replaceFirst(".", String.valueOf(ldt.getMonth().toString().charAt(0))),
 							ldt.getHour(), ldt.getMinute(), ldt.getSecond());
-					m.say(target,String.format("4​%s at 2​%s GMT to 2%s > %s", user, time, room, quote));
+					Server.say(target,String.format("4​%s at 2​%s GMT to 2%s > %s", user, time, room, quote));
 				}
 				else{
-					m.say(target, "I don't know who that person is");
+					Server.say(target, "I don't know who that person is");
 				}
 			}
 		}

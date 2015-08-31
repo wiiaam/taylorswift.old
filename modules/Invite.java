@@ -3,6 +3,7 @@ package modules;
 import bot.Config;
 import bot.Message;
 import bot.Module;
+import bot.Server;
 
 public class Invite implements Module {
 	public long timeout = System.currentTimeMillis();
@@ -16,7 +17,7 @@ public class Invite implements Module {
 			timeout = System.currentTimeMillis();
 			m.send("JOIN " + m.trailing());
 			Config.addRoom(m.trailing());
-			m.say(m.trailing(), m.sender() + " has invited me here. To see my commands, use /MSG " + Config.getNick() + " HELP");
+			Server.say(m.trailing(), m.sender() + " has invited me here. To see my commands, use /MSG " + Config.getNick() + " HELP");
 		}
 
 	}

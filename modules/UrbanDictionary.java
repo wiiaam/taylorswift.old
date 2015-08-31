@@ -11,6 +11,7 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
 import bot.Message;
+import bot.Server;
 
 public class UrbanDictionary implements bot.Module {
 
@@ -35,7 +36,7 @@ public class UrbanDictionary implements bot.Module {
 				JsonObject json = gson.fromJson(jsonstring, JsonElement.class).getAsJsonObject();
 				if(json.get("result_type").getAsString().equals("no_results")){
 					String title = "No results found for " + m.botParams();
-					m.say(target, title);
+					Server.say(target, title);
 					return;
 				}
 				JsonObject result = json.get("list").getAsJsonArray().get(0).getAsJsonObject();
@@ -43,15 +44,15 @@ public class UrbanDictionary implements bot.Module {
 				String permalink = result.get("permalink").getAsString();
 				String definition = result.get("definition").getAsString();
 				String title = String.format("%s: %s (%s)",word, definition, permalink);
-				m.say(target, title);
+				Server.say(target, title);
 			} catch (IOException e) {
 				e.printStackTrace();
 				String title = "No results found for " + m.botParams();
-				m.say(target, title);
+				Server.say(target, title);
 			}
 			catch (IndexOutOfBoundsException e){
 				String title = "No results found for " + m.botParams();
-				m.say(target, title);
+				Server.say(target, title);
 			}
 			
 		}

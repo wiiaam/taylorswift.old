@@ -1,7 +1,5 @@
 package modules;
 
-import extras.Links;
-
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -18,16 +16,16 @@ public class Random implements Module {
 		String target = m.param();
 		if(!m.param().startsWith("#")) target = m.sender();
 		if(m.botCommand().equalsIgnoreCase("Pr0Wolf29")){
-			m.say(target, "https://p.teknik.io/1349");
+			Server.say(target, "https://p.teknik.io/1349");
 		}
 		if(m.botCommand().equals("gen2")){
-			m.say(target, "<installgen2> how can I be aware of my sexual preferences until I am a bit older? for all I know I could easily be bi");
+			Server.say(target, "<installgen2> how can I be aware of my sexual preferences until I am a bit older? for all I know I could easily be bi");
 		}
 		if(m.botCommand().equals("mofukka")){
 			Server.say(target, "http://vocaroo.com/i/s0kcPiuidwIs");
 		}
 		if(m.botCommand().equals("imply")){
-			m.say(target, "3>implying " + m.botParams());
+			Server.say(target, "3>implying " + m.botParams());
 		}
 		if(m.trailing().toLowerCase().contains("what day is it")){
 			try {
@@ -37,7 +35,7 @@ public class Random implements Module {
 				urlc.addRequestProperty("User-Agent", "Mozilla");
 				urlc.connect();
 				Scanner scan = new Scanner(urlc.getInputStream());
-				m.say(target, scan.nextLine());
+				Server.say(target, scan.nextLine());
 				scan.close();
 				
 			} catch (MalformedURLException e) {
@@ -48,15 +46,7 @@ public class Random implements Module {
 			}
 		}
 		if(m.botCommand().equals(">")){
-			m.say(target, "3>" + m.botParams());
-		}
-		if(m.botCommand().equals("post")){
-			if(m.hasBotParams()){
-				if(m.botParamsArray()[0].equals("n00dz")){
-					m.say(target, "ook here you go ;)");
-					m.say(target, Links.nudes());
-				}
-			}
+			Server.say(target, "3>" + m.botParams());
 		}
 		if(m.botCommand().equals("sadfrog") && m.senderIsAdmin()){
 			String[] outputs = new String[37];
@@ -97,7 +87,7 @@ public class Random implements Module {
 			outputs[34] = "▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓██    ";
 			outputs[35] = "▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓█    ";
 			outputs[36] = "▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓█    ";
-			m.say(target, outputs);
+			Server.say(target, outputs);
 		}
 		
 		if(m.botCommand().equals("troll") && m.senderIsAdmin()){

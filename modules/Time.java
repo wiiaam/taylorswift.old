@@ -6,6 +6,7 @@ import java.util.HashMap;
 
 import bot.Message;
 import bot.Module;
+import bot.Server;
 
 public class Time implements Module {
 	
@@ -37,7 +38,7 @@ public class Time implements Module {
 			if(requests.containsKey(m.sender())){
 				if(m.trailing().startsWith("TIME")){
 					String version = m.trailing().substring(5,m.trailing().length()-1);
-					m.say(requests.get(m.sender()),"[" + m.sender() + "] Current Time: " + version);
+					Server.say(requests.get(m.sender()),"[" + m.sender() + "] Current Time: " + version);
 					requests.remove(m.sender());
 				}
 			}

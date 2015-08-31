@@ -7,6 +7,7 @@ import com.google.code.chatterbotapi.ChatterBotType;
 
 import bot.Message;
 import bot.Module;
+import bot.Server;
 
 public class CleverBot implements Module {
 	private ChatterBotSession cb;
@@ -29,7 +30,7 @@ public class CleverBot implements Module {
 		if(m.botCommand().equals("cb")){
 			if(m.hasBotParams()){
 				try {
-					m.say(target, m.sender() + ": " + cb.think(m.botParams()));
+					Server.say(target, m.sender() + ": " + cb.think(m.botParams()));
 				} catch (Exception e) {
 					e.printStackTrace();
 				}

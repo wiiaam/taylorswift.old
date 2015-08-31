@@ -4,6 +4,7 @@ import java.util.HashMap;
 
 import bot.Message;
 import bot.Module;
+import bot.Server;
 
 public class Version implements Module {
 	
@@ -39,7 +40,7 @@ public class Version implements Module {
 					version = version.replace("weechat", "weebchat");
 					version = version.replace("Weechat", "Weebchat");
 					version = version.replace("","");
-					m.say(requests.get(m.sender()),"[" + m.sender() + "] Version: " + version);
+					Server.say(requests.get(m.sender()),"[" + m.sender() + "] Version: " + version);
 					requests.remove(m.sender());
 				}
 			}
