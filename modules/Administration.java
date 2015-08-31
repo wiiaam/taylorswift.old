@@ -86,7 +86,7 @@ public class Administration implements Module {
 				}
 				roomcheck.put(m.sender(), useroffences);
 				antispams.put(m.param(), roomcheck);
-				waitForAntiSpam(m.param(), m.sender(), 7);
+				waitForAntiSpam(m.param(), m.sender(), 10);
 			}
 			
 			

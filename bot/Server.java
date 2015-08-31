@@ -262,10 +262,6 @@ public class Server {
 	public static void disconnect(){
 		prioritySend("QUIT :Shutting down!");
 		try {
-			socket.close();
-		} catch (IOException e) {
-		}
-		try {
 			Thread.sleep(5000);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
