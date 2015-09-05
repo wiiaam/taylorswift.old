@@ -24,6 +24,7 @@ public class Money implements bot.Module{
 		pros.add("gen2");
 		pros.add("wiiaam");
 		pros.add("installgen2");
+		pros.add("denko");
 		try {
 			bank.load(new FileInputStream(new File(this.getClass().getResource("properties/money.properties").toURI())));
 		} catch (IOException | URISyntaxException e) {
