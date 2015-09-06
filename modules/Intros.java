@@ -52,7 +52,7 @@ public class Intros implements Module {
 		String target = m.param();
 		if(!m.param().startsWith("#")) target = m.sender();
 		if(m.param().startsWith("#") && m.command().equals("PRIVMSG")){
-			if(m.botCommand().equals("intros")){
+			if(m.botCommand().equals("intros") || m.botCommand().equals("intro")){
 				if(Info.isRegistered(m.sender())){
 					if(m.hasBotParams()){
 						if(m.botParamsArray()[0].equals("list")){
@@ -97,12 +97,12 @@ public class Intros implements Module {
 								intro = intro.trim()
 										.replaceAll("\n", "")
 										.replaceAll("\r", "")
-										.replace("{", "")
-										.replace("}", "")
-										.replace("[", "")
-										.replace("]", "")
-										.replace(";", "")
-										.replace(":", "");
+										.replace("{", "\\{")
+										.replace("}", "\\}")
+										.replace("[", "\\[")
+										.replace("]", "\\]")
+										.replace(";", "\\;")
+										.replace(":", "\\:");
 								if(userintros.size() == 10){
 									Server.say(target, m.sender() + ": Sorry, you have already set the max number of intros. Use " + 
 											Config.getChar() + "intros del <intro> to remove some.");
