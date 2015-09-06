@@ -100,26 +100,31 @@ public class Server {
 	
 	public static void send(String message){
 		message = message.replaceAll("\r", "").replaceAll("\n", "");
-		String[] split = message.split(" ");
-		String tosend = "";
-		System.out.println();
-		System.out.println("MESSAGE " + message);
-		System.out.println();
-		boolean hitLimit = false;
-		for(int i = 0;i < split.length;i++){
-			tosend += split[i] + " ";
-			if(tosend.length() > 300){
-				toserver.add(tosend.substring(0, tosend.length()-1));
-				hitLimit = true;
-				String next = split[0] + " " + split[1] + " :";
-				for(int j = i+1; j < split.length; j++){
-					next += split[j] + " ";
+		if(message.startsWith("PRIVMSG") || message.startsWith("NOTICE ")){
+			String[] split = message.split(" ");
+			String tosend = "";
+			System.out.println();
+			System.out.println("MESSAGE " + message);
+			System.out.println();
+			boolean hitLimit = false;
+			for(int i = 0;i < split.length;i++){
+				tosend += split[i] + " ";
+				if(tosend.length() > 300){
+					toserver.add(tosend.substring(0, tosend.length()-1));
+					hitLimit = true;
+					String next = split[0] + " " + split[1] + " :";
+					for(int j = i+1; j < split.length; j++){
+						next += split[j] + " ";
+					}
+					send(next.substring(0, next.length()-1));
+					break;
 				}
-				send(next.substring(0, next.length()-1));
-				break;
 			}
+			if(!hitLimit)toserver.add(tosend.substring(0, tosend.length()-1));
 		}
-		if(!hitLimit)toserver.add(tosend.substring(0, tosend.length()-1));
+		else{
+			toserver.addFirst(message);
+		}
 	}
 	
 	public static void pm(String target, String message){
@@ -132,23 +137,28 @@ public class Server {
 	
 	public static void lessPrioritySend(String message){
 		message = message.replaceAll("\r", "").replaceAll("\n", "");
-		String[] split = message.split(" ");
-		String tosend = "";
-		boolean hitLimit = false;
-		for(int i = 0;i < split.length;i++){
-			tosend += split[i] + " ";
-			if(tosend.length() > 300){
-				toserverlesspriority.add(tosend.substring(0, tosend.length()-1));
-				hitLimit = true;
-				String next = split[0] + " " + split[1] + " :";
-				for(int j = i+1; j < split.length; j++){
-					next += split[j] + " ";
+		if(message.startsWith("PRIVMSG") || message.startsWith("NOTICE ")){
+			String[] split = message.split(" ");
+			String tosend = "";
+			boolean hitLimit = false;
+			for(int i = 0;i < split.length;i++){
+				tosend += split[i] + " ";
+				if(tosend.length() > 300){
+					toserverlesspriority.add(tosend.substring(0, tosend.length()-1));
+					hitLimit = true;
+					String next = split[0] + " " + split[1] + " :";
+					for(int j = i+1; j < split.length; j++){
+						next += split[j] + " ";
+					}
+					lessPrioritySend(next.substring(0, next.length()-1));
+					break;
 				}
-				lessPrioritySend(next.substring(0, next.length()-1));
-				break;
 			}
+			if(!hitLimit)toserverlesspriority.add(tosend.substring(0, tosend.length()-1));
 		}
-		if(!hitLimit)toserverlesspriority.add(tosend.substring(0, tosend.length()-1));
+		else{
+			toserver.addFirst(message);
+		}
 	}
 	
 	public static void lessPriorityPm(String target, String message){
@@ -161,24 +171,28 @@ public class Server {
 	
 	public static void prioritySend(String message){
 		message = message.replaceAll("\r", "").replaceAll("\n", "");
-		String[] split = message.split(" ");
-		String tosend = "";
-		boolean hitLimit = false;
-		for(int i = 0;i < split.length;i++){
-			tosend += split[i] + " ";
-			if(tosend.length() > 300){
-				toserver.addFirst(tosend.substring(0, tosend.length()-1));
-				hitLimit = true;
-				String next = split[0] + " " + split[1] + " :";
-				for(int j = i+1; j < split.length; j++){
-					next += split[j] + " ";
+		if(message.startsWith("PRIVMSG") || message.startsWith("NOTICE ")){
+			String[] split = message.split(" ");
+			String tosend = "";
+			boolean hitLimit = false;
+			for(int i = 0;i < split.length;i++){
+				tosend += split[i] + " ";
+				if(tosend.length() > 300){
+					toserver.addFirst(tosend.substring(0, tosend.length()-1));
+					hitLimit = true;
+					String next = split[0] + " " + split[1] + " :";
+					for(int j = i+1; j < split.length; j++){
+						next += split[j] + " ";
+					}
+					prioritySend(next.substring(0, next.length()-1));
+					break;
 				}
-				prioritySend(next.substring(0, next.length()-1));
-				break;
 			}
+			if(!hitLimit)toserver.addFirst(tosend.substring(0, tosend.length()-1));
 		}
-		if(!hitLimit)toserver.addFirst(tosend.substring(0, tosend.length()-1));
-		
+		else{
+			toserver.addFirst(message);
+		}
 		
 	}
 	
