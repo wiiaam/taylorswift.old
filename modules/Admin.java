@@ -44,7 +44,6 @@ public class Admin implements Module{
 		}
 		
 		
-		
 		if(m.senderIsAdmin()){
 			if(m.botCommand().equals("admin")){
 				if(m.botParamsArray().length > 1){
@@ -56,6 +55,15 @@ public class Admin implements Module{
 						if(Config.removeAdmin(m.botParamsArray()[1])) Server.say(target, m.botParamsArray()[1] + " is no longer an admin");
 						else Server.say(target, m.botParamsArray()[1] + " is not an admin");
 					}
+				}
+			}
+			if(m.botCommand().equals("listchans")){
+				String chans = "";
+				for(String room : Config.getRooms()){
+					chans += room + " ";
+				}
+				if(chans.equals("")){
+					chans = "Not currently in any channels";
 				}
 			}
 			if(m.botCommand().equals("leave")){
@@ -119,6 +127,12 @@ public class Admin implements Module{
 			}
 			if(m.botCommand().equals("say")){
 				Server.say(target, m.botParams());
+			}
+			
+			if(m.botCommand().equals("amsg")){
+				for(String room : Config.getRooms()){
+					Server.pm(room, m.botParams());
+				}
 			}
 			
 			if(m.botCommand().equals("quit")){
