@@ -21,9 +21,6 @@ public class Money implements bot.Module{
 	private HashSet<String> pros = new HashSet<String>();
 	
 	public Money(){
-		pros.add("gen2");
-		pros.add("wiiaam");
-		pros.add("installgen2");
 		try {
 			bank.load(new FileInputStream(new File(this.getClass().getResource("properties/money.properties").toURI())));
 		} catch (IOException | URISyntaxException e) {
@@ -90,7 +87,7 @@ public class Money implements bot.Module{
 			}
 			if(m.hasBotParams()){
 				if(!bank.containsKey(m.sender())){
-					Server.say(target, "winz hasnt given u any money yet");
+					Server.say(target, "winz hasnt given u any money yet. Use " + Config.getChar() + "bene to get some");
 					return;
 				}
 				long bet;
@@ -145,7 +142,7 @@ public class Money implements bot.Module{
 				}
 				if(Math.random() > 0.1 || pros.contains(tomug)){
 					jail.put(m.sender(), System.currentTimeMillis());
-					Server.say(target, "4█2█0,1POLICE4█2█ Its the police! looks like u got caught. thats five minutes the big house for you!");
+					Server.say(target, "4█2█0,1POLICE4█2█ Its the police! looks like u got caught. thats five minutes the big house for you!");
 				}
 				else{
 					double targetmoney = get(tomug);

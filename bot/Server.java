@@ -273,8 +273,8 @@ public class Server {
 		}
 	}
 	
-	public static void disconnect(){
-		prioritySend("QUIT :Shutting down!");
+	public static void disconnect(String reason){
+		prioritySend("QUIT :" + reason);
 		try {
 			Thread.sleep(5000);
 		} catch (InterruptedException e) {

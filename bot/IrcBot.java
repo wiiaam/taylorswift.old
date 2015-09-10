@@ -57,6 +57,12 @@ public class IrcBot {
 		}
 		for(String s : Config.getRooms()){
 			Server.send("JOIN " + s);
+		}
+		try {
+			Thread.sleep(2000);
+		} catch (InterruptedException e) {
+		}
+		for(String s : Config.getRooms()){
 			Server.send("WHO " + s);
 		}
 	}
@@ -112,7 +118,7 @@ public class IrcBot {
 						String next = Server.in.nextLine();
 						if(next.contains("KILL")){
 							if(next.contains("GHOST")){
-								Server.disconnect();
+								Server.disconnect("");
 							}
 						}
 						if(next.startsWith("ERROR :Closing Link")){

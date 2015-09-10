@@ -43,7 +43,7 @@ public class Admin implements Module{
 			}
 		}
 		
-		
+		System.out.println(Info.isRegistered(m.sender()));
 		if(m.senderIsAdmin()){
 			if(m.botCommand().equals("admin")){
 				if(m.botParamsArray().length > 1){
@@ -65,6 +65,7 @@ public class Admin implements Module{
 				if(chans.equals("")){
 					chans = "Not currently in any channels";
 				}
+				Server.say(target, chans.trim());
 			}
 			if(m.botCommand().equals("leave")){
 				m.send("PART " + m.param());
@@ -136,8 +137,10 @@ public class Admin implements Module{
 			}
 			
 			if(m.botCommand().equals("quit")){
-				Server.prioritySay(target, "o-ok");
-				Server.disconnect();
+				String reason;
+				if(m.hasBotParams()) reason = m.botParams();
+				else reason = "Shutting down";
+				Server.disconnect(reason);
 			}
 			
 			if(m.botCommand().equals("part")){
