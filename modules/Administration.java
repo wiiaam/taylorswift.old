@@ -117,7 +117,6 @@ public class Administration implements Module {
 					Server.say(target, "They are a higher rank than you");
 					return;
 				}
-				m.send("MODE " + m.param() + " +b " + Info.getUserInfo(m.botParamsArray()[0]).getHost() );
 				String reason = "";
 				for(int i = 1; i < m.botParamsArray().length; i++){
 					reason += m.botParamsArray()[i] + " ";
@@ -125,6 +124,7 @@ public class Administration implements Module {
 				reason = reason.trim();
 				if(reason.equals("")) reason = m.botParamsArray()[0];
 				m.send("KICK " + m.param() + " " + m.botParamsArray()[0] + " :" + reason);
+				m.send("MODE " + m.param() + " +b " + Info.getUserInfo(m.botParamsArray()[0]).getHost() );
 			}
 			
 			if(m.botCommand().equals("ub")){ // Unban
