@@ -23,7 +23,7 @@ This bot has many features, including, but not limited to,
 
 **Note:** These modules and this bot were all made and used primarily for the Rizon IRC network.
 
-An issue with some other networks is that it cannot check for registered users, as there is no `+r` usermode. Although it is unsafe, this can be fixed by changing [this method](https://github.com/wiiam/Personal-Bot/blob/master/bot/Message.java#L237) (bot/Message.java, line 237) to 
+An issue with some other networks is that it cannot check for registered users, as there is no `+r` usermode. Although it is unsafe, this can be fixed by changing [this method](https://github.com/wiiam/taylorswift/blob/master/bot/Message.java#L237) (bot/Message.java, line 237) to 
 ```
 return Config.getAdmins().contains(sender);
 ```
@@ -35,8 +35,8 @@ Any libraries used can be found in the [libs](libs/) folder
 
 If you wish to use this bot
 
-1. Clone the repo with `$ git clone https://github.com/wiiam/Personal-Bot.git`
-2. `$ cd Personal-Bot`
+1. Clone the repo with `$ git clone https://github.com/wiiam/taylorswift.git`
+2. `$ cd taylorswift`
 3. Rename the config file `config.json.example` to `config.json` then edit with your configuration 
 4. `$ chmod +x compile.sh` then `$ ./compile.sh`
 5. Then run the bot with `$ chmod +x run.sh` `$ ./run.sh`
