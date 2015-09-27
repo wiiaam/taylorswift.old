@@ -22,7 +22,7 @@ public class Google implements bot.Module {
 		
 		if(m.botCommand().equals("g") || m.botCommand().equals("google")){
 			if(m.botParamsArray().length == 0)return;
-			String query = m.botParams().replace(" ", "_");
+			String query = m.botParams().replaceAll("\\s+", "%20");
 			try {
 				URL url = new URL("http://ajax.googleapis.com/ajax/services/search/web?v=1.0&safe=off&q=" + query);
 				InputStream in = url.openStream();
