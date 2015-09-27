@@ -24,7 +24,7 @@ public class Youtube implements bot.Module {
 		
 		if(m.botCommand().equals("yt") || m.botCommand().equals("youtube")){
 			if(m.botParamsArray().length == 0)return;
-			String query = m.botParams().replace(" ", "_");
+			String query = m.botParams().replaceAll("\\s+", "%20");
 			try {
 				URL url = new URL("https://www.googleapis.com/youtube/v3/search?part=snippet&key=" + Config.getGoogleApiKey() + "&q=" + query);
 				InputStream in = url.openStream();
