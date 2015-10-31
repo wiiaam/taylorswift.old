@@ -15,7 +15,7 @@ This bot has many features, including, but not limited to,
 - Currency system
 - Cowsay
 - Ignores
-- Automatic nick ghosting
+- Automatic nick ghosting (Using NickServ)
 - Web searches
 - Triggers
 - Sad frogs
